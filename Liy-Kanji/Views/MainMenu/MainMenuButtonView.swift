@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct MainMenuButtonView: View {
+    
+    @Binding var showView: Bool
+    
     let image: String
     let text: String
-    let action: ()
     
     var body: some View {
         HStack {
             Button(action: {
-                action
+                showView.toggle()
             }, label: {
                 Image(systemName: image)
                     .font(.system(size: 24, weight: .regular))
@@ -37,7 +39,8 @@ struct MainMenuButtonView: View {
 }
 
 struct MainMenuButtonView_Previews: PreviewProvider {
+    @State static var showView: Bool = false
     static var previews: some View {
-        MainMenuButtonView(image: "seal", text: "Today's Cards", action: {}())
+        MainMenuButtonView(showView: $showView, image: "seal", text: "Today's Cards")
     }
 }

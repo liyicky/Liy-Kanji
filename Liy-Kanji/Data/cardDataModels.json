@@ -1,0 +1,100 @@
+[
+    {
+        "id": 0,
+        "keyword": "One",
+        "kanji": "一",
+        "exampleWord": "いち",
+        "radicles": []
+    },
+    {
+        "id": 1,
+        "keyword": "Two",
+        "kanji": "二",
+        "exampleWord": "に",
+        "radicles": []
+    },
+    {
+        "id": 2,
+        "keyword": "Three",
+        "kanji": "三",
+        "exampleWord": "さん",
+        "radicles": []
+    },
+    {
+        "id": 3,
+        "keyword": "Four",
+        "kanji": "四",
+        "exampleWord": "よん",
+        "radicles": []
+    },
+    {
+        "id": 4,
+        "keyword": "Five",
+        "kanji": "五",
+        "exampleWord": "ご",
+        "radicles": []
+    },
+    {
+        "id": 5,
+        "keyword": "Siz",
+        "kanji": "六",
+        "exampleWord": "六",
+        "radicles": []
+    }
+    {
+        "id": 6,
+        "keyword": "Seven",
+        "kanji": "七",
+        "exampleWord": "なな",
+        "radicles": []
+    },
+    {
+        "id": 7,
+        "keyword": "Eight",
+        "kanji": "八",
+        "exampleWord": "はち",
+        "radicles": []
+    },
+    {
+        "id": 8,
+        "keyword": "Nine",
+        "kanji": "九",
+        "exampleWord": "きゅう",
+        "radicles": []
+    },
+    {
+        "id": 9,
+        "keyword": "Ten",
+        "kanji": "十",
+        "exampleWord": "じゅう",
+        "radicles": []
+    }
+    {
+        "id": 10,
+        "keyword": "Mouth",
+        "kanji": "口",
+        "exampleWord": "くち",
+        "radicles": []
+    },
+    {
+        "id": 11,
+        "keyword": "Day",
+        "kanji": "日",
+        "exampleWord": "にち",
+        "radicles": []
+    },
+    {
+        "id": 12,
+        "keyword": "Month",
+        "kanji": "月",
+        "exampleWord": "つき",
+        "radicles": []
+    },
+    {
+        "id": 13,
+        "keyword": "Rice field",
+        "kanji": "田",
+        "exampleWord": "山だ",
+        "radicles": []
+    }
+]

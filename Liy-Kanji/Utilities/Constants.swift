@@ -10,3 +10,4 @@ import SwiftUI
 // MARK: - DATA
 
 let testImages: [MainMenuImage] = Bundle.main.decode("testImages.json")
+let cardDataModels: [CardDataModel] = Bundle.main.decode("cardDataModels.json")
