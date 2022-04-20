@@ -11,6 +11,16 @@
 		5C70DC21280FCC2E005FA650 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC20280FCC2E005FA650 /* ContentView.swift */; };
 		5C70DC23280FCC30005FA650 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C70DC22280FCC30005FA650 /* Assets.xcassets */; };
 		5C70DC26280FCC30005FA650 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C70DC25280FCC30005FA650 /* Preview Assets.xcassets */; };
+		5C70DC2F280FCE64005FA650 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC2E280FCE64005FA650 /* HeaderView.swift */; };
+		5C70DC31280FCFF5005FA650 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC30280FCFF5005FA650 /* SettingsView.swift */; };
+		5C70DC33280FD033005FA650 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC32280FD033005FA650 /* InfoView.swift */; };
+		5C70DC35280FD747005FA650 /* MainMenuTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC34280FD747005FA650 /* MainMenuTabView.swift */; };
+		5C70DC37280FD77D005FA650 /* MainMenuImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC36280FD77D005FA650 /* MainMenuImage.swift */; };
+		5C70DC3A280FDA59005FA650 /* testImages.json in Resources */ = {isa = PBXBuildFile; fileRef = 5C70DC39280FDA59005FA650 /* testImages.json */; };
+		5C70DC3C280FDAF6005FA650 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC3B280FDAF5005FA650 /* Constants.swift */; };
+		5C70DC3F280FDBFC005FA650 /* CodeableBundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC3E280FDBFC005FA650 /* CodeableBundleExtension.swift */; };
+		5C70DC41280FDC93005FA650 /* MainMenuImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC40280FDC93005FA650 /* MainMenuImageView.swift */; };
+		5C70DC43280FE0F4005FA650 /* MainMenuButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC42280FE0F4005FA650 /* MainMenuButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +29,16 @@
 		5C70DC20280FCC2E005FA650 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5C70DC22280FCC30005FA650 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5C70DC25280FCC30005FA650 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		5C70DC2E280FCE64005FA650 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		5C70DC30280FCFF5005FA650 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		5C70DC32280FD033005FA650 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		5C70DC34280FD747005FA650 /* MainMenuTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuTabView.swift; sourceTree = "<group>"; };
+		5C70DC36280FD77D005FA650 /* MainMenuImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuImage.swift; sourceTree = "<group>"; };
+		5C70DC39280FDA59005FA650 /* testImages.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testImages.json; sourceTree = "<group>"; };
+		5C70DC3B280FDAF5005FA650 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5C70DC3E280FDBFC005FA650 /* CodeableBundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeableBundleExtension.swift; sourceTree = "<group>"; };
+		5C70DC40280FDC93005FA650 /* MainMenuImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuImageView.swift; sourceTree = "<group>"; };
+		5C70DC42280FE0F4005FA650 /* MainMenuButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +55,7 @@
 		5C70DC12280FCC2E005FA650 = {
 			isa = PBXGroup;
 			children = (
+				5C70DC3E280FDBFC005FA650 /* CodeableBundleExtension.swift */,
 				5C70DC1D280FCC2E005FA650 /* Liy-Kanji */,
 				5C70DC1C280FCC2E005FA650 /* Products */,
 			);
@@ -51,10 +72,13 @@
 		5C70DC1D280FCC2E005FA650 /* Liy-Kanji */ = {
 			isa = PBXGroup;
 			children = (
+				5C70DC38280FDA30005FA650 /* Data */,
 				5C70DC1E280FCC2E005FA650 /* Liy_KanjiApp.swift */,
-				5C70DC20280FCC2E005FA650 /* ContentView.swift */,
+				5C70DC2D280FCE43005FA650 /* Models */,
+				5C70DC2C280FCE3F005FA650 /* Views */,
 				5C70DC22280FCC30005FA650 /* Assets.xcassets */,
 				5C70DC24280FCC30005FA650 /* Preview Content */,
+				5C70DC3D280FDAFE005FA650 /* Utilities */,
 			);
 			path = "Liy-Kanji";
 			sourceTree = "<group>";
@@ -65,6 +89,60 @@
 				5C70DC25280FCC30005FA650 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5C70DC2C280FCE3F005FA650 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5C70DC20280FCC2E005FA650 /* ContentView.swift */,
+				5C70DC44280FE68A005FA650 /* MainMenu */,
+				5C70DC45280FE6A5005FA650 /* Header */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5C70DC2D280FCE43005FA650 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5C70DC36280FD77D005FA650 /* MainMenuImage.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5C70DC38280FDA30005FA650 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				5C70DC39280FDA59005FA650 /* testImages.json */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		5C70DC3D280FDAFE005FA650 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				5C70DC3B280FDAF5005FA650 /* Constants.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		5C70DC44280FE68A005FA650 /* MainMenu */ = {
+			isa = PBXGroup;
+			children = (
+				5C70DC34280FD747005FA650 /* MainMenuTabView.swift */,
+				5C70DC40280FDC93005FA650 /* MainMenuImageView.swift */,
+				5C70DC42280FE0F4005FA650 /* MainMenuButtonView.swift */,
+			);
+			path = MainMenu;
+			sourceTree = "<group>";
+		};
+		5C70DC45280FE6A5005FA650 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				5C70DC2E280FCE64005FA650 /* HeaderView.swift */,
+				5C70DC30280FCFF5005FA650 /* SettingsView.swift */,
+				5C70DC32280FD033005FA650 /* InfoView.swift */,
+			);
+			path = Header;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C70DC26280FCC30005FA650 /* Preview Assets.xcassets in Resources */,
+				5C70DC3A280FDA59005FA650 /* testImages.json in Resources */,
 				5C70DC23280FCC30005FA650 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,8 +216,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C70DC43280FE0F4005FA650 /* MainMenuButtonView.swift in Sources */,
+				5C70DC35280FD747005FA650 /* MainMenuTabView.swift in Sources */,
 				5C70DC21280FCC2E005FA650 /* ContentView.swift in Sources */,
+				5C70DC31280FCFF5005FA650 /* SettingsView.swift in Sources */,
+				5C70DC37280FD77D005FA650 /* MainMenuImage.swift in Sources */,
+				5C70DC2F280FCE64005FA650 /* HeaderView.swift in Sources */,
+				5C70DC33280FD033005FA650 /* InfoView.swift in Sources */,
+				5C70DC41280FDC93005FA650 /* MainMenuImageView.swift in Sources */,
 				5C70DC1F280FCC2E005FA650 /* Liy_KanjiApp.swift in Sources */,
+				5C70DC3C280FDAF6005FA650 /* Constants.swift in Sources */,
+				5C70DC3F280FDBFC005FA650 /* CodeableBundleExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
