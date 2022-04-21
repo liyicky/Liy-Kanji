@@ -10,16 +10,12 @@ import SwiftUI
 struct ReviewsView: View {
     
     // MARK: - PROPERTIES
-    @State var showSettings: Bool = false
-    @State var showInfo: Bool = false
     
-    
+
     var body: some View {
         VStack {
             
             CardStackView(cardViews: [])
-            
-            
         }
     }
 }

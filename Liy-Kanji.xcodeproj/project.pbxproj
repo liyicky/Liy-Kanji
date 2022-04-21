@@ -14,6 +14,9 @@
 		5C2D321A280FF34B00D19F64 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D3219280FF34B00D19F64 /* PersistenceController.swift */; };
 		5C2D321D28100FA600D19F64 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D321C28100FA500D19F64 /* CardView.swift */; };
 		5C2D321F2810105C00D19F64 /* cardDataModels.json in Resources */ = {isa = PBXBuildFile; fileRef = 5C2D321E2810105C00D19F64 /* cardDataModels.json */; };
+		5C2D322328101DD100D19F64 /* NewCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D322228101DD100D19F64 /* NewCardsView.swift */; };
+		5C2D322528101E0F00D19F64 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D322428101E0F00D19F64 /* MainMenuView.swift */; };
+		5C2D322828111BD200D19F64 /* EnvironmentVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D322728111BD200D19F64 /* EnvironmentVariables.swift */; };
 		5C70DC1F280FCC2E005FA650 /* Liy_KanjiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC1E280FCC2E005FA650 /* Liy_KanjiApp.swift */; };
 		5C70DC21280FCC2E005FA650 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC20280FCC2E005FA650 /* ContentView.swift */; };
 		5C70DC23280FCC30005FA650 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C70DC22280FCC30005FA650 /* Assets.xcassets */; };
@@ -39,6 +42,9 @@
 		5C2D3219280FF34B00D19F64 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		5C2D321C28100FA500D19F64 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		5C2D321E2810105C00D19F64 /* cardDataModels.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cardDataModels.json; sourceTree = "<group>"; };
+		5C2D322228101DD100D19F64 /* NewCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardsView.swift; sourceTree = "<group>"; };
+		5C2D322428101E0F00D19F64 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
+		5C2D322728111BD200D19F64 /* EnvironmentVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentVariables.swift; sourceTree = "<group>"; };
 		5C70DC1B280FCC2E005FA650 /* Liy-Kanji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Liy-Kanji.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C70DC1E280FCC2E005FA650 /* Liy_KanjiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Liy_KanjiApp.swift; sourceTree = "<group>"; };
 		5C70DC20280FCC2E005FA650 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -84,6 +90,31 @@
 			path = Cards;
 			sourceTree = "<group>";
 		};
+		5C2D322028101CEE00D19F64 /* Reviews */ = {
+			isa = PBXGroup;
+			children = (
+				5C70DC46280FEAE1005FA650 /* ReviewsView.swift */,
+				5C2D3211280FF1D700D19F64 /* CardStackView.swift */,
+			);
+			path = Reviews;
+			sourceTree = "<group>";
+		};
+		5C2D322128101D0100D19F64 /* NewCards */ = {
+			isa = PBXGroup;
+			children = (
+				5C2D322228101DD100D19F64 /* NewCardsView.swift */,
+			);
+			path = NewCards;
+			sourceTree = "<group>";
+		};
+		5C2D322628111BB900D19F64 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5C2D322728111BD200D19F64 /* EnvironmentVariables.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		5C70DC12280FCC2E005FA650 = {
 			isa = PBXGroup;
 			children = (
@@ -104,8 +135,9 @@
 			isa = PBXGroup;
 			children = (
 				5C70DC1E280FCC2E005FA650 /* Liy_KanjiApp.swift */,
-				5C2D3218280FF32500D19F64 /* Controllers */,
+				5C2D322628111BB900D19F64 /* Extensions */,
 				5C70DC2D280FCE43005FA650 /* Models */,
+				5C2D3218280FF32500D19F64 /* Controllers */,
 				5C70DC2C280FCE3F005FA650 /* Views */,
 				5C70DC24280FCC30005FA650 /* Preview Content */,
 				5C70DC3D280FDAFE005FA650 /* Utilities */,
@@ -127,12 +159,12 @@
 		5C70DC2C280FCE3F005FA650 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5C2D321B28100F8800D19F64 /* Cards */,
 				5C70DC20280FCC2E005FA650 /* ContentView.swift */,
+				5C2D322128101D0100D19F64 /* NewCards */,
+				5C2D322028101CEE00D19F64 /* Reviews */,
 				5C70DC44280FE68A005FA650 /* MainMenu */,
+				5C2D321B28100F8800D19F64 /* Cards */,
 				5C70DC45280FE6A5005FA650 /* Header */,
-				5C70DC46280FEAE1005FA650 /* ReviewsView.swift */,
-				5C2D3211280FF1D700D19F64 /* CardStackView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -171,6 +203,7 @@
 				5C70DC34280FD747005FA650 /* MainMenuTabView.swift */,
 				5C70DC40280FDC93005FA650 /* MainMenuImageView.swift */,
 				5C70DC42280FE0F4005FA650 /* MainMenuButtonView.swift */,
+				5C2D322428101E0F00D19F64 /* MainMenuView.swift */,
 			);
 			path = MainMenu;
 			sourceTree = "<group>";
@@ -262,10 +295,12 @@
 				5C70DC43280FE0F4005FA650 /* MainMenuButtonView.swift in Sources */,
 				5C70DC35280FD747005FA650 /* MainMenuTabView.swift in Sources */,
 				5C70DC21280FCC2E005FA650 /* ContentView.swift in Sources */,
+				5C2D322328101DD100D19F64 /* NewCardsView.swift in Sources */,
 				5C70DC31280FCFF5005FA650 /* SettingsView.swift in Sources */,
 				5C70DC37280FD77D005FA650 /* MainMenuImage.swift in Sources */,
 				5C70DC2F280FCE64005FA650 /* HeaderView.swift in Sources */,
 				5C70DC33280FD033005FA650 /* InfoView.swift in Sources */,
+				5C2D322528101E0F00D19F64 /* MainMenuView.swift in Sources */,
 				5C2D3210280FF05C00D19F64 /* CardTransition.swift in Sources */,
 				5C2D321D28100FA600D19F64 /* CardView.swift in Sources */,
 				5C2D321A280FF34B00D19F64 /* PersistenceController.swift in Sources */,
@@ -275,6 +310,7 @@
 				5C2D3217280FF2CE00D19F64 /* Stash.xcdatamodeld in Sources */,
 				5C2D3214280FF25000D19F64 /* CardDataModel.swift in Sources */,
 				5C70DC3F280FDBFC005FA650 /* CodeableBundleExtension.swift in Sources */,
+				5C2D322828111BD200D19F64 /* EnvironmentVariables.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

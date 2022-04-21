@@ -8,12 +8,29 @@
 import SwiftUI
 
 struct HeaderView: View {
+    
     // MARK: - PROPERTIES
+//    @Environment(\.goBack) private var back
+    
     @Binding var showSettingsView: Bool
     @Binding var showInfoView: Bool
+    @Binding var goBack: Bool
+
     
     var body: some View {
         HStack {
+            
+            if (goBack) {
+                Button(action: {
+                    goBack = false
+                }, label: {
+                    Image(systemName: "chevron.left")
+                        .font(.system(size: 24, weight: .regular))
+                        .foregroundStyle(.black)
+                })
+                .accentColor(Color.primary)
+            }
+            
             Button(action: {
                 self.showSettingsView.toggle()
             }, label: {
@@ -26,6 +43,7 @@ struct HeaderView: View {
             .sheet(isPresented: $showSettingsView, content: {
                 SettingsView()
             })
+            
             
             Spacer()
             
@@ -56,7 +74,8 @@ struct HeaderView: View {
 struct HeaderView_Previews: PreviewProvider {
     @State static var showSettings: Bool = false
     @State static var showInfo: Bool = false
+    @State static var goBack: Bool = false
     static var previews: some View {
-        HeaderView(showSettingsView: $showSettings, showInfoView: $showInfo)
+        HeaderView(showSettingsView: $showSettings, showInfoView: $showInfo, goBack: $goBack)
     }
 }
