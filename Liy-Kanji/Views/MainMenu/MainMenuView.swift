@@ -10,6 +10,8 @@ import SwiftUI
 struct MainMenuView: View {
     
     // MARK: - PROPERTIES
+    @State var showSettingsView: Bool = false
+    @State var showInfoView: Bool = false
     
     var body: some View {
         NavigationView {
@@ -34,12 +36,40 @@ struct MainMenuView: View {
                 .padding()
             }
             .navigationTitle("Main Menu")
+            .navigationBarItems(
+                leading: Button(action: {
+                    showSettingsView.toggle()
+            }, label: {
+                Image(systemName: "square.and.pencil")
+                    .font(.system(size: 24, weight: .regular))
+                    .foregroundStyle(.green, .black)
+                    .symbolRenderingMode(.palette)
+            })
+            .accentColor(Color.primary)
+            .sheet(isPresented: $showSettingsView, content: {
+                SettingsView()
+            }),
+                trailing: Button(action: {
+                    self.showSettingsView.toggle()
+                }, label: {
+                    Image(systemName: "info.circle")
+                        .font(.system(size: 24, weight: .regular))
+                        .foregroundStyle(.green, .black)
+                        .symbolRenderingMode(.palette)
+                })
+                .accentColor(Color.primary)
+                .sheet(isPresented: $showSettingsView, content: {
+                    SettingsView()
+                })
+                )
         } // NAV VIEW
         .foregroundColor(.black)
     }
 }
 
 struct MainMenuView_Previews: PreviewProvider {
+    @State static var showSettings: Bool = false
+    @State static var showInfo: Bool = false
     static var previews: some View {
         MainMenuView()
     }

@@ -7,11 +7,22 @@
 
 import SwiftUI
 
-struct CardDataModel: Codable {
+struct CardDataModel: Codable, Identifiable {
     let id: Int
     let keyword: String
     let kanji: String
     let exampleWord: String
-    let radicles: [String]
+    let radicles: [Int]
+    let description: String
 //    var coreDataCardObject: FetchedResults<Card>.Element? = nil
+    
+    func allRadicles() -> [CardDataModel] {
+        var allRads: [CardDataModel] = []
+        for cardDataModel in cardDataModels {
+            if (radicles.contains(cardDataModel.id)) {
+                allRads.append(cardDataModel)
+            }
+        }
+        return allRads
+    }
 }

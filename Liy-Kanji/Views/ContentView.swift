@@ -20,9 +20,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            HeaderView(showSettingsView: $showSettings, showInfoView: $showInfo, goBack: $goBack)
-            
-            Spacer()
+//            HeaderView(showSettingsView: $showSettings, showInfoView: $showInfo, goBack: $goBack)
             
             MainMenuView()
 

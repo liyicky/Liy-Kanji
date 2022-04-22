@@ -17,6 +17,9 @@
 		5C2D322328101DD100D19F64 /* NewCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D322228101DD100D19F64 /* NewCardsView.swift */; };
 		5C2D322528101E0F00D19F64 /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D322428101E0F00D19F64 /* MainMenuView.swift */; };
 		5C2D322828111BD200D19F64 /* EnvironmentVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D322728111BD200D19F64 /* EnvironmentVariables.swift */; };
+		5C2D322A28112DAB00D19F64 /* DisplayCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D322928112DAB00D19F64 /* DisplayCard.swift */; };
+		5C2D322D2811851200D19F64 /* ButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D322C2811851200D19F64 /* ButtonModifier.swift */; };
+		5C2D322F28124E0600D19F64 /* CardInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D322E28124E0600D19F64 /* CardInfoView.swift */; };
 		5C70DC1F280FCC2E005FA650 /* Liy_KanjiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC1E280FCC2E005FA650 /* Liy_KanjiApp.swift */; };
 		5C70DC21280FCC2E005FA650 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC20280FCC2E005FA650 /* ContentView.swift */; };
 		5C70DC23280FCC30005FA650 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C70DC22280FCC30005FA650 /* Assets.xcassets */; };
@@ -45,6 +48,9 @@
 		5C2D322228101DD100D19F64 /* NewCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardsView.swift; sourceTree = "<group>"; };
 		5C2D322428101E0F00D19F64 /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
 		5C2D322728111BD200D19F64 /* EnvironmentVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentVariables.swift; sourceTree = "<group>"; };
+		5C2D322928112DAB00D19F64 /* DisplayCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayCard.swift; sourceTree = "<group>"; };
+		5C2D322C2811851200D19F64 /* ButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonModifier.swift; sourceTree = "<group>"; };
+		5C2D322E28124E0600D19F64 /* CardInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInfoView.swift; sourceTree = "<group>"; };
 		5C70DC1B280FCC2E005FA650 /* Liy-Kanji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Liy-Kanji.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C70DC1E280FCC2E005FA650 /* Liy_KanjiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Liy_KanjiApp.swift; sourceTree = "<group>"; };
 		5C70DC20280FCC2E005FA650 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -86,6 +92,8 @@
 			isa = PBXGroup;
 			children = (
 				5C2D321C28100FA500D19F64 /* CardView.swift */,
+				5C2D322928112DAB00D19F64 /* DisplayCard.swift */,
+				5C2D322E28124E0600D19F64 /* CardInfoView.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -115,6 +123,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		5C2D322B281184FB00D19F64 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				5C2D322C2811851200D19F64 /* ButtonModifier.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
 		5C70DC12280FCC2E005FA650 = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +155,7 @@
 				5C70DC2D280FCE43005FA650 /* Models */,
 				5C2D3218280FF32500D19F64 /* Controllers */,
 				5C70DC2C280FCE3F005FA650 /* Views */,
+				5C2D322B281184FB00D19F64 /* Modifiers */,
 				5C70DC24280FCC30005FA650 /* Preview Content */,
 				5C70DC3D280FDAFE005FA650 /* Utilities */,
 				5C70DC38280FDA30005FA650 /* Data */,
@@ -300,8 +317,11 @@
 				5C70DC37280FD77D005FA650 /* MainMenuImage.swift in Sources */,
 				5C70DC2F280FCE64005FA650 /* HeaderView.swift in Sources */,
 				5C70DC33280FD033005FA650 /* InfoView.swift in Sources */,
+				5C2D322A28112DAB00D19F64 /* DisplayCard.swift in Sources */,
 				5C2D322528101E0F00D19F64 /* MainMenuView.swift in Sources */,
 				5C2D3210280FF05C00D19F64 /* CardTransition.swift in Sources */,
+				5C2D322D2811851200D19F64 /* ButtonModifier.swift in Sources */,
+				5C2D322F28124E0600D19F64 /* CardInfoView.swift in Sources */,
 				5C2D321D28100FA600D19F64 /* CardView.swift in Sources */,
 				5C2D321A280FF34B00D19F64 /* PersistenceController.swift in Sources */,
 				5C70DC41280FDC93005FA650 /* MainMenuImageView.swift in Sources */,
