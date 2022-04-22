@@ -35,6 +35,8 @@
 		5C70DC41280FDC93005FA650 /* MainMenuImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC40280FDC93005FA650 /* MainMenuImageView.swift */; };
 		5C70DC43280FE0F4005FA650 /* MainMenuButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC42280FE0F4005FA650 /* MainMenuButtonView.swift */; };
 		5C70DC47280FEAE1005FA650 /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC46280FEAE1005FA650 /* ReviewsView.swift */; };
+		5CF43A7E28126A61003F0459 /* FrontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF43A7D28126A61003F0459 /* FrontView.swift */; };
+		5CF43A8028126A70003F0459 /* BackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF43A7F28126A70003F0459 /* BackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +69,8 @@
 		5C70DC40280FDC93005FA650 /* MainMenuImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuImageView.swift; sourceTree = "<group>"; };
 		5C70DC42280FE0F4005FA650 /* MainMenuButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuButtonView.swift; sourceTree = "<group>"; };
 		5C70DC46280FEAE1005FA650 /* ReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsView.swift; sourceTree = "<group>"; };
+		5CF43A7D28126A61003F0459 /* FrontView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontView.swift; sourceTree = "<group>"; };
+		5CF43A7F28126A70003F0459 /* BackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +98,8 @@
 				5C2D321C28100FA500D19F64 /* CardView.swift */,
 				5C2D322928112DAB00D19F64 /* DisplayCard.swift */,
 				5C2D322E28124E0600D19F64 /* CardInfoView.swift */,
+				5CF43A7D28126A61003F0459 /* FrontView.swift */,
+				5CF43A7F28126A70003F0459 /* BackView.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -308,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C70DC47280FEAE1005FA650 /* ReviewsView.swift in Sources */,
+				5CF43A8028126A70003F0459 /* BackView.swift in Sources */,
 				5C2D3212280FF1D700D19F64 /* CardStackView.swift in Sources */,
 				5C70DC43280FE0F4005FA650 /* MainMenuButtonView.swift in Sources */,
 				5C70DC35280FD747005FA650 /* MainMenuTabView.swift in Sources */,
@@ -331,6 +338,7 @@
 				5C2D3214280FF25000D19F64 /* CardDataModel.swift in Sources */,
 				5C70DC3F280FDBFC005FA650 /* CodeableBundleExtension.swift in Sources */,
 				5C2D322828111BD200D19F64 /* EnvironmentVariables.swift in Sources */,
+				5CF43A7E28126A61003F0459 /* FrontView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

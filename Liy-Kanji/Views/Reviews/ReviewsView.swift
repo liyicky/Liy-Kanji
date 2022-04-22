@@ -11,11 +11,13 @@ struct ReviewsView: View {
     
     // MARK: - PROPERTIES
     
+    
+    // MARK: - CORE DATA
+    
 
     var body: some View {
         VStack {
-            
-            CardStackView(cardViews: [])
+            CardStackView()
         }
     }
 }

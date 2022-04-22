@@ -15,7 +15,6 @@ struct NewCardsView: View {
     
     // MARK: - CORE DATA
     @Environment(\.managedObjectContext) var managedObjectContext
-//    @FetchRequest(entity: Card.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Card.id, ascending: true)]) var cards: FetchedResults<Card>
     @FetchRequest(entity: NewCardIndex.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \NewCardIndex.index, ascending: true)]) var index: FetchedResults<NewCardIndex>
     
     
@@ -62,7 +61,7 @@ struct NewCardsView: View {
             return Int(i.index)
         } else {
             print("Core Data Index couldn't be found")
-            fatalError("alskdjfalskdjf")
+            return 13 // TODO: Everything will break if the code goes here.
         }
     }
     

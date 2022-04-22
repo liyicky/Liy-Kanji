@@ -10,7 +10,11 @@ import SwiftUI
 struct CardStackView: View {
     
     // MARK: - PROPERTIES
-    var cardViews: [CardView] = []
+    @State private var cardViews: [CardView] = []
+    
+    // MARK: - CORE DATA
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @FetchRequest(entity: Card.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Card.id, ascending: true)]) var cards: FetchedResults<Card>
     
     // MARK: - Card Swipe Properties
     @GestureState private var dragState = DragState.inactive
@@ -19,7 +23,7 @@ struct CardStackView: View {
     @State private var cardRemovalTransition = AnyTransition.trailingBottom
     
     
-    // MARK: Drag States
+    // MARK: - Drag States
     enum DragState {
         case inactive
         case pressing
@@ -92,8 +96,19 @@ struct CardStackView: View {
                                     guard case .second(true, let drag?) = value else {
                                         return
                                     }
+                                    
+                                    // MARK: - SWIPPING LEFT
+                                    if drag.translation.width < -self.dragAreaThreashhold {
+                                        print("Swipped Left")
+                                    }
+                                    
+                                    // MARK: - SWIPPING RIGHT
+                                    if drag.translation.width > self.dragAreaThreashhold {
+                                        print("Swipped Right")
+                                    }
+                                    
                                     if drag.translation.width < -self.dragAreaThreashhold || drag.translation.width > self.dragAreaThreashhold {
-//                                        cycleCards()
+                                        cycleCards()
                                     }
                                 })
                         )
@@ -102,6 +117,8 @@ struct CardStackView: View {
                     card
                 }
             }
+        }.onAppear {
+            populate()
         }
     }
     
@@ -113,17 +130,23 @@ struct CardStackView: View {
         return index == 0
     }
     
-//    private func cycleCards() {
-//        cardViews.removeFirst()
+    private func populate() {
+        for coreDataObject in cards {
+            let cardDataModel = cardDataModels[Int(coreDataObject.id)]
+            cardViews.append(CardView(card: coreDataObject, data: cardDataModel))
+        }
+    }
+    
+    private func cycleCards() {
 //        self.lastCardIndex += 1
 //        let data = cardData[lastCardIndex % cardData.count]
 //        let newCard = CardView(data: data)
-//        cardCollection.append(newCard)
-//    }
+        cardViews.append(cardViews.removeFirst())
+    }
 }
 
 struct CardStackView_Previews: PreviewProvider {
     static var previews: some View {
-        CardStackView(cardViews: [])
+        CardStackView()
     }
 }
