@@ -37,6 +37,7 @@
 		5C70DC47280FEAE1005FA650 /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC46280FEAE1005FA650 /* ReviewsView.swift */; };
 		5CF43A7E28126A61003F0459 /* FrontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF43A7D28126A61003F0459 /* FrontView.swift */; };
 		5CF43A8028126A70003F0459 /* BackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF43A7F28126A70003F0459 /* BackView.swift */; };
+		5CF43A83281280D7003F0459 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF43A82281280D7003F0459 /* FooterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +72,7 @@
 		5C70DC46280FEAE1005FA650 /* ReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsView.swift; sourceTree = "<group>"; };
 		5CF43A7D28126A61003F0459 /* FrontView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontView.swift; sourceTree = "<group>"; };
 		5CF43A7F28126A70003F0459 /* BackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackView.swift; sourceTree = "<group>"; };
+		5CF43A82281280D7003F0459 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 				5C2D322028101CEE00D19F64 /* Reviews */,
 				5C70DC44280FE68A005FA650 /* MainMenu */,
 				5C2D321B28100F8800D19F64 /* Cards */,
+				5CF43A81281280B4003F0459 /* Footer */,
 				5C70DC45280FE6A5005FA650 /* Header */,
 			);
 			path = Views;
@@ -227,6 +230,8 @@
 				5C70DC40280FDC93005FA650 /* MainMenuImageView.swift */,
 				5C70DC42280FE0F4005FA650 /* MainMenuButtonView.swift */,
 				5C2D322428101E0F00D19F64 /* MainMenuView.swift */,
+				5C70DC30280FCFF5005FA650 /* SettingsView.swift */,
+				5C70DC32280FD033005FA650 /* InfoView.swift */,
 			);
 			path = MainMenu;
 			sourceTree = "<group>";
@@ -235,10 +240,16 @@
 			isa = PBXGroup;
 			children = (
 				5C70DC2E280FCE64005FA650 /* HeaderView.swift */,
-				5C70DC30280FCFF5005FA650 /* SettingsView.swift */,
-				5C70DC32280FD033005FA650 /* InfoView.swift */,
 			);
 			path = Header;
+			sourceTree = "<group>";
+		};
+		5CF43A81281280B4003F0459 /* Footer */ = {
+			isa = PBXGroup;
+			children = (
+				5CF43A82281280D7003F0459 /* FooterView.swift */,
+			);
+			path = Footer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,6 +327,7 @@
 				5C70DC47280FEAE1005FA650 /* ReviewsView.swift in Sources */,
 				5CF43A8028126A70003F0459 /* BackView.swift in Sources */,
 				5C2D3212280FF1D700D19F64 /* CardStackView.swift in Sources */,
+				5CF43A83281280D7003F0459 /* FooterView.swift in Sources */,
 				5C70DC43280FE0F4005FA650 /* MainMenuButtonView.swift in Sources */,
 				5C70DC35280FD747005FA650 /* MainMenuTabView.swift in Sources */,
 				5C70DC21280FCC2E005FA650 /* ContentView.swift in Sources */,

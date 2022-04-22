@@ -58,10 +58,10 @@ struct MainMenuView: View {
                         .symbolRenderingMode(.palette)
                 })
                 .accentColor(Color.primary)
-                .sheet(isPresented: $showSettingsView, content: {
-                    SettingsView()
+                .sheet(isPresented: $showInfoView, content: {
+                    InfoView()
                 })
-                )
+            )
         } // NAV VIEW
         .foregroundColor(.black)
     }

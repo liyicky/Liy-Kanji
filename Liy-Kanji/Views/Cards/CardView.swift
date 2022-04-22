@@ -30,6 +30,7 @@ struct CardView: View, Identifiable {
                 .animation(.linear(duration: 0.3))
                 .zIndex(isFlipped ? 0 : 1)
         }
+        .padding()
         .onTapGesture {
             self.flipCard()
         }

@@ -18,6 +18,9 @@ struct ReviewsView: View {
     var body: some View {
         VStack {
             CardStackView()
+            
+            FooterView()
+                .padding(.bottom, 30)
         }
     }
 }
