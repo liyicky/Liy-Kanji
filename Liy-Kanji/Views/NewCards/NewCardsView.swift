@@ -26,6 +26,7 @@ struct NewCardsView: View {
             
             Button(action: {
                 withAnimation {
+                    createCard()
                     incrementIndex()
                     cardDataModel = cardDataModels[currentIndex()]
                     mnemonic = "Start writing..."
@@ -36,10 +37,11 @@ struct NewCardsView: View {
             }).onAppear {
                 fetchOrCreateIndex()
                 cardDataModel = cardDataModels[currentIndex()]
-                print("Current Index "+String(currentIndex()))
             }
         }
     }
+    
+    // MARK: - Index Logic: Creating, Getting, Saving
     
     private func fetchOrCreateIndex() {
         if let i = index.first { // Index exist.
@@ -56,6 +58,7 @@ struct NewCardsView: View {
     
     private func currentIndex() -> Int {
         if let i = index.first {
+            print("Current Index "+String(i.index))
             return Int(i.index)
         } else {
             print("Core Data Index couldn't be found")
@@ -72,6 +75,19 @@ struct NewCardsView: View {
             } catch {
                 print("Index couldn't be saved \(error)")
             }
+        }
+    }
+    
+    // MARK: - Card Logic: Creating
+    
+    private func createCard() {
+        let newCard = Card(context: self.managedObjectContext)
+        newCard.id = Int16(cardDataModel.id)
+        newCard.mnemonic = mnemonic
+        do {
+            try self.managedObjectContext.save()
+        } catch {
+            print("New Card couldn't be created \(error)")
         }
     }
     
