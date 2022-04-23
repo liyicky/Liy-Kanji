@@ -10,7 +10,7 @@ import SwiftUI
 struct CardInfoView: View {
     
     // MARK: - PROPERTIES
-    @State private var showRadiclePopover: Bool = false
+    @State private var selectedRadicle: CardDataModel? = nil
     
     let cardDataModel: CardDataModel
     
@@ -46,14 +46,15 @@ struct CardInfoView: View {
                         radicle in
                         
                         Button(radicle.keyword) {
-                            showRadiclePopover = true
+                            selectedRadicle = radicle
                         }
-                        .sheet(isPresented: $showRadiclePopover, content: {
-                            CardInfoView(cardDataModel: radicle)
-                        })
                     }
                 }
-            }.padding()
+            }
+            .padding()
+            .sheet(item: $selectedRadicle, content: {
+                CardInfoView(cardDataModel: $0)
+            })
             
             Text(cardDataModel.description)
                 .multilineTextAlignment(.leading)

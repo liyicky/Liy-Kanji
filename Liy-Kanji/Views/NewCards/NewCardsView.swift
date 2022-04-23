@@ -95,5 +95,6 @@ struct NewCardsView: View {
 struct NewCardsView_Previews: PreviewProvider {
     static var previews: some View {
         NewCardsView()
+            .padding()
     }
 }
