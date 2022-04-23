@@ -38,6 +38,7 @@
 		5CF43A7E28126A61003F0459 /* FrontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF43A7D28126A61003F0459 /* FrontView.swift */; };
 		5CF43A8028126A70003F0459 /* BackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF43A7F28126A70003F0459 /* BackView.swift */; };
 		5CF43A83281280D7003F0459 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF43A82281280D7003F0459 /* FooterView.swift */; };
+		5CF43A852812A0C2003F0459 /* SM2Algo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF43A842812A0C2003F0459 /* SM2Algo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		5CF43A7D28126A61003F0459 /* FrontView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontView.swift; sourceTree = "<group>"; };
 		5CF43A7F28126A70003F0459 /* BackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackView.swift; sourceTree = "<group>"; };
 		5CF43A82281280D7003F0459 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
+		5CF43A842812A0C2003F0459 /* SM2Algo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SM2Algo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,7 @@
 			children = (
 				5C70DC36280FD77D005FA650 /* MainMenuImage.swift */,
 				5C2D3213280FF25000D19F64 /* CardDataModel.swift */,
+				5CF43A842812A0C2003F0459 /* SM2Algo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				5C2D3217280FF2CE00D19F64 /* Stash.xcdatamodeld in Sources */,
 				5C2D3214280FF25000D19F64 /* CardDataModel.swift in Sources */,
 				5C70DC3F280FDBFC005FA650 /* CodeableBundleExtension.swift in Sources */,
+				5CF43A852812A0C2003F0459 /* SM2Algo.swift in Sources */,
 				5C2D322828111BD200D19F64 /* EnvironmentVariables.swift in Sources */,
 				5CF43A7E28126A61003F0459 /* FrontView.swift in Sources */,
 			);

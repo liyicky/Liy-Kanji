@@ -100,11 +100,13 @@ struct CardStackView: View {
                                     // MARK: - SWIPPING LEFT
                                     if drag.translation.width < -self.dragAreaThreashhold {
                                         print("Swipped Left")
+                                        SM2Algo.UpdateCard(card: card.card, success: false, context: managedObjectContext)
                                     }
                                     
                                     // MARK: - SWIPPING RIGHT
                                     if drag.translation.width > self.dragAreaThreashhold {
                                         print("Swipped Right")
+                                        SM2Algo.UpdateCard(card: card.card, success: true, context: managedObjectContext)
                                     }
                                     
                                     if drag.translation.width < -self.dragAreaThreashhold || drag.translation.width > self.dragAreaThreashhold {
