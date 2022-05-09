@@ -36,6 +36,7 @@ struct MainMenuView: View {
                 .padding()
             }
             .navigationTitle("Main Menu")
+            .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading: Button(action: {
                     showSettingsView.toggle()
@@ -50,7 +51,7 @@ struct MainMenuView: View {
                 SettingsView()
             }),
                 trailing: Button(action: {
-                    self.showSettingsView.toggle()
+                    showInfoView.toggle()
                 }, label: {
                     Image(systemName: "info.circle")
                         .font(.system(size: 24, weight: .regular))

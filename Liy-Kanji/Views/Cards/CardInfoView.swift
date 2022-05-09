@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CardInfoView: View {
     
-    // MARK: - PROPERTIES
+    // MARK: - PROPERTIES 
     @State private var selectedRadicle: CardDataModel? = nil
     
     let cardDataModel: CardDataModel
