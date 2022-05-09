@@ -36,6 +36,9 @@ struct DisplayCard: View {
                     
                     TextEditor(text: $mnemonic)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .colorMultiply(Color.secondary)
+                        .cornerRadius(5)
+                        .foregroundColor(Color.primary)
                         .padding()
                     Text(mnemonic).opacity(0).padding(.all, 0)
                 }
