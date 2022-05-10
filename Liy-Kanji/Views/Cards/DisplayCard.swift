@@ -44,6 +44,7 @@ struct DisplayCard: View {
                 }
                 
                 Divider().padding(.horizontal, 20)
+                
             }
         }
     }
