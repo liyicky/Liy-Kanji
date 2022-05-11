@@ -53,7 +53,7 @@ struct DisplayCard: View {
 struct DisplayCard_Previews: PreviewProvider {
     @State static var mnemonic: String = "Start writing..."
     static var previews: some View {
-        DisplayCard(cardDataModel: cardDataModels[13], mnemonic: $mnemonic)
+        DisplayCard(cardDataModel: cardDataModels[15], mnemonic: $mnemonic)
             .previewLayout(.fixed(width: 375, height: 600))
     }
 }

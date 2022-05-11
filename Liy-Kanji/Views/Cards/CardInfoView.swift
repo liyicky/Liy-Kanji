@@ -10,7 +10,7 @@ import SwiftUI
 struct CardInfoView: View {
     
     // MARK: - PROPERTIES 
-    @State private var selectedRadicle: CardDataModel? = nil
+    @State private var selectedRadical: CardDataModel? = nil
     
     let cardDataModel: CardDataModel
     
@@ -23,50 +23,56 @@ struct CardInfoView: View {
             .padding(.leading, 10)
             .padding(.top, 5)
             
-            HStack {
-                Text(cardDataModel.kanji)
-                    .font(.system(size: 100))
-                    .fontWeight(.bold)
-                Spacer()
-                
-                Text(cardDataModel.keyword)
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                
-            }
-            .padding(.horizontal, 10)
+            Spacer()
+            
+            Text(cardDataModel.kanji)
+                .font(.system(size: 100))
+                .fontWeight(.bold)
+            
+            Text(cardDataModel.keyword)
+                .font(.largeTitle)
+                .fontWeight(.bold)
             
             Divider()
             
-            HStack(alignment: .top, spacing: 20){
+            // MARK: - KANJI RADICAL BUTTONS
+            HStack(alignment: .center, spacing: 10){
                 Spacer()
                 Group {
                     
-                    ForEach(cardDataModel.allRadicles()) {
-                        radicle in
+                    ForEach(cardDataModel.allRadicals()) {
+                        radical in
                         
-                        Button(radicle.keyword) {
-                            selectedRadicle = radicle
+                        Button(action: {
+                            selectedRadical = radical
+                        }) {
+                            VStack {
+                                Text(radical.kanji)
+                                    .font(.footnote)
+                                    .fontWeight(.light)
+                                    .foregroundColor(Color.primary)
+                                Text(radical.keyword)
+                                    .font(.callout)
+                                    .fontWeight(.light)
+                                    .foregroundColor(Color.primary)
+                            }
                         }
                     }
                 }
+                Spacer()
             }
             .padding()
-            .sheet(item: $selectedRadicle, content: {
+            .sheet(item: $selectedRadical, content: {
                 CardInfoView(cardDataModel: $0)
             })
             
-            Text(cardDataModel.description)
-                .multilineTextAlignment(.leading)
-                .font(.body)
-                .padding()
-            
+            Spacer()
         }
     }
 }
 
 struct CardInfoView_Previews: PreviewProvider {
     static var previews: some View {
-        CardInfoView(cardDataModel: cardDataModels[13])
+        CardInfoView(cardDataModel: cardDataModels[15])
     }
 }
