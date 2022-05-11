@@ -20,7 +20,8 @@ struct MainMenuView: View {
                     .frame(height: UIScreen.main.bounds.width / 1.475) // This will fix the layout rendering priority issue by using the screen's aspect ratio.
                     .padding(.vertical, 20)
                 
-                Spacer()
+                KanjiView(rows: Array(repeating: .init(.adaptive(minimum: 15)), count: 1))
+                    .padding()
                 
                 VStack {
                     NavigationLink(destination: NewCardsView(), label: {
@@ -65,6 +66,7 @@ struct MainMenuView: View {
             )
         } // NAV VIEW
         .foregroundColor(.black)
+        
     }
 }
 
