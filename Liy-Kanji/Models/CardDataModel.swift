@@ -37,7 +37,16 @@ struct CardDataModel: Codable, Identifiable {
         return allRads
     }
     
-    // MARK: - PRIVATE FUNCTIONS
+    // MARK: - STATIC FUNCTIONS
+    
+    static func fetchCardsFromCoreDataWith(_ cards: FetchedResults<Card>) -> [CardDataModel] {
+        var models: [CardDataModel] = []
+        for coreDataObject in cards {
+            let cardDataModel = cardDataModels[Int(coreDataObject.id)]
+            models.append(cardDataModel)
+        }
+        return models
+    }
     
 //    private func fetchRadicle(radicle: String) -> [CardDataModel] {
 //

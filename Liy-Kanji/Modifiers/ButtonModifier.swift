@@ -14,6 +14,6 @@ struct ButtonModifier: ViewModifier {
             .frame(maxWidth: .infinity)
             .background(Color.white)
             .cornerRadius(12)
-            .shadow(color: Color.black.opacity(0.08), radius: 60, x: /*@START_MENU_TOKEN@*/0.0/*@END_MENU_TOKEN@*/, y: 16)
+            .shadow(color: Color.black.opacity(0.1), radius: 60, x: 0, y: 0)
     }
 }

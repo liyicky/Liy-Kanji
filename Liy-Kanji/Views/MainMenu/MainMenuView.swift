@@ -16,25 +16,33 @@ struct MainMenuView: View {
     var body: some View {
         NavigationView {
             VStack {
+                //MARK: - Tab View -------------------------------------------
                 MainMenuTabView()
                     .frame(height: UIScreen.main.bounds.width / 1.475) // This will fix the layout rendering priority issue by using the screen's aspect ratio.
-                    .padding(.vertical, 20)
+                    .padding(.bottom, 20)
                 
+                //MARK: - Kanji View -------------------------------------------
                 KanjiView(rows: Array(repeating: .init(.adaptive(minimum: 15)), count: 1))
-                    .padding()
+                    .padding(.horizontal, 10)
+                    .padding(.bottom, 20)
                 
+                //MARK: - Main Views -------------------------------------------
                 VStack {
                     NavigationLink(destination: NewCardsView(), label: {
-                        MainMenuButtonView(image: "play.circle", text: "Today's Cards")
+                        MainMenuButtonView(image: "play.circle", text: "New Cards")
                     })
                     
                     NavigationLink(destination: ReviewsView(), label: {
-                        MainMenuButtonView(image: "person.2.crop.square.stack.fill", text: "Today's Reviews")
+                        MainMenuButtonView(image: "person.2.crop.square.stack.fill", text: "Reviews")
                     })
                     
-                    MainMenuButtonView(image: "greetingcard.fill", text: "My Cards")
+                    NavigationLink(destination: CardBrowserView()) {
+                        MainMenuButtonView(image: "greetingcard.fill", text: "Card Browser")
+                    }
                 }
-                .padding()
+                .padding(.horizontal, 10)
+                .padding(.bottom, 20)
+                // -------------------------------------------
             }
             .navigationTitle("Main Menu")
             .navigationBarTitleDisplayMode(.inline)
@@ -66,7 +74,7 @@ struct MainMenuView: View {
             )
         } // NAV VIEW
         .foregroundColor(.black)
-        
+        .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height)
     }
 }
 

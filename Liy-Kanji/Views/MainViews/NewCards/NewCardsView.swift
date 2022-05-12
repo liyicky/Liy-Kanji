@@ -44,9 +44,11 @@ struct NewCardsView: View {
     
     private func fetchOrCreateIndex() {
         if let i = index.first { // Index exist.
-            print("Index exists and is ready")
+            print("Index is \(i.index) and exists and is ready")
         } else { // No Index. Create it.
             let newCardIndex = NewCardIndex(context: self.managedObjectContext)
+            // Start at index 0 to match the ids in the Kanji Data Json
+            newCardIndex.index = 0
             do {
                 try self.managedObjectContext.save()
             } catch {
@@ -82,7 +84,10 @@ struct NewCardsView: View {
     private func createCard() {
         let newCard = Card(context: self.managedObjectContext)
         newCard.id = Int16(cardDataModel.id)
+        newCard.dateCreated = Date.now
         newCard.mnemonic = mnemonic
+        newCard.repCount = 0
+        newCard.successfulReps = 0
         do {
             try self.managedObjectContext.save()
         } catch {
