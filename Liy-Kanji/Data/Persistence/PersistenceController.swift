@@ -7,6 +7,7 @@
 
 import CoreData
 
+
 struct PersistenceController {
     
     static let shared = PersistenceController()
@@ -31,5 +32,23 @@ struct PersistenceController {
                 completion(error)
             }
         }
+    }
+}
+
+let persistenceController: PersistenceController = PersistenceController.shared
+
+
+@globalActor
+actor DBWorker {
+    static let shared = DBWorker()
+    private var context:NSManagedObjectContext!
+    init(){
+        
+    }
+    func setMoc(_ moc:NSManagedObjectContext){
+        context = moc
+    }
+    func sync() async {
+        // load json + store cards in db
     }
 }

@@ -10,14 +10,18 @@ import SwiftUI
 @main
 struct Liy_KanjiApp: App {
     
-    let persistenceController: PersistenceController = PersistenceController.shared
     
     @Environment(\.scenePhase) var scenePhase
-    
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environment(\.managedObjectContext, persistenceController.container.viewContext).task {
+                    print("run async op")
+                    // call DB worker
+                    await DBWorker.shared.setMoc(persistenceController.container.viewContext)
+                    await DBWorker.shared.sync()
+                    print("finished")
+                }
         }
         .onChange(of: scenePhase) { (newScenePhase) in
             switch newScenePhase {

@@ -9,7 +9,6 @@ import Foundation
 
 extension Card {
     
-    
     func intervalInDays() -> Int {
         return Int(interval / 86400)
     }
@@ -45,4 +44,6 @@ extension Card {
             return "-"
         }
     }
+    
+    
 }
