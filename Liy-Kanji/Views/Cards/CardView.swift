@@ -11,8 +11,7 @@ struct CardView: View, Identifiable {
     
     // MARK: - PROPERTIES
     var id = UUID()
-    var card: FetchedResults<Card>.Element
-    var data: CardDataModel
+    var kanjiCard: KanjiCard
     
     // MARK: - Card Flip Properties
     @State var degree: Double = 0
@@ -21,11 +20,11 @@ struct CardView: View, Identifiable {
     
     var body: some View {
         ZStack {
-            FrontView(keyword: data.keyword)
+            FrontView(keyword: kanjiCard.keyword())
                 .rotation3DEffect(Angle(degrees: degree), axis: (x: 0, y: 1, z: 0))
                 .animation(.linear(duration: 0.3))
                 .zIndex(isFlipped ? 1 : 0)
-            BackView(cardDataModel: data)
+            BackView(kanjiCard: kanjiCard)
                 .rotation3DEffect(Angle(degrees: degree+180), axis: (x: 0, y: 1, z: 0))
                 .animation(.linear(duration: 0.3))
                 .zIndex(isFlipped ? 0 : 1)

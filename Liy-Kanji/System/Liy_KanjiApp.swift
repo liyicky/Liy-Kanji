@@ -18,8 +18,9 @@ struct Liy_KanjiApp: App {
                 .environment(\.managedObjectContext, persistenceController.container.viewContext).task {
                     print("run async op")
                     // call DB worker
-                    await DBWorker.shared.setMoc(persistenceController.container.viewContext)
+//                    await DBWorker.shared.setMoc(persistenceController.container.viewContext)
                     await DBWorker.shared.sync()
+//                    await DBWorker.shared.fetchAllKanjiCards()
                     print("finished")
                 }
         }

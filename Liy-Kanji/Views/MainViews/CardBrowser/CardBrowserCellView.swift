@@ -7,21 +7,32 @@
 
 import SwiftUI
 
-struct CardBrowserCellView: View {
+struct CardBrowserCellView: View, Identifiable {
+    
+    var id = UUID()
+    
     
     // MARK: - PROPERTIES
-    var model: CardDataModel
-    var data: Card
+    var kanjiCard: KanjiCard
     
     var body: some View {
         
-        
         HStack {
-            Text(model.kanji)
-                .font(.system(size: 35))
-                .fontWeight(.heavy)
+            VStack(alignment: .center, spacing: 0) {
+                Text(kanjiCard.kanji?.character ?? "error")
+                    .font(.system(size: 35))
+                    .fontWeight(.heavy)
+                Text(kanjiCard.kanji?.keyword ?? "error")
+                    .font(.footnote)
+                    .fontWeight(.light)
+                    .foregroundColor(Color.black.opacity(0.8))
+            }
             
-            Text
+            Spacer()
+            
+            Text("\(kanjiCard.repsSuccessful) / \(kanjiCard.repCount)")
+                .font(.title)
+                .fontWeight(.semibold)
             
             Spacer()
             
@@ -43,13 +54,13 @@ struct CardBrowserCellView: View {
                     }
                     
                     VStack(alignment: .trailing) {
-                        Text(data.dateCreatedString())
+                        Text(kanjiCard.dateCreatedString())
                             .font(.footnote)
                             .fontWeight(.light)
-                        Text(data.dateDueString())
+                        Text(kanjiCard.dateDueString())
                             .font(.footnote)
                             .fontWeight(.light)
-                        Text(data.dateLastReviewedString())
+                        Text(kanjiCard.dateLastReviewedString())
                             .font(.footnote)
                             .fontWeight(.light)
                     }
@@ -62,12 +73,5 @@ struct CardBrowserCellView: View {
         .cornerRadius(5)
         .shadow(color: Color.black.opacity(0.5), radius: 1, x: 0, y: 0)
         .padding(.horizontal, 5)
-    }
-    
-
-    
-    func asdf(data: Card) -> String {
-        
-        return "\(Calendar.current.dateComponents([.month], from: data.dateCreated!).month!)/\(Calendar.current.dateComponents([.day], from: data.dateCreated!).day!)/\(Calendar.current.dateComponents([.year], from: data.dateCreated!).year!)"
     }
 }

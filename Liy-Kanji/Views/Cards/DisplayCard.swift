@@ -11,14 +11,14 @@ struct DisplayCard: View {
     
     // MARK: - PROPERTIES
     
-    let cardDataModel: CardDataModel
+    let kanji: Kanji
     @Binding var mnemonic: String
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .center, spacing: 20) {
                 
-                CardInfoView(cardDataModel: cardDataModel)
+                CardInfoView(kanji: kanji)
                 
                 Spacer()
                 
@@ -50,10 +50,10 @@ struct DisplayCard: View {
     }
 }
 
-struct DisplayCard_Previews: PreviewProvider {
-    @State static var mnemonic: String = "Start writing..."
-    static var previews: some View {
-        DisplayCard(cardDataModel: cardDataModels[15], mnemonic: $mnemonic)
-            .previewLayout(.fixed(width: 375, height: 600))
-    }
-}
+//struct DisplayCard_Previews: PreviewProvider {
+//    @State static var mnemonic: String = "Start writing..."
+//    static var previews: some View {
+//        DisplayCard(kanji: cardDataModels[15], mnemonic: $mnemonic)
+//            .previewLayout(.fixed(width: 375, height: 600))
+//    }
+//}

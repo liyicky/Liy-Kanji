@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Card {
+extension KanjiCard {
     
     func intervalInDays() -> Int {
         return Int(interval / 86400)
@@ -43,6 +43,13 @@ extension Card {
             print("Date couldn't be parsed: Card#dateDueString")
             return "-"
         }
+    }
+    
+    func keyword() -> String {
+        if let keyword = kanji?.keyword {
+            return keyword
+        }
+        return "error"
     }
     
     

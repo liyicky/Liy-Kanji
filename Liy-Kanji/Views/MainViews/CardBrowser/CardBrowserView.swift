@@ -10,11 +10,10 @@ import SwiftUI
 struct CardBrowserView: View {
     
     // MARK: - CORE DATA
-    @Environment(\.managedObjectContext) var managedObjectContext
-    @FetchRequest(entity: Card.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Card.id, ascending: true)]) var cards: FetchedResults<Card>
-
-    // MARK: - PROPERTIES
-    @State var cardDataModels: [CardDataModel] = []
+//    @Environment(\.managedObjectContext) var managedObjectContext
+//    @FetchRequest(entity: KanjiCard.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \KanjiCard.id, ascending: true)]) var kanjiCards: FetchedResults<KanjiCard>
+    
+    @State var cells: [CardBrowserCellView] = []
     
     // MARK: - CONSTANTS
     let columns: [GridItem] = [GridItem(.flexible(), spacing: 6, alignment: nil)]
@@ -33,8 +32,8 @@ struct CardBrowserView: View {
                                     .background(Color.white)
 //                                    .padding()
                     ) {
-                        ForEach(cardDataModels) { model in
-                            CardBrowserCellView(model: model, data: cards[model.id])
+                        ForEach(cells) { cell in
+                            cell
                         }
                     }
             }
@@ -47,7 +46,9 @@ struct CardBrowserView: View {
     
     
     func populate() {
-        cardDataModels = CardDataModel.fetchCardsFromCoreDataWith(cards)
+//        for card in kanjiCards {
+//            cells.append(CardBrowserCellView(kanjiCard: card))
+//        }
     }
 }
 

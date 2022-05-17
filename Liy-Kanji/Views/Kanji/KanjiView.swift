@@ -10,12 +10,12 @@ import SwiftUI
 struct KanjiView: View {
     
     // MARK: - CORE DATA
+    // TODO: POPULATE WITH KANJI FROM CORE DATA
     @Environment(\.managedObjectContext) var managedObjectContext
-    @FetchRequest(entity: NewCardIndex.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \NewCardIndex.index, ascending: true)]) var index: FetchedResults<NewCardIndex>
-    
+    @FetchRequest(entity: Kanji.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Kanji.id, ascending: true)]) var kanji: FetchedResults<Kanji>
+
     
     // MARK: - PROPERTIES
-    var kanjiList = cardDataModels
     var rows: [GridItem]
     
     
@@ -27,28 +27,19 @@ struct KanjiView: View {
         
                 
                 LazyHGrid(rows: rows) {
-                    ForEach(kanjiList, id: \.id) { kanji in
-                        Text(kanji.kanji)
+                    ForEach(kanji, id: \.id) { kanji in
+                        Text(kanji.character!) //TODO: THIS SHOULDNT BE OPTIONAL
                             .font(.body)
                             .fontWeight(.light)
-                            .foregroundColor(kanji.id < currentIndex()+1 ? Color.green : Color.black)
+//                            .foregroundColor(kanji.id ? Color.green : Color.black)
                     }
                 }.onAppear {
                     withAnimation(.spring()) {
-                        proxy.scrollTo(currentIndex()+1, anchor: .center)
+                        // TODO: FIX HOW THIS SCROLLS
+                        proxy.scrollTo(1, anchor: .center)
                     }
                 }
             }
-        }
-    }
-    
-    private func currentIndex() -> Int {
-        if let i = index.first {
-            print("Current Index "+String(i.index))
-            return Int(i.index)
-        } else {
-            print("Core Data Index couldn't be found")
-            return 13 // TODO: Everything will break if the code goes here.
         }
     }
 }

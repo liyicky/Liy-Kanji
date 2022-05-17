@@ -10,34 +10,43 @@ import CoreData
 
 struct SM2Algo {
     
-    private static let DayInSeconds: Int32 = 86400
-    private static let WeekInSeconds: Int32 = 86400 * 6
-    private static let timestampToday: Int = Int(NSDate().timeIntervalSince1970)
+    static let DayInSeconds: Int64 = 86400
+    static let WeekInSeconds: Int64 = 86400 * 6
+    static let TodaysTimestamp = Int64(NSDate().timeIntervalSince1970)
+    private static let OneDay = {
+        SM2Algo.DayInSeconds + SM2Algo.TodaysTimestamp
+    }
+    private static let OneWeek = {
+        SM2Algo.WeekInSeconds + SM2Algo.TodaysTimestamp
+    }
     private static let DefaultQ: Int = 5
     
-    public static func UpdateCard(card: FetchedResults<Card>.Element, success: Bool, context: NSManagedObjectContext) {
+    public static func UpdateCard(card: KanjiCard, success: Bool, context: NSManagedObjectContext) {
         if success {
-            switch card.repititionNumber {
-            case 0: card.interval = self.DayInSeconds
-            case 1: card.interval = self.WeekInSeconds
+            switch card.repCount {
+            case 0: card.interval = SM2Algo.OneDay()
+            case 1: card.interval = SM2Algo.OneWeek()
             default:
-                card.interval = self.DayInSeconds * Int32(card.easinessFactor)
+                card.interval = (SM2Algo.DayInSeconds * Int64(card.easinessFactor)) + SM2Algo.TodaysTimestamp
             }
             
-            card.easinessFactor = CalcEF(ef: card.easinessFactor, q: self.DefaultQ)
-            card.repititionNumber += 1
+            card.easinessFactor = CalcEF(ef: card.easinessFactor, q: SM2Algo.DefaultQ)
+            card.repCount += 1
             
             
         } else {
-            card.repititionNumber = 0
-            card.interval = self.DayInSeconds
+            card.repCount = 0
+            card.interval = SM2Algo.OneDay()
             card.easinessFactor = CalcEF(ef: card.easinessFactor, q: 0)
         }
+        
+        card.dateLastReviewed = Date.now
     
         do {
+            print("Saving card. SM2Algo#UpdateCard")
             try context.save()
         } catch {
-            print("Card #\(card.id) couldn't be created \(error)")
+            print("Card #\(card.id) couldn't be updated \(error)")
         }
     }
     

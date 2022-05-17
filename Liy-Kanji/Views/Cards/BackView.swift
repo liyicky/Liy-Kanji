@@ -9,15 +9,15 @@ import SwiftUI
 
 struct BackView: View {
     
-    var cardDataModel: CardDataModel
+    var kanjiCard: KanjiCard
     
     var body: some View {
-        CardInfoView(cardDataModel: cardDataModel)
+        CardInfoView(kanji: kanjiCard.kanji!)
     }
 }
 
-struct BackView_Previews: PreviewProvider {
-    static var previews: some View {
-        BackView(cardDataModel: cardDataModels[13])
-    }
-}
+//struct BackView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BackView(cardDataModel: cardDataModels[13])
+//    }
+//}

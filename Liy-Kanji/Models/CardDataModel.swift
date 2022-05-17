@@ -12,6 +12,8 @@ struct CardDataModel: Codable, Identifiable {
     let keyword: String
     let kanji: String
     let exampleWords: [String]
+    let onyomi: [String]
+    let kunyomi: [String]
     let radicals: [String]
 //    let description: String
 //    var coreDataCardObject: FetchedResults<Card>.Element? = nil
@@ -36,19 +38,13 @@ struct CardDataModel: Codable, Identifiable {
         }
         return allRads
     }
-    
-    // MARK: - STATIC FUNCTIONS
-    
-    static func fetchCardsFromCoreDataWith(_ cards: FetchedResults<Card>) -> [CardDataModel] {
-        var models: [CardDataModel] = []
-        for coreDataObject in cards {
-            let cardDataModel = cardDataModels[Int(coreDataObject.id)]
-            models.append(cardDataModel)
-        }
-        return models
+}
+
+
+extension CardDataModel {
+    static var canned:[CardDataModel]{
+        let url = Bundle.main.url(forResource: "cardDataModels", withExtension: "json")!
+        let data = try! Data(contentsOf: url)
+        return try! JSONDecoder().decode([CardDataModel].self, from: data)
     }
-    
-//    private func fetchRadicle(radicle: String) -> [CardDataModel] {
-//
-//    }
 }

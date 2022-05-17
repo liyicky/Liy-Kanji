@@ -22,9 +22,9 @@ struct MainMenuView: View {
                     .padding(.bottom, 20)
                 
                 //MARK: - Kanji View -------------------------------------------
-                KanjiView(rows: Array(repeating: .init(.adaptive(minimum: 15)), count: 1))
-                    .padding(.horizontal, 10)
-                    .padding(.bottom, 20)
+//                KanjiView(rows: Array(repeating: .init(.adaptive(minimum: 15)), count: 1))
+//                    .padding(.horizontal, 10)
+//                    .padding(.bottom, 20)
                 
                 //MARK: - Main Views -------------------------------------------
                 VStack {

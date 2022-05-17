@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C032757282FDD9C0083DDB2 /* KanjiExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C032756282FDD9C0083DDB2 /* KanjiExtensions.swift */; };
+		5C0327592830CE410083DDB2 /* PrintExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0327582830CE410083DDB2 /* PrintExtensions.swift */; };
+		5C03275B2831F7840083DDB2 /* RadicalExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C03275A2831F7840083DDB2 /* RadicalExtentions.swift */; };
+		5C03275D2832289D0083DDB2 /* CollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C03275C2832289D0083DDB2 /* CollectionExtensions.swift */; };
 		5C2D3210280FF05C00D19F64 /* CardTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D320F280FF05C00D19F64 /* CardTransition.swift */; };
 		5C2D3212280FF1D700D19F64 /* CardStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D3211280FF1D700D19F64 /* CardStackView.swift */; };
 		5C2D3214280FF25000D19F64 /* CardDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D3213280FF25000D19F64 /* CardDataModel.swift */; };
@@ -45,11 +49,15 @@
 		5CF43A852812A0C2003F0459 /* SM2Algo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF43A842812A0C2003F0459 /* SM2Algo.swift */; };
 		5CFAB602282BB00C0034E64D /* CardBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFAB601282BB00C0034E64D /* CardBrowserView.swift */; };
 		5CFAB605282CA45C0034E64D /* CardBrowserCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFAB604282CA45C0034E64D /* CardBrowserCellView.swift */; };
-		5CFAB607282CD7500034E64D /* CardExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFAB606282CD7500034E64D /* CardExtention.swift */; };
+		5CFAB607282CD7500034E64D /* KanjiCardExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFAB606282CD7500034E64D /* KanjiCardExtention.swift */; };
 		5CFAB609282CDC820034E64D /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFAB608282CDC820034E64D /* DateExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5C032756282FDD9C0083DDB2 /* KanjiExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiExtensions.swift; sourceTree = "<group>"; };
+		5C0327582830CE410083DDB2 /* PrintExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintExtensions.swift; sourceTree = "<group>"; };
+		5C03275A2831F7840083DDB2 /* RadicalExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadicalExtentions.swift; sourceTree = "<group>"; };
+		5C03275C2832289D0083DDB2 /* CollectionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtensions.swift; sourceTree = "<group>"; };
 		5C2D320F280FF05C00D19F64 /* CardTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTransition.swift; sourceTree = "<group>"; };
 		5C2D3211280FF1D700D19F64 /* CardStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStackView.swift; sourceTree = "<group>"; };
 		5C2D3213280FF25000D19F64 /* CardDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDataModel.swift; sourceTree = "<group>"; };
@@ -89,7 +97,7 @@
 		5CF43A842812A0C2003F0459 /* SM2Algo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SM2Algo.swift; sourceTree = "<group>"; };
 		5CFAB601282BB00C0034E64D /* CardBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBrowserView.swift; sourceTree = "<group>"; };
 		5CFAB604282CA45C0034E64D /* CardBrowserCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBrowserCellView.swift; sourceTree = "<group>"; };
-		5CFAB606282CD7500034E64D /* CardExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardExtention.swift; sourceTree = "<group>"; };
+		5CFAB606282CD7500034E64D /* KanjiCardExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiCardExtention.swift; sourceTree = "<group>"; };
 		5CFAB608282CDC820034E64D /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,14 +112,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5C2D3218280FF32500D19F64 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				5C2D3219280FF34B00D19F64 /* PersistenceController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		5C2D321B28100F8800D19F64 /* Cards */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,8 +145,12 @@
 			isa = PBXGroup;
 			children = (
 				5C2D322728111BD200D19F64 /* EnvironmentVariables.swift */,
-				5CFAB606282CD7500034E64D /* CardExtention.swift */,
+				5CFAB606282CD7500034E64D /* KanjiCardExtention.swift */,
 				5CFAB608282CDC820034E64D /* DateExtension.swift */,
+				5C032756282FDD9C0083DDB2 /* KanjiExtensions.swift */,
+				5C0327582830CE410083DDB2 /* PrintExtensions.swift */,
+				5C03275A2831F7840083DDB2 /* RadicalExtentions.swift */,
+				5C03275C2832289D0083DDB2 /* CollectionExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -158,6 +162,48 @@
 				5C40DD9E2828C34E00DE73BC /* TitleModifier.swift */,
 			);
 			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		5C3BB159282DE743008F32F8 /* Managed */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managed;
+			sourceTree = "<group>";
+		};
+		5C3BB178282DF595008F32F8 /* System */ = {
+			isa = PBXGroup;
+			children = (
+				5C70DC1E280FCC2E005FA650 /* Liy_KanjiApp.swift */,
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
+		5C3BB179282DF5B1008F32F8 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				5C2D3219280FF34B00D19F64 /* PersistenceController.swift */,
+				5C3BB159282DE743008F32F8 /* Managed */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		5C3BB17A282DF5D2008F32F8 /* Canned */ = {
+			isa = PBXGroup;
+			children = (
+				5C70DC39280FDA59005FA650 /* testImages.json */,
+				5C2D321E2810105C00D19F64 /* cardDataModels.json */,
+			);
+			path = Canned;
+			sourceTree = "<group>";
+		};
+		5C3BB17B282DF5F7008F32F8 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				5C2D322628111BB900D19F64 /* Extensions */,
+				5C70DC3D280FDAFE005FA650 /* Utilities */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		5C40DD9B2828BCEF00DE73BC /* Components */ = {
@@ -212,14 +258,11 @@
 		5C70DC1D280FCC2E005FA650 /* Liy-Kanji */ = {
 			isa = PBXGroup;
 			children = (
-				5C70DC1E280FCC2E005FA650 /* Liy_KanjiApp.swift */,
-				5C2D322628111BB900D19F64 /* Extensions */,
+				5C3BB17B282DF5F7008F32F8 /* Shared */,
+				5C3BB178282DF595008F32F8 /* System */,
 				5C70DC2D280FCE43005FA650 /* Models */,
-				5C2D3218280FF32500D19F64 /* Controllers */,
 				5C70DC2C280FCE3F005FA650 /* Views */,
 				5C2D322B281184FB00D19F64 /* Modifiers */,
-				5C40DD9B2828BCEF00DE73BC /* Components */,
-				5C70DC3D280FDAFE005FA650 /* Utilities */,
 				5C70DC38280FDA30005FA650 /* Data */,
 				5C70DC24280FCC30005FA650 /* Preview Content */,
 				5C70DC22280FCC30005FA650 /* Assets.xcassets */,
@@ -240,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				5C70DC20280FCC2E005FA650 /* ContentView.swift */,
+				5C40DD9B2828BCEF00DE73BC /* Components */,
 				5CFAB603282BB1340034E64D /* MainViews */,
 				5C40DDA6282A38BF00DE73BC /* Kanji */,
 				5C70DC44280FE68A005FA650 /* MainMenu */,
@@ -263,8 +307,8 @@
 		5C70DC38280FDA30005FA650 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				5C70DC39280FDA59005FA650 /* testImages.json */,
-				5C2D321E2810105C00D19F64 /* cardDataModels.json */,
+				5C3BB17A282DF5D2008F32F8 /* Canned */,
+				5C3BB179282DF5B1008F32F8 /* Persistence */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -414,20 +458,24 @@
 				5C70DC2F280FCE64005FA650 /* HeaderView.swift in Sources */,
 				5CFAB609282CDC820034E64D /* DateExtension.swift in Sources */,
 				5CFAB605282CA45C0034E64D /* CardBrowserCellView.swift in Sources */,
+				5C0327592830CE410083DDB2 /* PrintExtensions.swift in Sources */,
 				5C70DC33280FD033005FA650 /* InfoView.swift in Sources */,
 				5C40DD9D2828BD3200DE73BC /* MenuViewComponent.swift in Sources */,
 				5C2D322A28112DAB00D19F64 /* DisplayCard.swift in Sources */,
 				5C2D322528101E0F00D19F64 /* MainMenuView.swift in Sources */,
 				5C2D3210280FF05C00D19F64 /* CardTransition.swift in Sources */,
-				5CFAB607282CD7500034E64D /* CardExtention.swift in Sources */,
+				5CFAB607282CD7500034E64D /* KanjiCardExtention.swift in Sources */,
 				5C40DDA8282A391D00DE73BC /* KanjiView.swift in Sources */,
 				5C2D322D2811851200D19F64 /* ButtonModifier.swift in Sources */,
 				5C2D322F28124E0600D19F64 /* CardInfoView.swift in Sources */,
+				5C03275D2832289D0083DDB2 /* CollectionExtensions.swift in Sources */,
 				5C2D321D28100FA600D19F64 /* CardView.swift in Sources */,
 				5C2D321A280FF34B00D19F64 /* PersistenceController.swift in Sources */,
 				5CFAB602282BB00C0034E64D /* CardBrowserView.swift in Sources */,
 				5C70DC41280FDC93005FA650 /* MainMenuImageView.swift in Sources */,
+				5C03275B2831F7840083DDB2 /* RadicalExtentions.swift in Sources */,
 				5C70DC1F280FCC2E005FA650 /* Liy_KanjiApp.swift in Sources */,
+				5C032757282FDD9C0083DDB2 /* KanjiExtensions.swift in Sources */,
 				5C70DC3C280FDAF6005FA650 /* Constants.swift in Sources */,
 				5C2D3217280FF2CE00D19F64 /* Stash.xcdatamodeld in Sources */,
 				5C2D3214280FF25000D19F64 /* CardDataModel.swift in Sources */,

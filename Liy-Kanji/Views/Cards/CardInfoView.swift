@@ -12,12 +12,12 @@ struct CardInfoView: View {
     // MARK: - PROPERTIES 
     @State private var selectedRadical: CardDataModel? = nil
     
-    let cardDataModel: CardDataModel
+    let kanji: Kanji
     
     var body: some View {
         VStack {
             HStack {
-                Text("#"+String(cardDataModel.id))
+                Text("#"+String(kanji.kanjiId))
                 Spacer()
             }
             .padding(.leading, 10)
@@ -25,11 +25,11 @@ struct CardInfoView: View {
             
             Spacer()
             
-            Text(cardDataModel.kanji)
+            Text(kanji.character!)
                 .font(.system(size: 100))
                 .fontWeight(.bold)
             
-            Text(cardDataModel.keyword)
+            Text(kanji.keyword!)
                 .font(.largeTitle)
                 .fontWeight(.bold)
             
@@ -40,39 +40,40 @@ struct CardInfoView: View {
                 Spacer()
                 Group {
                     
-                    ForEach(cardDataModel.allRadicals()) {
-                        radical in
-                        
-                        Button(action: {
-                            selectedRadical = radical
-                        }) {
-                            VStack {
-                                Text(radical.kanji)
-                                    .font(.footnote)
-                                    .fontWeight(.light)
-                                    .foregroundColor(Color.primary)
-                                Text(radical.keyword)
-                                    .font(.callout)
-                                    .fontWeight(.light)
-                                    .foregroundColor(Color.primary)
-                            }
-                        }
-                    }
+                    //TODO: GET THE RADICAL HERE
+//                    ForEach(cardDataModel.allRadicals()) {
+//                        radical in
+//
+//                        Button(action: {
+//                            selectedRadical = radical
+//                        }) {
+//                            VStack {
+//                                Text(radical.kanji)
+//                                    .font(.footnote)
+//                                    .fontWeight(.light)
+//                                    .foregroundColor(Color.primary)
+//                                Text(radical.keyword)
+//                                    .font(.callout)
+//                                    .fontWeight(.light)
+//                                    .foregroundColor(Color.primary)
+//                            }
+//                        }
+//                    }
                 }
                 Spacer()
             }
             .padding()
-            .sheet(item: $selectedRadical, content: {
-                CardInfoView(cardDataModel: $0)
-            })
+//            .sheet(item: $selectedRadical, content: {
+//                CardInfoView(kanji: $0)
+//            })
             
             Spacer()
         }
     }
 }
 
-struct CardInfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        CardInfoView(cardDataModel: cardDataModels[15])
-    }
-}
+//struct CardInfoView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CardInfoView(cardDataModel: cardDataModels[15])
+//    }
+//}

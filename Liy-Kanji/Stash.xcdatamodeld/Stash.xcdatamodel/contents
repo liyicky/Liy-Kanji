@@ -1,21 +1,58 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E258" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Card" representedClassName="Card" syncable="YES" codeGenerationType="class">
-        <attribute name="dateCreated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="dateLastReviewed" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="easinessFactor" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="interval" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="mnemonic" optional="YES" attributeType="String"/>
-        <attribute name="repCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="repititionNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="successfulReps" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Kanji" representedClassName="Kanji" syncable="YES" codeGenerationType="class">
+        <attribute name="character" attributeType="String"/>
+        <attribute name="exampleInEnglish" optional="YES" attributeType="String"/>
+        <attribute name="exampleInKana" optional="YES" attributeType="String"/>
+        <attribute name="exampleInKanji" optional="YES" attributeType="String"/>
+        <attribute name="kanjiId" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="keyword" attributeType="String"/>
+        <attribute name="kunyomi1" optional="YES" attributeType="String"/>
+        <attribute name="kunyomi2" optional="YES" attributeType="String"/>
+        <attribute name="onyomi1" optional="YES" attributeType="String"/>
+        <attribute name="onyomi2" optional="YES" attributeType="String"/>
+        <relationship name="card" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="KanjiCard" inverseName="kanji" inverseEntity="KanjiCard"/>
+        <relationship name="radicals" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Radical" inverseName="kanji" inverseEntity="Radical"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="kanjiId"/>
+            </uniquenessConstraint>
+            <uniquenessConstraint>
+                <constraint value="keyword"/>
+            </uniquenessConstraint>
+            <uniquenessConstraint>
+                <constraint value="character"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
-    <entity name="NewCardIndex" representedClassName="NewCardIndex" syncable="YES" codeGenerationType="class">
-        <attribute name="index" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    <entity name="KanjiCard" representedClassName="KanjiCard" syncable="YES" codeGenerationType="class">
+        <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateLastReviewed" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="easinessFactor" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="interval" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="kanjiId" attributeType="Integer 16" usesScalarValueType="YES"/>
+        <attribute name="mnemonic" attributeType="String"/>
+        <attribute name="repCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="repsSuccessful" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="kanji" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Kanji" inverseName="card" inverseEntity="Kanji"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="kanjiId"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Radical" representedClassName="Radical" syncable="YES" codeGenerationType="class">
+        <attribute name="keyword" attributeType="String"/>
+        <relationship name="kanji" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Kanji" inverseName="radicals" inverseEntity="Kanji"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="keyword"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="Card" positionX="-63" positionY="-18" width="128" height="164"/>
-        <element name="NewCardIndex" positionX="-54" positionY="9" width="128" height="44"/>
+        <element name="Kanji" positionX="-63" positionY="-18" width="128" height="209"/>
+        <element name="KanjiCard" positionX="-45" positionY="54" width="128" height="164"/>
+        <element name="Radical" positionX="-45" positionY="72" width="128" height="59"/>
     </elements>
 </model>

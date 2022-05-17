@@ -14,7 +14,9 @@ struct CardStackView: View {
     
     // MARK: - CORE DATA
     @Environment(\.managedObjectContext) var managedObjectContext
-    @FetchRequest(entity: Card.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Card.id, ascending: true)]) var cards: FetchedResults<Card>
+    @FetchRequest(entity: KanjiCard.entity(),
+                  sortDescriptors: [NSSortDescriptor(keyPath: \KanjiCard.id, ascending: true)])
+    var cards: FetchedResults<KanjiCard>
     
     // MARK: - Card Swipe Properties
     @GestureState private var dragState = DragState.inactive
@@ -79,40 +81,30 @@ struct CardStackView: View {
                                     break
                                 }
                             })
-                                .onChanged({ (value) in
-                                    guard case .second(true, let drag?) = value else {
-                                        return
-                                    }
-                                    
-                                    if drag.translation.width < -self.dragAreaThreashhold {
-                                        self.cardRemovalTransition = .leadingBottom
-                                    }
-                                    
-                                    if drag.translation.width > self.dragAreaThreashhold {
-                                        self.cardRemovalTransition = .trailingBottom
-                                    }
+                                .onChanged({ longPressOrDragEvent in
+                                    handleLongPressOrDragGesture(longPressOrDragEvent)
                                 })
-                                .onEnded({ (value) in
-                                    guard case .second(true, let drag?) = value else {
-                                        return
-                                    }
-                                    
-                                    // MARK: - SWIPPING LEFT
-                                    if drag.translation.width < -self.dragAreaThreashhold {
-                                        print("Swipped Left")
-                                        SM2Algo.UpdateCard(card: card.card, success: false, context: managedObjectContext)
-                                    }
-                                    
-                                    // MARK: - SWIPPING RIGHT
-                                    if drag.translation.width > self.dragAreaThreashhold {
-                                        print("Swipped Right")
-                                        SM2Algo.UpdateCard(card: card.card, success: true, context: managedObjectContext)
-                                    }
-                                    
-                                    if drag.translation.width < -self.dragAreaThreashhold || drag.translation.width > self.dragAreaThreashhold {
-                                        cycleCards()
-                                    }
-                                })
+                                    .onEnded({ (value) in
+                                        guard case .second(true, let drag?) = value else {
+                                            return
+                                        }
+                                        
+                                        // MARK: - SWIPPING LEFT
+                                        if drag.translation.width < -self.dragAreaThreashhold {
+                                            print("Swipped Left")
+//                                            SM2Algo.UpdateCard(card: card.data, success: false, context: managedObjectContext)
+                                        }
+                                        
+                                        // MARK: - SWIPPING RIGHT
+                                        if drag.translation.width > self.dragAreaThreashhold {
+                                            print("Swipped Right")
+//                                            SM2Algo.UpdateCard(card: card.data, success: true, context: managedObjectContext)
+                                        }
+                                        
+                                        if drag.translation.width < -self.dragAreaThreashhold || drag.translation.width > self.dragAreaThreashhold {
+                                            cycleCards()
+                                        }
+                                    })
                         )
                         .transition(self.cardRemovalTransition)
                 } else {
@@ -133,16 +125,13 @@ struct CardStackView: View {
     }
     
     private func populate() {
-        for coreDataObject in cards {
-            let cardDataModel = cardDataModels[Int(coreDataObject.id)]
-            cardViews.append(CardView(card: coreDataObject, data: cardDataModel))
-        }
+
     }
     
     private func cycleCards() {
-//        self.lastCardIndex += 1
-//        let data = cardData[lastCardIndex % cardData.count]
-//        let newCard = CardView(data: data)
+        //        self.lastCardIndex += 1
+        //        let data = cardData[lastCardIndex % cardData.count]
+        //        let newCard = CardView(data: data)
         cardViews.append(cardViews.removeFirst())
     }
 }
@@ -150,5 +139,22 @@ struct CardStackView: View {
 struct CardStackView_Previews: PreviewProvider {
     static var previews: some View {
         CardStackView()
+    }
+}
+
+
+extension CardStackView {
+    func handleLongPressOrDragGesture(_ value:SequenceGesture<LongPressGesture, DragGesture>.Value){
+        guard case .second(true, let drag?) = value else {
+            return
+        }
+        
+        if drag.translation.width < -self.dragAreaThreashhold {
+            self.cardRemovalTransition = .leadingBottom
+        }
+        
+        if drag.translation.width > self.dragAreaThreashhold {
+            self.cardRemovalTransition = .trailingBottom
+        }
     }
 }
