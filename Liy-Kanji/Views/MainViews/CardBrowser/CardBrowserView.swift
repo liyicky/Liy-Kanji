@@ -7,13 +7,22 @@
 
 import SwiftUI
 
+class CardBrowersViewModel: ObservableObject {
+    
+    @Published var cells: [CardBrowserCellView] = []
+    
+    func updateCells() async {
+        let kanjiCards = await dbWorker.fetchAllKanjiCards()
+        for card in kanjiCards {
+            self.cells.append(CardBrowserCellView(kanjiCard: card))
+        }
+    }
+}
+
 struct CardBrowserView: View {
     
-    // MARK: - CORE DATA
-//    @Environment(\.managedObjectContext) var managedObjectContext
-//    @FetchRequest(entity: KanjiCard.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \KanjiCard.id, ascending: true)]) var kanjiCards: FetchedResults<KanjiCard>
-    
-    @State var cells: [CardBrowserCellView] = []
+    // MARK: - PROPERTIES
+    @StateObject private var vm = CardBrowersViewModel()
     
     // MARK: - CONSTANTS
     let columns: [GridItem] = [GridItem(.flexible(), spacing: 6, alignment: nil)]
@@ -32,23 +41,16 @@ struct CardBrowserView: View {
                                     .background(Color.white)
 //                                    .padding()
                     ) {
-                        ForEach(cells) { cell in
+                        ForEach(vm.cells) { cell in
                             cell
                         }
                     }
             }
         }
         .padding()
-        .onAppear {
-            populate()
+        .task {
+            await vm.updateCells()
         }
-    }
-    
-    
-    func populate() {
-//        for card in kanjiCards {
-//            cells.append(CardBrowserCellView(kanjiCard: card))
-//        }
     }
 }
 
