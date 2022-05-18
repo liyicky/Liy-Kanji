@@ -239,6 +239,14 @@
 			path = Kanji;
 			sourceTree = "<group>";
 		};
+		5C5260DE2834D8BB00F583CD /* Algorithm */ = {
+			isa = PBXGroup;
+			children = (
+				5CF43A842812A0C2003F0459 /* SM2Algo.swift */,
+			);
+			path = Algorithm;
+			sourceTree = "<group>";
+		};
 		5C70DC12280FCC2E005FA650 = {
 			isa = PBXGroup;
 			children = (
@@ -306,6 +314,7 @@
 		5C70DC38280FDA30005FA650 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				5C5260DE2834D8BB00F583CD /* Algorithm */,
 				5C3BB17A282DF5D2008F32F8 /* Canned */,
 				5C3BB179282DF5B1008F32F8 /* Persistence */,
 			);
@@ -315,7 +324,6 @@
 		5C70DC3D280FDAFE005FA650 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				5CF43A842812A0C2003F0459 /* SM2Algo.swift */,
 				5C70DC3E280FDBFC005FA650 /* CodeableBundleExtension.swift */,
 				5C2D320F280FF05C00D19F64 /* CardTransition.swift */,
 				5C70DC3B280FDAF5005FA650 /* Constants.swift */,

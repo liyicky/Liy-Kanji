@@ -21,9 +21,9 @@ struct SM2Algo {
     }
     private static let DefaultQ: Int = 5
     
-    public static func UpdateCard(card: KanjiCard, success: Bool, context: NSManagedObjectContext) {
+    public static func UpdateCard(card: KanjiCard, success: Bool) {
         if success {
-            switch card.repCount {
+            switch card.repStreak {
             case 0: card.interval = SM2Algo.OneDay()
             case 1: card.interval = SM2Algo.OneWeek()
             default:
@@ -31,23 +31,20 @@ struct SM2Algo {
             }
             
             card.easinessFactor = CalcEF(ef: card.easinessFactor, q: SM2Algo.DefaultQ)
-            card.repCount += 1
-            
+            card.repsSuccessful += 1
+            card.repStreak += 1
             
         } else {
-            card.repCount = 0
-            card.interval = SM2Algo.OneDay()
+            card.interval = 0
+            card.repStreak = 0
             card.easinessFactor = CalcEF(ef: card.easinessFactor, q: 0)
         }
         
+        card.repCount += 1
         card.dateLastReviewed = Date.now
-    
-        do {
-            print("Saving card. SM2Algo#UpdateCard")
-            try context.save()
-        } catch {
-            print("Card #\(card.id) couldn't be updated \(error)")
-        }
+        
+        print("Saving card. SM2Algo#UpdateCard")
+        persistenceController.save()
     }
     
     private static func CalcEF(ef: Double, q: Int) -> Double {

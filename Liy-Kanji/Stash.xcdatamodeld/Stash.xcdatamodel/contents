@@ -33,6 +33,7 @@
         <attribute name="mnemonic" attributeType="String"/>
         <attribute name="repCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="repsSuccessful" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="repStreak" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="kanji" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Kanji" inverseName="card" inverseEntity="Kanji"/>
     </entity>
     <entity name="Radical" representedClassName="Radical" syncable="YES" codeGenerationType="class">
@@ -46,7 +47,7 @@
     </entity>
     <elements>
         <element name="Kanji" positionX="-63" positionY="-18" width="128" height="209"/>
-        <element name="KanjiCard" positionX="-45" positionY="54" width="128" height="149"/>
+        <element name="KanjiCard" positionX="-45" positionY="54" width="128" height="164"/>
         <element name="Radical" positionX="-45" positionY="72" width="128" height="59"/>
     </elements>
 </model>

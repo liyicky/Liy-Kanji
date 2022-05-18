@@ -45,6 +45,15 @@ extension KanjiCard {
         }
     }
     
+    func whenDue() -> Int64 {
+        return interval - SM2Algo.TodaysTimestamp
+    }
+    
+    func due() -> Bool {
+        let due = whenDue() < 0
+        return due
+    }
+    
     func keyword() -> String {
         if let keyword = kanji?.keyword {
             return keyword

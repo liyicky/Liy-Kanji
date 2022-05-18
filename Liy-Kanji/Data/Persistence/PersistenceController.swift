@@ -128,6 +128,25 @@ actor DBWorker {
         return []
     }
     
+    func fetchReviewCards() -> [KanjiCard] {
+        var reviewCards: [KanjiCard] = []
+        for card in fetchAllKanjiCards() {
+            if card.due() {
+                reviewCards.append(card)
+                print(card.whenDue())
+            }
+        }
+        return reviewCards.sorted(by: { $0.whenDue() < $1.whenDue() })
+    }
+    
+    func latestReviewCardStack() -> [KanjiCard] {
+        let cards = fetchReviewCards()
+        if cards.count > 1 {
+            return cards[0..<2].sorted(by: { $0.whenDue() < $1.whenDue() })
+        }
+        return cards
+    }
+    
     func fetchCurrentIndex() -> String {
         return String(fetchAllKanjiCards().count)
     }
@@ -142,14 +161,14 @@ actor DBWorker {
     }
     
     /*
-//    func fetchCardWithId(_ id: Int) -> KanjiCard? {
-//        if let results = fetch(request: KanjiCard.fetchRequest(), format: "id == %@", arg: id) as? [KanjiCard] {
-//            return results.first
-//        }
-//
-//        print("Could not fetch card with id: #\(id)")
-//        return nil
-//    }
+    func fetchCardWithId(_ id: Int) -> KanjiCard? {
+        if let results = fetch(request: KanjiCard.fetchRequest(), format: "id == %@", arg: id) as? [KanjiCard] {
+            return results.first
+        }
+
+        print("Could not fetch card with id: #\(id)")
+        return nil
+    }
     */
     
     // MARK: - Card Logic: Creating
@@ -162,6 +181,7 @@ actor DBWorker {
         newCard.mnemonic = mnemonic
         newCard.repCount = 0
         newCard.repsSuccessful = 0
+        newCard.repStreak = 0
 //        newCard.dateLastReviewed = Date.now
         
         persistenceController.save()

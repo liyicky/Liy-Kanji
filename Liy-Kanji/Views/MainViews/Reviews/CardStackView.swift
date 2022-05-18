@@ -13,10 +13,22 @@ class CardStackViewModel: ObservableObject {
     @Published var cardViews: [CardView] = []
     
     func updateCardViews() async {
-        let kanjiCards = await dbWorker.fetchAllKanjiCards()
+        let kanjiCards = await dbWorker.latestReviewCardStack()
         for card in kanjiCards {
             self.cardViews.append(CardView(kanjiCard: card))
         }
+    }
+    
+    func cycleCards() {
+        cardViews.removeFirst()
+    }
+    
+    func isTop(cardView: CardView) -> Bool {
+        guard let index = cardViews.firstIndex(where: {$0.id == cardView.id} )
+        else {
+            return false
+        }
+        return index == 0
     }
 }
 
@@ -69,7 +81,7 @@ struct CardStackView: View {
     var body: some View {
         ZStack {
             ForEach(vm.cardViews) { card in
-                if isTopCard(cardView: card) {
+                if vm.isTop(cardView: card) {
                     card
                         .zIndex(1)
                         .offset(x: self.dragState.translation.width, y: self.dragState.translation.height)
@@ -99,17 +111,20 @@ struct CardStackView: View {
                                         // MARK: - SWIPPING LEFT
                                         if drag.translation.width < -self.dragAreaThreashhold {
                                             print("Swipped Left")
-//                                            SM2Algo.UpdateCard(card: card.data, success: false, context: managedObjectContext)
+                                            SM2Algo.UpdateCard(card: card.kanjiCard, success: false)
                                         }
                                         
                                         // MARK: - SWIPPING RIGHT
                                         if drag.translation.width > self.dragAreaThreashhold {
                                             print("Swipped Right")
-//                                            SM2Algo.UpdateCard(card: card.data, success: true, context: managedObjectContext)
+                                            SM2Algo.UpdateCard(card: card.kanjiCard, success: true)
                                         }
                                         
                                         if drag.translation.width < -self.dragAreaThreashhold || drag.translation.width > self.dragAreaThreashhold {
-                                            cycleCards()
+                                            vm.cycleCards()
+                                            Task {
+                                                await vm.updateCardViews()
+                                            }
                                         }
                                     })
                         )
@@ -122,21 +137,6 @@ struct CardStackView: View {
             await vm.updateCardViews()
         }
     }
-    
-    private func isTopCard(cardView: CardView) -> Bool {
-        guard let index = vm.cardViews.firstIndex(where: {$0.id == cardView.id} )
-        else {
-            return false
-        }
-        return index == 0
-    }
-    
-    private func cycleCards() {
-        //        self.lastCardIndex += 1
-        //        let data = cardData[lastCardIndex % cardData.count]
-        //        let newCard = CardView(data: data)
-        vm.cardViews.append(vm.cardViews.removeFirst())
-    }
 }
 
 struct CardStackView_Previews: PreviewProvider {
@@ -144,7 +144,6 @@ struct CardStackView_Previews: PreviewProvider {
         CardStackView()
     }
 }
-
 
 extension CardStackView {
     func handleLongPressOrDragGesture(_ value:SequenceGesture<LongPressGesture, DragGesture>.Value){
