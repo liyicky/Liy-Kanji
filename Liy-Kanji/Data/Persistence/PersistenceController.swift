@@ -114,6 +114,13 @@ actor DBWorker {
         return nil
     }
     
+    func fetchAllKanji() -> [Kanji] {
+        if let kanji = fetch(request: Kanji.fetchRequest(), predicate: nil) as? [Kanji] {
+            return kanji
+        }
+        return []
+    }
+    
     func fetchAllKanjiCards() -> [KanjiCard] {
         if let cards = fetch(request: KanjiCard.fetchRequest(), predicate: nil) as? [KanjiCard] {
             return cards

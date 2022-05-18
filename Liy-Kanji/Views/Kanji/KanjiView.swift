@@ -7,17 +7,21 @@
 
 import SwiftUI
 
-struct KanjiView: View {
+class KanjiViewModel: ObservableObject {
     
-    // MARK: - CORE DATA
-    // TODO: POPULATE WITH KANJI FROM CORE DATA
-    @Environment(\.managedObjectContext) var managedObjectContext
-    @FetchRequest(entity: Kanji.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Kanji.id, ascending: true)]) var kanji: FetchedResults<Kanji>
+    @Published var kanji: [Kanji] = []
+    
+    func updateKanji() async {
+        self.kanji = await dbWorker.fetchAllKanji()
+    }
+    
+}
 
-    
+struct KanjiView: View {
+        
     // MARK: - PROPERTIES
+    @StateObject var vm = KanjiViewModel()
     var rows: [GridItem]
-    
     
     var body: some View {
         
@@ -27,13 +31,16 @@ struct KanjiView: View {
         
                 
                 LazyHGrid(rows: rows) {
-                    ForEach(kanji, id: \.id) { kanji in
+                    ForEach(vm.kanji, id: \.id) { kanji in
                         Text(kanji.character!) //TODO: THIS SHOULDNT BE OPTIONAL
                             .font(.body)
                             .fontWeight(.light)
 //                            .foregroundColor(kanji.id ? Color.green : Color.black)
                     }
-                }.onAppear {
+                }.task {
+                    await vm.updateKanji()
+                }
+                .onAppear {
                     withAnimation(.spring()) {
                         // TODO: FIX HOW THIS SCROLLS
                         proxy.scrollTo(1, anchor: .center)
