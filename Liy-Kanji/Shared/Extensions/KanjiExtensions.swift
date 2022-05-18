@@ -8,16 +8,4 @@
 import Foundation
 
 extension Kanji {
-    
-//    func allRadicals() -> [Radical] {
-//        var allRadicals: [Radical] = []
-//        if let kanjiRadicals = radicals?.allObjects as? [KanjiRadical] {
-//            for entity in kanjiRadicals {
-//                if let radical = entity.radical as? Radical {
-//                    allRadicals.append(radical)
-//                }
-//            }
-//        }
-//        return allRadicals
-//    }
 }

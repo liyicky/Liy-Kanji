@@ -27,19 +27,13 @@
     </entity>
     <entity name="KanjiCard" representedClassName="KanjiCard" syncable="YES" codeGenerationType="class">
         <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="dateLastReviewed" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateLastReviewed" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="easinessFactor" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="interval" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="kanjiId" attributeType="Integer 16" usesScalarValueType="YES"/>
         <attribute name="mnemonic" attributeType="String"/>
         <attribute name="repCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="repsSuccessful" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="kanji" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Kanji" inverseName="card" inverseEntity="Kanji"/>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="kanjiId"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
     </entity>
     <entity name="Radical" representedClassName="Radical" syncable="YES" codeGenerationType="class">
         <attribute name="keyword" attributeType="String"/>
@@ -52,7 +46,7 @@
     </entity>
     <elements>
         <element name="Kanji" positionX="-63" positionY="-18" width="128" height="209"/>
-        <element name="KanjiCard" positionX="-45" positionY="54" width="128" height="164"/>
+        <element name="KanjiCard" positionX="-45" positionY="54" width="128" height="149"/>
         <element name="Radical" positionX="-45" positionY="72" width="128" height="59"/>
     </elements>
 </model>

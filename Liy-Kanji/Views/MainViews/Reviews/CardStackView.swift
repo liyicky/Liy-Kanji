@@ -15,7 +15,7 @@ struct CardStackView: View {
     // MARK: - CORE DATA
     @Environment(\.managedObjectContext) var managedObjectContext
     @FetchRequest(entity: KanjiCard.entity(),
-                  sortDescriptors: [NSSortDescriptor(keyPath: \KanjiCard.id, ascending: true)])
+                  sortDescriptors: [NSSortDescriptor(keyPath: \KanjiCard.dateCreated, ascending: true)])
     var cards: FetchedResults<KanjiCard>
     
     // MARK: - Card Swipe Properties

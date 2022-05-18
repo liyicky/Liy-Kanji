@@ -7,32 +7,48 @@
 
 import SwiftUI
 
+class NewCardsViewModel: ObservableObject {
+    
+    @Published var currentKanji: Kanji? = nil
+    
+    func fetchCurrentKanji() async {
+        do {
+            self.currentKanji = try await dbWorker.fetchCurrentKanji()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+}
+
 struct NewCardsView: View {
     
     // MARK: - PROPERTIES
-//    @State var kanji: Kanji
+    @StateObject private var vm = NewCardsViewModel()
     @State var mnemonic: String = "Start writing..."
         
     var body: some View {
         
         VStack {
-//            DisplayCard(kanji: kanji, mnemonic: $mnemonic)
-            
-            Button(action: {
-                withAnimation {
-//                    createCard(kanji)
-                    mnemonic = "Start writing..."
-                }
-            }, label: {
-                Text("Save".uppercased())
-                    .modifier(ButtonModifier())
-            }).onAppear {
-
+            if let kanji = vm.currentKanji {
+                DisplayCard(kanji: kanji, mnemonic: $mnemonic)
+                Button(action: {
+                    withAnimation {
+                        Task {
+                            await dbWorker.createCard(kanji: kanji, mnemonic: mnemonic)
+                            await vm.fetchCurrentKanji()
+                        }
+                        mnemonic = "Start writing..."
+                    }
+                }, label: {
+                    Text("Save".uppercased())
+                        .modifier(ButtonModifier())
+                })
             }
+        }.task {
+            await vm.fetchCurrentKanji()
         }
     }
-
-    
 }
 
 //struct NewCardsView_Previews: PreviewProvider {

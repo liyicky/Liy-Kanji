@@ -47,11 +47,14 @@ struct PersistenceController {
 
 // MARK: - DATABASE WORKER
 @globalActor
-actor DBWorker: ObservableObject {
+actor DBWorker {
     static let shared = DBWorker()
     private var context: NSManagedObjectContext!
     
-    @Published var kanjiCards: [KanjiCard] = []
+    enum DBWorkerError: Error {
+        case failedToFetch
+        case custom(error: Error)
+    }
     
     init() {
         context = persistenceController.context
@@ -63,7 +66,6 @@ actor DBWorker: ObservableObject {
     
     func sync() async {
         for model in cardDataModels {
-            print("Saving \(model.kanji)")
 
             // Save Kanji
             let kanjiEntity = Kanji(context: self.context)
@@ -77,8 +79,8 @@ actor DBWorker: ObservableObject {
             kanjiEntity.exampleInKanji = model.exampleWords[0]
             kanjiEntity.exampleInKana = model.exampleWords[1]
             kanjiEntity.exampleInEnglish = model.exampleWords[2]
-            
-//          Save Radicals & KanjiRadical relationship table
+
+            // Save Radicals & KanjiRadical relationship table
             for radical in model.radicals {
                 let radicalEntity = Radical(context: self.context)
                 radicalEntity.keyword = radical
@@ -86,10 +88,13 @@ actor DBWorker: ObservableObject {
             }
         }
         persistenceController.save()
+        print("Kanji Sync Successful")
     }
     
-    func fetch(request: NSFetchRequest<NSFetchRequestResult>, predicate: NSPredicate) -> Any? {
-        request.predicate = predicate
+    func fetch(request: NSFetchRequest<NSFetchRequestResult>, predicate: NSPredicate?) -> Any? {
+        if let predicate = predicate {
+            request.predicate = predicate
+        }
         
         do {
             let results = try self.context.fetch(request)
@@ -109,16 +114,35 @@ actor DBWorker: ObservableObject {
         return nil
     }
     
-    func fetchAllKanjiCards() {
-        let request = KanjiCard.fetchRequest()
-        
-        do {
-            kanjiCards = try context.fetch(request)
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
+    /*
+//    func fetchAllKanjiCards() {
+//        let request = KanjiCard.fetchRequest()
+//
+//        do {
+//            kanjiCards = try context.fetch(request)
+//        } catch let error as NSError {
+//            print("Could not fetch. \(error), \(error.userInfo)")
+//        }
+//    }
+     */
+    
+    func fetchCurrentIndex() -> String {
+        if let cards = fetch(request: KanjiCard.fetchRequest(), predicate: nil) as? [KanjiCard] {
+            return String(cards.count)
         }
+        return "0"
     }
     
+    func fetchCurrentKanji() throws -> Kanji? {
+        let results = fetch(request: Kanji.fetchRequest(), predicate: NSPredicate(format: "kanjiId == %@", fetchCurrentIndex())) as? [Kanji]
+        if let result = results?.first {
+            return result
+        }
+        
+        throw DBWorkerError.failedToFetch
+    }
+    
+    /*
 //    func fetchCardWithId(_ id: Int) -> KanjiCard? {
 //        if let results = fetch(request: KanjiCard.fetchRequest(), format: "id == %@", arg: id) as? [KanjiCard] {
 //            return results.first
@@ -127,6 +151,7 @@ actor DBWorker: ObservableObject {
 //        print("Could not fetch card with id: #\(id)")
 //        return nil
 //    }
+    */
     
     // MARK: - Card Logic: Creating
     
@@ -140,11 +165,7 @@ actor DBWorker: ObservableObject {
         newCard.repsSuccessful = 0
 //        newCard.dateLastReviewed = Date.now
         
-        do {
-            try self.context.save()
-        } catch {
-            print("New Card couldn't be created \(error)")
-        }
+        persistenceController.save()
     }
 
 }

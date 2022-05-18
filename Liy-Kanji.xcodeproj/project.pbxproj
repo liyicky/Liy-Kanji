@@ -299,7 +299,6 @@
 			children = (
 				5C70DC36280FD77D005FA650 /* MainMenuImage.swift */,
 				5C2D3213280FF25000D19F64 /* CardDataModel.swift */,
-				5CF43A842812A0C2003F0459 /* SM2Algo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -316,6 +315,7 @@
 		5C70DC3D280FDAFE005FA650 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				5CF43A842812A0C2003F0459 /* SM2Algo.swift */,
 				5C70DC3E280FDBFC005FA650 /* CodeableBundleExtension.swift */,
 				5C2D320F280FF05C00D19F64 /* CardTransition.swift */,
 				5C70DC3B280FDAF5005FA650 /* Constants.swift */,

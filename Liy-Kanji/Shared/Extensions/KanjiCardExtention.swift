@@ -52,5 +52,7 @@ extension KanjiCard {
         return "error"
     }
     
+
+    
     
 }
