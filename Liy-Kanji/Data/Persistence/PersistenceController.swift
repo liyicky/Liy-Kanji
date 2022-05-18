@@ -114,23 +114,15 @@ actor DBWorker {
         return nil
     }
     
-    /*
-//    func fetchAllKanjiCards() {
-//        let request = KanjiCard.fetchRequest()
-//
-//        do {
-//            kanjiCards = try context.fetch(request)
-//        } catch let error as NSError {
-//            print("Could not fetch. \(error), \(error.userInfo)")
-//        }
-//    }
-     */
+    func fetchAllKanjiCards() -> [KanjiCard] {
+        if let cards = fetch(request: KanjiCard.fetchRequest(), predicate: nil) as? [KanjiCard] {
+            return cards
+        }
+        return []
+    }
     
     func fetchCurrentIndex() -> String {
-        if let cards = fetch(request: KanjiCard.fetchRequest(), predicate: nil) as? [KanjiCard] {
-            return String(cards.count)
-        }
-        return "0"
+        return String(fetchAllKanjiCards().count)
     }
     
     func fetchCurrentKanji() throws -> Kanji? {

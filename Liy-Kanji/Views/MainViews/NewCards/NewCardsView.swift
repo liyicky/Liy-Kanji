@@ -11,7 +11,7 @@ class NewCardsViewModel: ObservableObject {
     
     @Published var currentKanji: Kanji? = nil
     
-    func fetchCurrentKanji() async {
+    func updateCurrentKanji() async {
         do {
             self.currentKanji = try await dbWorker.fetchCurrentKanji()
         } catch {
@@ -36,7 +36,7 @@ struct NewCardsView: View {
                     withAnimation {
                         Task {
                             await dbWorker.createCard(kanji: kanji, mnemonic: mnemonic)
-                            await vm.fetchCurrentKanji()
+                            await vm.updateCurrentKanji()
                         }
                         mnemonic = "Start writing..."
                     }
@@ -46,7 +46,7 @@ struct NewCardsView: View {
                 })
             }
         }.task {
-            await vm.fetchCurrentKanji()
+            await vm.updateCurrentKanji()
         }
     }
 }

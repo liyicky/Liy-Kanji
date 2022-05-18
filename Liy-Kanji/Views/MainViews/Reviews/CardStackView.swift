@@ -7,16 +7,23 @@
 
 import SwiftUI
 
+class CardStackViewModel: ObservableObject {
+    
+    // MARK: - PROPERTIES
+    @Published var cardViews: [CardView] = []
+    
+    func updateCardViews() async {
+        let kanjiCards = await dbWorker.fetchAllKanjiCards()
+        for card in kanjiCards {
+            self.cardViews.append(CardView(kanjiCard: card))
+        }
+    }
+}
+
 struct CardStackView: View {
     
     // MARK: - PROPERTIES
-    @State private var cardViews: [CardView] = []
-    
-    // MARK: - CORE DATA
-    @Environment(\.managedObjectContext) var managedObjectContext
-    @FetchRequest(entity: KanjiCard.entity(),
-                  sortDescriptors: [NSSortDescriptor(keyPath: \KanjiCard.dateCreated, ascending: true)])
-    var cards: FetchedResults<KanjiCard>
+    @StateObject private var vm = CardStackViewModel()
     
     // MARK: - Card Swipe Properties
     @GestureState private var dragState = DragState.inactive
@@ -61,7 +68,7 @@ struct CardStackView: View {
     
     var body: some View {
         ZStack {
-            ForEach(cardViews) { card in
+            ForEach(vm.cardViews) { card in
                 if isTopCard(cardView: card) {
                     card
                         .zIndex(1)
@@ -111,28 +118,24 @@ struct CardStackView: View {
                     card
                 }
             }
-        }.onAppear {
-            populate()
+        }.task {
+            await vm.updateCardViews()
         }
     }
     
     private func isTopCard(cardView: CardView) -> Bool {
-        guard let index = cardViews.firstIndex(where: {$0.id == cardView.id} )
+        guard let index = vm.cardViews.firstIndex(where: {$0.id == cardView.id} )
         else {
             return false
         }
         return index == 0
     }
     
-    private func populate() {
-
-    }
-    
     private func cycleCards() {
         //        self.lastCardIndex += 1
         //        let data = cardData[lastCardIndex % cardData.count]
         //        let newCard = CardView(data: data)
-        cardViews.append(cardViews.removeFirst())
+        vm.cardViews.append(vm.cardViews.removeFirst())
     }
 }
 
