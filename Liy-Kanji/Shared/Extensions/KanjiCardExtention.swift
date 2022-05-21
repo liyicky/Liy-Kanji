@@ -9,8 +9,8 @@ import Foundation
 
 extension KanjiCard {
     
-    func intervalInDays() -> Int {
-        return Int(interval / 86400)
+    static func due() async -> [KanjiCard] {
+        return await dbWorker.fetchDueKanjiCards()
     }
     
     func dateCreatedString() -> String {
@@ -32,26 +32,13 @@ extension KanjiCard {
     }
     
     func dateDueString() -> String {
-        if let date = dateLastReviewed {
-            
-            var dateComponent = DateComponents()
-            dateComponent.day = intervalInDays()
-            let dueDate = Calendar.current.date(byAdding: dateComponent, to: date)
-            
-            return dueDate!.getFormattedDate(format: "dd/MM/yyyy")
-        } else {
-            print("Date couldn't be parsed: Card#dateDueString")
-            return "-"
-        }
+        let interval = TimeInterval(dateDue)
+        return Date(timeIntervalSince1970: interval).formatted()
     }
     
-    func whenDue() -> Int64 {
-        return interval - SM2Algo.TodaysTimestamp
-    }
-    
+    // Return true if dateDue is between yesterday at 4am and tomorrow at 4am. E.g. grab all cards for the la
     func due() -> Bool {
-        let due = whenDue() < 0
-        return due
+        return dateDue < Date().tmrTimestamp()
     }
     
     func keyword() -> String {
@@ -60,8 +47,6 @@ extension KanjiCard {
         }
         return "error"
     }
-    
-
     
     
 }

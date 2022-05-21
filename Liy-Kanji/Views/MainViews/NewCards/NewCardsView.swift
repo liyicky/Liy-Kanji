@@ -18,7 +18,6 @@ class NewCardsViewModel: ObservableObject {
             print(error.localizedDescription)
         }
     }
-    
 }
 
 struct NewCardsView: View {

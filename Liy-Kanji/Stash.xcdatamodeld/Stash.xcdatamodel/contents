@@ -27,9 +27,9 @@
     </entity>
     <entity name="KanjiCard" representedClassName="KanjiCard" syncable="YES" codeGenerationType="class">
         <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateDue" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="dateLastReviewed" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="easinessFactor" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="interval" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="mnemonic" attributeType="String"/>
         <attribute name="repCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="repsSuccessful" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>

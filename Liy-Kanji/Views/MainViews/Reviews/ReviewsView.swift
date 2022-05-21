@@ -10,11 +10,8 @@ import SwiftUI
 struct ReviewsView: View {
     
     // MARK: - PROPERTIES
+    @StateObject private var vm = AppManager.shared
     
-    
-    // MARK: - CORE DATA
-    
-
     var body: some View {
         VStack {
             CardStackView()

@@ -128,23 +128,14 @@ actor DBWorker {
         return []
     }
     
-    func fetchReviewCards() -> [KanjiCard] {
-        var reviewCards: [KanjiCard] = []
-        for card in fetchAllKanjiCards() {
-            if card.due() {
-                reviewCards.append(card)
-                print(card.whenDue())
-            }
+    func fetchDueKanjiCards() -> [KanjiCard] {
+        if let cards = fetch(
+            request: KanjiCard.fetchRequest(),
+            predicate: NSPredicate(format: "dateDue < %@", String(Date().tmrTimestamp()))
+        ) as? [KanjiCard] {
+            return cards
         }
-        return reviewCards.sorted(by: { $0.whenDue() < $1.whenDue() })
-    }
-    
-    func latestReviewCardStack() -> [KanjiCard] {
-        let cards = fetchReviewCards()
-        if cards.count > 1 {
-            return cards[0..<2].sorted(by: { $0.whenDue() < $1.whenDue() })
-        }
-        return cards
+        return []
     }
     
     func fetchCurrentIndex() -> String {
@@ -177,7 +168,7 @@ actor DBWorker {
         let newCard = KanjiCard(context: self.context)
         newCard.kanji = kanji
         newCard.dateCreated = Date.now
-        newCard.interval = 0
+        newCard.dateDue = 0
         newCard.mnemonic = mnemonic
         newCard.repCount = 0
         newCard.repsSuccessful = 0

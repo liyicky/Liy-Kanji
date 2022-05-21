@@ -7,35 +7,10 @@
 
 import SwiftUI
 
-class CardStackViewModel: ObservableObject {
-    
-    // MARK: - PROPERTIES
-    @Published var cardViews: [CardView] = []
-    
-    func updateCardViews() async {
-        let kanjiCards = await dbWorker.latestReviewCardStack()
-        for card in kanjiCards {
-            self.cardViews.append(CardView(kanjiCard: card))
-        }
-    }
-    
-    func cycleCards() {
-        cardViews.removeFirst()
-    }
-    
-    func isTop(cardView: CardView) -> Bool {
-        guard let index = cardViews.firstIndex(where: {$0.id == cardView.id} )
-        else {
-            return false
-        }
-        return index == 0
-    }
-}
-
 struct CardStackView: View {
     
     // MARK: - PROPERTIES
-    @StateObject private var vm = CardStackViewModel()
+    @State var cardViews: [CardView] = []
     
     // MARK: - Card Swipe Properties
     @GestureState private var dragState = DragState.inactive
@@ -80,8 +55,8 @@ struct CardStackView: View {
     
     var body: some View {
         ZStack {
-            ForEach(vm.cardViews) { card in
-                if vm.isTop(cardView: card) {
+            ForEach(cardViews) { card in
+                if isTop(cardView: card) {
                     card
                         .zIndex(1)
                         .offset(x: self.dragState.translation.width, y: self.dragState.translation.height)
@@ -112,19 +87,18 @@ struct CardStackView: View {
                                         if drag.translation.width < -self.dragAreaThreashhold {
                                             print("Swipped Left")
                                             SM2Algo.UpdateCard(card: card.kanjiCard, success: false)
+                                            AppManager.shared.leftSwipe()
                                         }
                                         
                                         // MARK: - SWIPPING RIGHT
                                         if drag.translation.width > self.dragAreaThreashhold {
                                             print("Swipped Right")
                                             SM2Algo.UpdateCard(card: card.kanjiCard, success: true)
+                                            AppManager.shared.rightSwipe()
                                         }
                                         
                                         if drag.translation.width < -self.dragAreaThreashhold || drag.translation.width > self.dragAreaThreashhold {
-                                            vm.cycleCards()
-                                            Task {
-                                                await vm.updateCardViews()
-                                            }
+                                            populate()
                                         }
                                     })
                         )
@@ -133,17 +107,37 @@ struct CardStackView: View {
                     card
                 }
             }
-        }.task {
-            await vm.updateCardViews()
+        }.onAppear {
+            populate()
         }
+    }
+    
+    func populate() {
+        cardViews = []
+        
+        if let topCard = AppManager.shared.topCard {
+            cardViews.append(CardView(kanjiCard: topCard))
+        }
+        
+        if let nextCard = AppManager.shared.nextCard {
+            cardViews.append(CardView(kanjiCard: nextCard))
+        }
+    }
+    
+    func isTop(cardView: CardView) -> Bool {
+        guard let index = cardViews.firstIndex(where: {$0.id == cardView.id} )
+        else {
+            return false
+        }
+        return index == 0
     }
 }
 
-struct CardStackView_Previews: PreviewProvider {
-    static var previews: some View {
-        CardStackView()
-    }
-}
+//struct CardStackView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CardStackView()
+//    }
+//}
 
 extension CardStackView {
     func handleLongPressOrDragGesture(_ value:SequenceGesture<LongPressGesture, DragGesture>.Value){
