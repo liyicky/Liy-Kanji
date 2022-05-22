@@ -91,9 +91,13 @@ actor DBWorker {
         print("Kanji Sync Successful")
     }
     
-    func fetch(request: NSFetchRequest<NSFetchRequestResult>, predicate: NSPredicate?) -> Any? {
+    func fetch(request: NSFetchRequest<NSFetchRequestResult>, predicate: NSPredicate? = nil, sortBy: [NSSortDescriptor]? = nil) -> Any? {
         if let predicate = predicate {
             request.predicate = predicate
+        }
+        
+        if let sortBy = sortBy {
+            request.sortDescriptors = sortBy
         }
         
         do {
@@ -115,14 +119,14 @@ actor DBWorker {
     }
     
     func fetchAllKanji() -> [Kanji] {
-        if let kanji = fetch(request: Kanji.fetchRequest(), predicate: nil) as? [Kanji] {
+        if let kanji = fetch(request: Kanji.fetchRequest(), sortBy: [NSSortDescriptor(key: "kanjiId", ascending: true)]) as? [Kanji] {
             return kanji
         }
         return []
     }
     
     func fetchAllKanjiCards() -> [KanjiCard] {
-        if let cards = fetch(request: KanjiCard.fetchRequest(), predicate: nil) as? [KanjiCard] {
+        if let cards = fetch(request: KanjiCard.fetchRequest()) as? [KanjiCard] {
             return cards
         }
         return []
@@ -131,7 +135,8 @@ actor DBWorker {
     func fetchDueKanjiCards() -> [KanjiCard] {
         if let cards = fetch(
             request: KanjiCard.fetchRequest(),
-            predicate: NSPredicate(format: "dateDue < %@", String(Date().tmrTimestamp()))
+            predicate: NSPredicate(format: "dateDue < %@", String(Date().tmrTimestamp())),
+            sortBy: [NSSortDescriptor(key: "dateDue", ascending: true)]
         ) as? [KanjiCard] {
             return cards
         }

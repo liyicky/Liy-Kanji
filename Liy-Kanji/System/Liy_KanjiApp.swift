@@ -19,8 +19,10 @@ struct Liy_KanjiApp: App {
                     print("run async op")
                     // call DB worker
 //                    await DBWorker.shared.setMoc(persistenceController.container.viewContext)
-//                    await DBWorker.shared.sync()
+                    await DBWorker.shared.sync()
 //                    await DBWorker.shared.fetchAllKanjiCards()
+                    await AppManager.shared.loadReviewCards()
+                    AppManager.shared.cycleCards()
                     print("finished")
                 }
         }

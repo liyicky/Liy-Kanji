@@ -21,28 +21,42 @@ extension AppManager {
     
     func leftSwipe() {
         print("Swipped Left")
-        print("TopCard is \(topCard!.keyword())")
-        print("NextCard is \(nextCard!.keyword())")
+        print("TopCard is \(topCard!.keyword()) - Due: \(topCard!.dateDueString()) - Last was Success: \(topCard!.repStreak >= 1 ? "yes" : "no")")
+        print("NextCard is \(nextCard!.keyword()) - Due: \(nextCard!.dateDueString()) - Last was Success: \(nextCard!.repStreak >= 1 ? "yes" : "no")")
         print("Review Cards:")
         for (index, object) in reviewCards.enumerated() {
-            print("Item at \(index): \(object.keyword())")
+            print("\(index): \(object.keyword()) - Due: \(object.dateDueString()) - Last was Success: \(object.repStreak >= 1 ? "yes" : "no")")
         }
         reviewCards.append(topCard!)
         topCard = nextCard
         nextCard = reviewCards.removeFirst()
         
         print("Swipped Left Results")
-        print("TopCard became \(topCard!.keyword())")
-        print("NextCard became \(nextCard!.keyword())")
+        print("TopCard became \(topCard!.keyword()) - Due: \(topCard!.dateDueString()) - Last was Success: \(topCard!.repStreak >= 1 ? "yes" : "no")")
+        print("NextCard became \(nextCard!.keyword()) - Due: \(nextCard!.dateDueString()) - Last was Success: \(nextCard!.repStreak >= 1 ? "yes" : "no")")
         print("Review Cards became:")
         for (index, object) in reviewCards.enumerated() {
-            print("Item at \(index): \(object.keyword())")
+            print("\(index): \(object.keyword()) - Due: \(object.dateDueString()) - Last was Success: \(object.repStreak >= 1 ? "yes" : "no")")
         }
     }
     
     func rightSwipe() {
+        print("Swipped Right")
+        print("TopCard is \(topCard!.keyword()) - Due: \(topCard!.dateDueString()) - Last was Success: \(topCard!.repStreak >= 1 ? "yes" : "no")")
+        print("NextCard is \(nextCard!.keyword()) - Due: \(nextCard!.dateDueString()) - Last was Success: \(nextCard!.repStreak >= 1 ? "yes" : "no")")
+        print("Review Cards:")
+        for (index, object) in reviewCards.enumerated() {
+            print("\(index): \(object.keyword()) - Due: \(object.dateDueString()) - Last was Success: \(object.repStreak >= 1 ? "yes" : "no")")
+        }
         topCard = nextCard
         nextCard = reviewCards.removeFirst()
+        print("Swipped Right Results")
+        print("TopCard became \(topCard!.keyword()) - Due: \(topCard!.dateDueString()) - Last was Success: \(topCard!.repStreak >= 1 ? "yes" : "no")")
+        print("NextCard became \(nextCard!.keyword()) - Due: \(nextCard!.dateDueString()) - Last was Success: \(nextCard!.repStreak >= 1 ? "yes" : "no")")
+        print("Review Cards became:")
+        for (index, object) in reviewCards.enumerated() {
+            print("\(index): \(object.keyword()) - Due: \(object.dateDueString()) - Last was Success: \(object.repStreak >= 1 ? "yes" : "no")")
+        }
     }
 }
 

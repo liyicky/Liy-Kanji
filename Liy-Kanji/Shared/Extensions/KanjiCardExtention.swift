@@ -36,7 +36,7 @@ extension KanjiCard {
         return Date(timeIntervalSince1970: interval).formatted()
     }
     
-    // Return true if dateDue is between yesterday at 4am and tomorrow at 4am. E.g. grab all cards for the la
+    // All cards due before tomorrow at 4am
     func due() -> Bool {
         return dateDue < Date().tmrTimestamp()
     }
