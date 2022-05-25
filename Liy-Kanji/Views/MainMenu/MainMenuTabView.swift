@@ -10,11 +10,9 @@ import SwiftUI
 struct MainMenuTabView: View {
     var body: some View {
         TabView {
-            ForEach(testImages) { image in
-                MainMenuImageView(mainMenuImage: image)
-                    .padding(.top, 10)
-                    .padding(.horizontal, 15)
-            }
+            MainMenuBackView()
+            MainMenuBackView()
+            MainMenuBackView()
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
     }

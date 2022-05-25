@@ -24,7 +24,7 @@ struct MainMenuView: View {
                     case 0:
                         VStack {
                             MainMenuTabView()
-                                .frame(height: UIScreen.main.bounds.width / 1.475) // This will fix the layout rendering priority issue by using the screen's aspect ratio.
+                                
                             KanjiView()
                                 .navigationTitle("Kanji")
                                 .padding()
@@ -69,7 +69,8 @@ struct MainMenuView: View {
                         InfoView()
                     })
                 )
-            }
+                .background(Color("Background"))
+            } // NAVIGATION VIEW
             .foregroundColor(.black)
             .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: UIScreen.main.bounds.height)
             
@@ -120,7 +121,8 @@ struct MainMenuView: View {
                 Spacer()
             }
             .padding()
-        }
+        } // VSTACK
+        .background(Color("Background"))
         
         
         /*
