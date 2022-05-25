@@ -22,10 +22,13 @@ struct MainMenuView: View {
                 ZStack{
                     switch selectedIndex {
                     case 0:
-                        KanjiView(rows: Array(repeating: .init(.adaptive(minimum: 15)), count: 1))
-                            .padding(.horizontal, 10)
-                            .padding(.bottom, 20)
-                            .navigationTitle("Kanji")
+                        VStack {
+                            MainMenuTabView()
+                                .frame(height: UIScreen.main.bounds.width / 1.475) // This will fix the layout rendering priority issue by using the screen's aspect ratio.
+                            KanjiView()
+                                .navigationTitle("Kanji")
+                                .padding()
+                        }
                     case 1:
                         NewCardsView()
                             .navigationTitle("New")
@@ -74,7 +77,7 @@ struct MainMenuView: View {
             
             Rectangle().fill(Color.gray.opacity(0.8))
                 .frame(maxWidth: UIScreen.main.bounds.width, maxHeight: 1)
-                .offset(y: -22)
+//                .offset(y: -22)
                 .shadow(color: Color.black.opacity(0.8), radius: 1, x: 0, y: -1)
             
             HStack(spacing: 0) {

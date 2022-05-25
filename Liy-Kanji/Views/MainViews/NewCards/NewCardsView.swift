@@ -47,6 +47,7 @@ struct NewCardsView: View {
         }.task {
             await vm.updateCurrentKanji()
         }
+        .navigationTitle("Add Cards")
     }
 }
 

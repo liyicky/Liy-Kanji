@@ -12,40 +12,42 @@ class KanjiViewModel: ObservableObject {
     @Published var kanji: [Kanji] = []
     
     func updateKanji() async {
-        self.kanji = await dbWorker.fetchAllKanji()
+        let fetchedKanji = await dbWorker.fetchAllKanji()
+        for kanji in fetchedKanji {
+
+            try? await Task.sleep(nanoseconds: 5_000_000)
+            DispatchQueue.main.async {
+                self.kanji.append(kanji)
+            }
+        }
     }
-    
 }
 
 struct KanjiView: View {
         
     // MARK: - PROPERTIES
     @StateObject var vm = KanjiViewModel()
-    var rows: [GridItem]
+    var columns = [GridItem(.adaptive(minimum: 20))]
     
     var body: some View {
         
         
-        ScrollView(.horizontal, showsIndicators: false) {
+        ScrollView(.vertical, showsIndicators: false) {
             ScrollViewReader { proxy in
-        
-                
-                LazyHGrid(rows: rows) {
+                LazyVGrid(columns: columns) {
                     ForEach(vm.kanji, id: \.id) { kanji in
-                        Text(kanji.character!) //TODO: THIS SHOULDNT BE OPTIONAL
-                            .font(.body)
-                            .fontWeight(.light)
+                        KanjiText(kanji.character!) //TODO: THIS SHOULDNT BE OPTIONAL
 //                            .foregroundColor(kanji.id ? Color.green : Color.black)
                     }
                 }.task {
                     await vm.updateKanji()
                 }
-                .onAppear {
-                    withAnimation(.spring()) {
-                        // TODO: FIX HOW THIS SCROLLS
-                        proxy.scrollTo(1, anchor: .center)
-                    }
-                }
+//                .onAppear {
+//                    withAnimation(.spring()) {
+//                        // TODO: FIX HOW THIS SCROLLS
+//                        proxy.scrollTo(1, anchor: .center)
+//                    }
+//                }
             }
         }
     }
@@ -53,6 +55,6 @@ struct KanjiView: View {
 
 struct KanjiView_Previews: PreviewProvider {
     static var previews: some View {
-        KanjiView(rows: Array(repeating: .init(.adaptive(minimum: 20)), count: 2))
+        KanjiView(columns: Array(repeating: .init(.adaptive(minimum: 20)), count: 2))
     }
 }
