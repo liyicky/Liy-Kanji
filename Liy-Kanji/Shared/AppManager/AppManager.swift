@@ -11,12 +11,14 @@ class AppManager: ObservableObject {
     
     static let shared = AppManager()
     var reviewCards: [KanjiCard] = []
+    var appState: AppState!
     
     @Published var topCard: KanjiCard? = nil
     @Published var nextCard: KanjiCard? = nil
 }
 
-// ReviewView
+
+// MARK: - ReviewView
 extension AppManager {
     
     func leftSwipe() {
@@ -60,7 +62,7 @@ extension AppManager {
     }
 }
 
-// Handle Kanji Card Reviews
+// MARK: - Handle Kanji Card Reviews
 extension AppManager {
     
     func loadReviewCards() async {
@@ -78,5 +80,18 @@ extension AppManager {
     func cycleCards() {
         topCard = reviewCards.removeFirst()
         nextCard = reviewCards.removeFirst()
+    }
+}
+
+// Manage App State
+extension AppManager {
+    
+    func synced() -> Bool {
+        return appState.synced
+    }
+    
+    func disableSyncing() {
+        AppManager.shared.appState.synced = true
+        persistenceController.save()
     }
 }

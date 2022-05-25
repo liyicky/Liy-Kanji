@@ -27,6 +27,12 @@ actor DBWorker {
     }
     
     func sync() async {
+        
+        // Only Sync one time
+        if AppManager.shared.synced() {
+            return
+        }
+        
         for model in cardDataModels {
 
             // Save Kanji
@@ -49,7 +55,8 @@ actor DBWorker {
                 radicalEntity.addToKanji(kanjiEntity)
             }
         }
-        persistenceController.save()
+        
+        AppManager.shared.disableSyncing()
         print("Kanji Sync Successful")
     }
     
@@ -72,19 +79,47 @@ actor DBWorker {
         
         return nil
     }
-    
-    func fetchRadicalEntityWith(keyword: String) -> Radical? {
-        if let results = fetch(request: Radical.fetchRequest(), predicate: NSPredicate(format: "keyword == %@", keyword)) as? [Radical] {
-            return results.first
-        }
-        return nil
-    }
+}
+
+// MARK: - KANJI ENTITIES
+extension DBWorker {
     
     func fetchAllKanji() -> [Kanji] {
         if let kanji = fetch(request: Kanji.fetchRequest(), sortBy: [NSSortDescriptor(key: "kanjiId", ascending: true)]) as? [Kanji] {
             return kanji
         }
         return []
+    }
+    
+    func fetchCurrentIndex() -> String {
+        return String(fetchAllKanjiCards().count)
+    }
+    
+    func fetchCurrentKanji() throws -> Kanji? {
+        let results = fetch(request: Kanji.fetchRequest(), predicate: NSPredicate(format: "kanjiId == %@", fetchCurrentIndex())) as? [Kanji]
+        if let result = results?.first {
+            return result
+        }
+        
+        throw DBWorkerError.failedToFetch
+    }
+}
+
+// MARK: - KANJICARD ENTITIES
+extension DBWorker {
+    
+    func createCard(kanji: Kanji, mnemonic: String) {
+        let newCard = KanjiCard(context: self.context)
+        newCard.kanji = kanji
+        newCard.dateCreated = Date.now
+        newCard.dateDue = 0
+        newCard.mnemonic = mnemonic
+        newCard.repCount = 0
+        newCard.repsSuccessful = 0
+        newCard.repStreak = 0
+        //newCard.dateLastReviewed = Date.now
+        
+        persistenceController.save()
     }
     
     func fetchAllKanjiCards() -> [KanjiCard] {
@@ -105,19 +140,6 @@ actor DBWorker {
         return []
     }
     
-    func fetchCurrentIndex() -> String {
-        return String(fetchAllKanjiCards().count)
-    }
-    
-    func fetchCurrentKanji() throws -> Kanji? {
-        let results = fetch(request: Kanji.fetchRequest(), predicate: NSPredicate(format: "kanjiId == %@", fetchCurrentIndex())) as? [Kanji]
-        if let result = results?.first {
-            return result
-        }
-        
-        throw DBWorkerError.failedToFetch
-    }
-    
     /*
     func fetchCardWithId(_ id: Int) -> KanjiCard? {
         if let results = fetch(request: KanjiCard.fetchRequest(), format: "id == %@", arg: id) as? [KanjiCard] {
@@ -129,20 +151,39 @@ actor DBWorker {
     }
     */
     
-    // MARK: - Card Logic: Creating
-    
-    func createCard(kanji: Kanji, mnemonic: String) {
-        let newCard = KanjiCard(context: self.context)
-        newCard.kanji = kanji
-        newCard.dateCreated = Date.now
-        newCard.dateDue = 0
-        newCard.mnemonic = mnemonic
-        newCard.repCount = 0
-        newCard.repsSuccessful = 0
-        newCard.repStreak = 0
-//        newCard.dateLastReviewed = Date.now
-        
-        persistenceController.save()
-    }
+}
 
+// MARK: - RADICAL ENTITIES
+extension DBWorker {
+    
+    func fetchRadicalEntityWith(keyword: String) -> Radical? {
+        if let results = fetch(request: Radical.fetchRequest(), predicate: NSPredicate(format: "keyword == %@", keyword)) as? [Radical] {
+            return results.first
+        }
+        return nil
+    }
+}
+
+// MARK: - APPSTATE ENTITIES
+extension DBWorker {
+    
+    func fetchAppState() -> AppState {
+        if let results = fetch(request: AppState.fetchRequest()) as? [AppState] {
+            if let appState = results.first {
+                return appState
+            }
+        }
+        return createAppState()
+    }
+    
+    func createAppState() -> AppState {
+        let appState = AppState(context: self.context)
+        persistenceController.save()
+        return appState
+    }
+}
+
+// MARK: - DAILYSTATE ENTITIES
+extension DBWorker {
+    
 }
