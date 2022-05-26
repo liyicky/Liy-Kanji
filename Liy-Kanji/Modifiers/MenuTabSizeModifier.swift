@@ -7,14 +7,10 @@
 
 import SwiftUI
 
-struct MenuTabSizeModifier: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct MenuTabSizeModifier_Previews: PreviewProvider {
-    static var previews: some View {
-        MenuTabSizeModifier()
+struct MenuTabSizeModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .frame(width: UIScreen.main.bounds.width / 1.2, height: UIScreen.main.bounds.width / 2)
+            
     }
 }

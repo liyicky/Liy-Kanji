@@ -27,12 +27,6 @@ actor DBWorker {
     }
     
     func sync() async {
-        
-        // Only Sync one time
-        if AppManager.shared.synced() {
-            return
-        }
-        
         for model in cardDataModels {
 
             // Save Kanji
@@ -55,8 +49,6 @@ actor DBWorker {
                 radicalEntity.addToKanji(kanjiEntity)
             }
         }
-        
-        AppManager.shared.disableSyncing()
         print("Kanji Sync Successful")
     }
     
@@ -140,6 +132,23 @@ extension DBWorker {
         return []
     }
     
+    func fetchDueTmrKanjiCards() -> [KanjiCard] {
+        if let cards = fetch(
+            request: KanjiCard.fetchRequest(),
+            predicate: NSPredicate(
+                format: "dateDue > %@ AND dateDue < %@",
+                argumentArray: [
+                    String(Date().tmrTimestamp()), // The card is due after "tonight" at 4am
+                    String(Date().twoDaysFromNowTimestamp()) // And the card is due before "tomorrow night" at 4am
+                ]
+            ),
+            sortBy: [NSSortDescriptor(key: "dateDue", ascending: true)]
+        ) as? [KanjiCard] {
+            return cards
+        }
+        return []
+    }
+    
     /*
     func fetchCardWithId(_ id: Int) -> KanjiCard? {
         if let results = fetch(request: KanjiCard.fetchRequest(), format: "id == %@", arg: id) as? [KanjiCard] {
@@ -186,4 +195,20 @@ extension DBWorker {
 // MARK: - DAILYSTATE ENTITIES
 extension DBWorker {
     
+    func fetchDailyState() -> DailyState {
+        if let results = fetch(request: DailyState.fetchRequest(), predicate: NSPredicate(format: "timestamp == %@", String(Date().todaysTimestamp()))) as? [DailyState] {
+            if let dailyState = results.first {
+                return dailyState
+            }
+        }
+        return createDailyState()
+    }
+    
+    func createDailyState() -> DailyState {
+        let dailyState = DailyState(context: self.context)
+        dailyState.appState = AppManager.shared.appState
+        dailyState.timestamp = Int32(Date().todaysTimestamp())
+        persistenceController.save()
+        return dailyState
+    }
 }

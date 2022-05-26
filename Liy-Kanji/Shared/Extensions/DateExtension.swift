@@ -78,6 +78,7 @@ extension Date {
         return cal.date(from: components)
     }
     
+    // If today is May 25, returns "May 24, 2022 at 4:00 AM"
     func yesterdayAt4am() throws -> Date {
         if let date = get4amOn(date: Date().dayBefore) {
             return date
@@ -85,8 +86,25 @@ extension Date {
         throw Get4amDateError.calendarFailedToReturnDate
     }
     
+    // If today is May 25, returns "May 25, 2022 at 4:00 AM"
+    func todayAt4am() throws -> Date {
+        if let date = get4amOn(date: Date()) {
+            return date
+        }
+        throw Get4amDateError.calendarFailedToReturnDate
+    }
+    
+    // If today is May 25, returns "May 26, 2022 at 4:00 AM"
     func tomorrowAt4am() throws -> Date {
         if let date = get4amOn(date: Date().dayAfter) {
+            return date
+        }
+        throw Get4amDateError.calendarFailedToReturnDate
+    }
+    
+    // If today is May 25, returns "May 27, 2022 at 4:00 AM"
+    func twoDaysFromNowAt4am() throws -> Date {
+        if let date = get4amOn(date: Date().dayAfter.dayAfter) {
             return date
         }
         throw Get4amDateError.calendarFailedToReturnDate
@@ -100,12 +118,30 @@ extension Date {
             fatalError()
         }
     }
-
+    
+    func todaysTimestamp() -> Int {
+        do {
+            return try Int(todayAt4am().timeIntervalSince1970)
+        } catch {
+            print("Cannot get the time for today at 4am")
+            fatalError()
+        }
+    }
+    
     func tmrTimestamp() -> Int {
         do {
             return try Int(tomorrowAt4am().timeIntervalSince1970)
         } catch {
             print("Cannot get the time for tomorrow at 4am")
+            fatalError()
+        }
+    }
+    
+    func twoDaysFromNowTimestamp() -> Int {
+        do {
+            return try Int(twoDaysFromNowAt4am().timeIntervalSince1970)
+        } catch {
+            print("Cannot get the time for two days from now at 4am")
             fatalError()
         }
     }

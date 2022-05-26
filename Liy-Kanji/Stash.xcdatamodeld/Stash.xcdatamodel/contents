@@ -5,7 +5,8 @@
         <relationship name="dailyStates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DailyState" inverseName="appState" inverseEntity="DailyState"/>
     </entity>
     <entity name="DailyState" representedClassName="DailyState" syncable="YES" codeGenerationType="class">
-        <attribute name="timestamp" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="repCount" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="timestamp" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="appState" maxCount="1" deletionRule="Nullify" destinationEntity="AppState" inverseName="dailyStates" inverseEntity="AppState"/>
     </entity>
     <entity name="Kanji" representedClassName="Kanji" syncable="YES" codeGenerationType="class">
@@ -55,7 +56,7 @@
     </entity>
     <elements>
         <element name="AppState" positionX="-54" positionY="90" width="128" height="59"/>
-        <element name="DailyState" positionX="-45" positionY="99" width="128" height="59"/>
+        <element name="DailyState" positionX="-45" positionY="99" width="128" height="74"/>
         <element name="Kanji" positionX="-63" positionY="-18" width="128" height="209"/>
         <element name="KanjiCard" positionX="-45" positionY="54" width="128" height="164"/>
         <element name="Radical" positionX="-45" positionY="72" width="128" height="59"/>

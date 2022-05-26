@@ -11,10 +11,32 @@ class AppManager: ObservableObject {
     
     static let shared = AppManager()
     var reviewCards: [KanjiCard] = []
-    var appState: AppState!
+    
+    @Published var repsDoneToday: Int? = nil
+    
+    @Published var appState: AppState!
+    @Published var dailyState: DailyState!
     
     @Published var topCard: KanjiCard? = nil
     @Published var nextCard: KanjiCard? = nil
+    
+    
+    enum AppManagerError: Error {
+        case noAppState
+        case noDailyState
+        case custom(error: Error)
+    }
+    
+    func sync() async {
+        
+        // Only Sync one time
+        if self.synced() {
+            return
+        }
+        
+        await DBWorker.shared.sync()
+        self.disableSyncing()
+    }
 }
 
 
@@ -78,20 +100,43 @@ extension AppManager {
     }
     
     func cycleCards() {
-        topCard = reviewCards.removeFirst()
-        nextCard = reviewCards.removeFirst()
+        
+        switch reviewCards.count {
+        case 0:
+            topCard = nil
+            nextCard = nil
+        case 1:
+            topCard = reviewCards.removeFirst()
+            nextCard = nil
+        default:
+            topCard = reviewCards.removeFirst()
+            nextCard = reviewCards.removeFirst()
+        }
     }
 }
 
-// Manage App State
+// MARK: - Manage App State
 extension AppManager {
     
+    func setAppState() async {
+        await self.appState = DBWorker.shared.fetchAppState()
+    }
+    
     func synced() -> Bool {
-        return appState.synced
+        return self.appState.synced
     }
     
     func disableSyncing() {
-        AppManager.shared.appState.synced = true
+        self.appState.synced = true
         persistenceController.save()
+    }
+}
+
+// MARK: - Manage Daily State
+extension AppManager {
+    
+    func setDailyState() async {
+        await self.dailyState = DBWorker.shared.fetchDailyState()
+        self.repsDoneToday = Int(self.dailyState.repCount)
     }
 }

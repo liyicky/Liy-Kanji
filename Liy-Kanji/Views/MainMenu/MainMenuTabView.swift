@@ -10,7 +10,7 @@ import SwiftUI
 struct MainMenuTabView: View {
     var body: some View {
         TabView {
-            MainMenuBackView()
+            MainMenuTabStatsView()
             MainMenuBackView()
             MainMenuBackView()
         }

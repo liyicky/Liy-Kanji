@@ -15,15 +15,26 @@ struct Liy_KanjiApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext).task {
-                    print("run async op")
-                    // call DB worker
-//                    await DBWorker.shared.setMoc(persistenceController.container.viewContext)
-//                    await DBWorker.shared.sync()
-//                    await DBWorker.shared.fetchAllKanjiCards()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .task {
+                    print("Running async app setup")
+                
+                    // Create the AppState in Core Data (Used for settings)
+                    await AppManager.shared.setAppState()
+                
+                    // Create the DailyState in Core Data (Used for tracking how many reps the user did per day)
+                    await AppManager.shared.setDailyState()
+                
+                    // Sync the Kanji Data Json into Core Data
+                    await AppManager.shared.sync()
+                
+                    // Pull today's cards from Core Data. This is used in the ReviewsViewManager
                     await AppManager.shared.loadReviewCards()
+                
+                    // Pull 2 cards out of the array and set them as Published variables. These are the two cards the user can see on the screen.
                     AppManager.shared.cycleCards()
-                    print("finished")
+                
+                    print("Async app setup finished")
                 }
         }
         .onChange(of: scenePhase) { (newScenePhase) in

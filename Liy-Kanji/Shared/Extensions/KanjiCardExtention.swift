@@ -13,6 +13,18 @@ extension KanjiCard {
         return await dbWorker.fetchDueKanjiCards()
     }
     
+    static func dueTomorrow() async -> [KanjiCard] {
+        return await dbWorker.fetchDueTmrKanjiCards()
+    }
+
+    static func amountDueToday() async -> Int {
+        return await due().count
+    }
+    
+    static func amountDueTomorrow() async -> Int {
+        return await dueTomorrow().count
+    }
+    
     func dateCreatedString() -> String {
         if let date = dateCreated {
             return date.getFormattedDate(format: "dd/MM/yyyy")
@@ -47,6 +59,4 @@ extension KanjiCard {
         }
         return "error"
     }
-    
-    
 }
