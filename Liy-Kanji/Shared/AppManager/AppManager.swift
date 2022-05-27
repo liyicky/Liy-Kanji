@@ -12,13 +12,13 @@ class AppManager: ObservableObject {
     static let shared = AppManager()
     var reviewCards: [KanjiCard] = []
     
-    @Published var repsDoneToday: Int? = nil
-    
     @Published var appState: AppState!
     @Published var dailyState: DailyState!
     
     @Published var topCard: KanjiCard? = nil
     @Published var nextCard: KanjiCard? = nil
+    
+    @Published var dailyStates: [DailyState] = []
     
     
     enum AppManagerError: Error {
@@ -62,6 +62,8 @@ extension AppManager {
         for (index, object) in reviewCards.enumerated() {
             print("\(index): \(object.keyword()) - Due: \(object.dateDueString()) - Last was Success: \(object.repStreak >= 1 ? "yes" : "no")")
         }
+        
+        self.recordRepCount()
     }
     
     func rightSwipe() {
@@ -81,6 +83,8 @@ extension AppManager {
         for (index, object) in reviewCards.enumerated() {
             print("\(index): \(object.keyword()) - Due: \(object.dateDueString()) - Last was Success: \(object.repStreak >= 1 ? "yes" : "no")")
         }
+        
+        self.recordRepCount()
     }
 }
 
@@ -137,6 +141,11 @@ extension AppManager {
     
     func setDailyState() async {
         await self.dailyState = DBWorker.shared.fetchDailyState()
-        self.repsDoneToday = Int(self.dailyState.repCount)
+        await self.dailyStates = DBWorker.shared.fetchAllDailyStates()
+    }
+    
+    func recordRepCount() {
+        self.dailyState.repCount += 1
+        persistenceController.save()
     }
 }

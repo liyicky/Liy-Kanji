@@ -14,7 +14,9 @@ class MainMenuTabStatsViewModel: ObservableObject {
     @Published var dueTomorrow: Int? = nil
     
     func fetchStats() async {
-        self.doneYesterday = AppManager.shared.repsDoneToday
+        if let dailyState = AppManager.shared.dailyState {
+            self.repsDoneToday = Int(dailyState.repCount)
+        }
         self.dueToday = await KanjiCard.amountDueToday()
         self.dueTomorrow = await KanjiCard.amountDueTomorrow()
     }

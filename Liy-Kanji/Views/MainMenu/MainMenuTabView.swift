@@ -11,8 +11,7 @@ struct MainMenuTabView: View {
     var body: some View {
         TabView {
             MainMenuTabStatsView()
-            MainMenuBackView()
-            MainMenuBackView()
+            MainMenuTabCalendarView()
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
     }

@@ -39,22 +39,22 @@ extension Date {
         return formatter.string(from: date)
     }
     
-    func getYearFrom(_ date: Date) throws -> Int {
-        if let year = Int(extractTime(date: date, format: "yyyy")) {
+    func getYear() throws -> Int {
+        if let year = Int(extractTime(date: self, format: "yyyy")) {
             return year
         }
         throw ExtractDateError.failedToExtractDateFromString
     }
     
-    func getDayFrom(_ date: Date) throws -> Int {
-        if let day = Int(extractTime(date: date, format: "dd")) {
+    func getDay() throws -> Int {
+        if let day = Int(extractTime(date: self, format: "dd")) {
             return day
         }
         throw ExtractDateError.failedToExtractDateFromString
     }
     
-    func getMonthFrom(_ date: Date) throws -> Int {
-        if let month = Int(extractTime(date: date, format: "MM")) {
+    func getMonth() throws -> Int {
+        if let month = Int(extractTime(date: self, format: "MM")) {
             return month
         }
         throw ExtractDateError.failedToExtractDateFromString
@@ -67,12 +67,12 @@ extension Date {
         case calendarFailedToReturnDate
     }
     
-    func get4amOn(date: Date) -> Date? {
+    func get4am() -> Date? {
         let cal = Calendar.current
         let components = DateComponents(
-            year: try? getYearFrom(date),
-            month: try? getMonthFrom(date),
-            day: try? getDayFrom(date),
+            year: try? self.getYear(),
+            month: try? self.getMonth(),
+            day: try? self.getDay(),
             hour: 4
         )
         return cal.date(from: components)
@@ -80,7 +80,7 @@ extension Date {
     
     // If today is May 25, returns "May 24, 2022 at 4:00 AM"
     func yesterdayAt4am() throws -> Date {
-        if let date = get4amOn(date: Date().dayBefore) {
+        if let date = self.dayBefore.get4am() {
             return date
         }
         throw Get4amDateError.calendarFailedToReturnDate
@@ -88,7 +88,7 @@ extension Date {
     
     // If today is May 25, returns "May 25, 2022 at 4:00 AM"
     func todayAt4am() throws -> Date {
-        if let date = get4amOn(date: Date()) {
+        if let date = self.get4am() {
             return date
         }
         throw Get4amDateError.calendarFailedToReturnDate
@@ -96,7 +96,7 @@ extension Date {
     
     // If today is May 25, returns "May 26, 2022 at 4:00 AM"
     func tomorrowAt4am() throws -> Date {
-        if let date = get4amOn(date: Date().dayAfter) {
+        if let date = self.dayAfter.get4am() {
             return date
         }
         throw Get4amDateError.calendarFailedToReturnDate
@@ -104,7 +104,7 @@ extension Date {
     
     // If today is May 25, returns "May 27, 2022 at 4:00 AM"
     func twoDaysFromNowAt4am() throws -> Date {
-        if let date = get4amOn(date: Date().dayAfter.dayAfter) {
+        if let date = self.dayAfter.dayAfter.get4am() {
             return date
         }
         throw Get4amDateError.calendarFailedToReturnDate

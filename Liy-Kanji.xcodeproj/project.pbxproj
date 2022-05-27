@@ -10,6 +10,9 @@
 		5C032757282FDD9C0083DDB2 /* KanjiExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C032756282FDD9C0083DDB2 /* KanjiExtensions.swift */; };
 		5C03275B2831F7840083DDB2 /* RadicalExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C03275A2831F7840083DDB2 /* RadicalExtentions.swift */; };
 		5C03275D2832289D0083DDB2 /* CollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C03275C2832289D0083DDB2 /* CollectionExtensions.swift */; };
+		5C1D7496283F32E4006E2B27 /* MainMenuTabCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1D7495283F32E4006E2B27 /* MainMenuTabCalendarView.swift */; };
+		5C1D7499283F3456006E2B27 /* SwiftUICalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 5C1D7498283F3456006E2B27 /* SwiftUICalendar */; };
+		5C1D749B283F5B5C006E2B27 /* DailyStateExtenions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1D749A283F5B5C006E2B27 /* DailyStateExtenions.swift */; };
 		5C2D3210280FF05C00D19F64 /* CardTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D320F280FF05C00D19F64 /* CardTransition.swift */; };
 		5C2D3212280FF1D700D19F64 /* CardStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D3211280FF1D700D19F64 /* CardStackView.swift */; };
 		5C2D3214280FF25000D19F64 /* CardDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C2D3213280FF25000D19F64 /* CardDataModel.swift */; };
@@ -28,6 +31,12 @@
 		5C40DDA32828C8A700DE73BC /* InfoRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C40DDA22828C8A700DE73BC /* InfoRowView.swift */; };
 		5C40DDA8282A391D00DE73BC /* KanjiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C40DDA7282A391D00DE73BC /* KanjiView.swift */; };
 		5C5260E1283647C800F583CD /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5260E0283647C800F583CD /* AppManager.swift */; };
+		5C623EE7283CAEF4007FB680 /* KanjiText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C623EE6283CAEF4007FB680 /* KanjiText.swift */; };
+		5C623EE9283CE3E0007FB680 /* DBWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C623EE8283CE3E0007FB680 /* DBWorker.swift */; };
+		5C623EFE283DC780007FB680 /* KanjiStroke.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5C623EFC283DC780007FB680 /* KanjiStroke.ttf */; };
+		5C623F1F283DEB01007FB680 /* MainMenuBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C623F1E283DEB01007FB680 /* MainMenuBackView.swift */; };
+		5C623F21283DF3DD007FB680 /* MainMenuTabStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C623F20283DF3DD007FB680 /* MainMenuTabStatsView.swift */; };
+		5C623F23283DF470007FB680 /* MenuTabSizeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C623F22283DF470007FB680 /* MenuTabSizeModifier.swift */; };
 		5C70DC1F280FCC2E005FA650 /* Liy_KanjiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC1E280FCC2E005FA650 /* Liy_KanjiApp.swift */; };
 		5C70DC21280FCC2E005FA650 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC20280FCC2E005FA650 /* ContentView.swift */; };
 		5C70DC23280FCC30005FA650 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C70DC22280FCC30005FA650 /* Assets.xcassets */; };
@@ -41,7 +50,6 @@
 		5C70DC3C280FDAF6005FA650 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC3B280FDAF5005FA650 /* Constants.swift */; };
 		5C70DC3F280FDBFC005FA650 /* CodeableBundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC3E280FDBFC005FA650 /* CodeableBundleExtension.swift */; };
 		5C70DC41280FDC93005FA650 /* MainMenuImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC40280FDC93005FA650 /* MainMenuImageView.swift */; };
-		5C70DC43280FE0F4005FA650 /* MainMenuButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC42280FE0F4005FA650 /* MainMenuButtonView.swift */; };
 		5C70DC47280FEAE1005FA650 /* ReviewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC46280FEAE1005FA650 /* ReviewsView.swift */; };
 		5CF43A7E28126A61003F0459 /* FrontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF43A7D28126A61003F0459 /* FrontView.swift */; };
 		5CF43A8028126A70003F0459 /* BackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF43A7F28126A70003F0459 /* BackView.swift */; };
@@ -57,6 +65,8 @@
 		5C032756282FDD9C0083DDB2 /* KanjiExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiExtensions.swift; sourceTree = "<group>"; };
 		5C03275A2831F7840083DDB2 /* RadicalExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadicalExtentions.swift; sourceTree = "<group>"; };
 		5C03275C2832289D0083DDB2 /* CollectionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtensions.swift; sourceTree = "<group>"; };
+		5C1D7495283F32E4006E2B27 /* MainMenuTabCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuTabCalendarView.swift; sourceTree = "<group>"; };
+		5C1D749A283F5B5C006E2B27 /* DailyStateExtenions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStateExtenions.swift; sourceTree = "<group>"; };
 		5C2D320F280FF05C00D19F64 /* CardTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTransition.swift; sourceTree = "<group>"; };
 		5C2D3211280FF1D700D19F64 /* CardStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardStackView.swift; sourceTree = "<group>"; };
 		5C2D3213280FF25000D19F64 /* CardDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDataModel.swift; sourceTree = "<group>"; };
@@ -75,6 +85,13 @@
 		5C40DDA22828C8A700DE73BC /* InfoRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoRowView.swift; sourceTree = "<group>"; };
 		5C40DDA7282A391D00DE73BC /* KanjiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiView.swift; sourceTree = "<group>"; };
 		5C5260E0283647C800F583CD /* AppManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
+		5C623EE6283CAEF4007FB680 /* KanjiText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiText.swift; sourceTree = "<group>"; };
+		5C623EE8283CE3E0007FB680 /* DBWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBWorker.swift; sourceTree = "<group>"; };
+		5C623EEE283DBDD2007FB680 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		5C623EFC283DC780007FB680 /* KanjiStroke.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KanjiStroke.ttf; sourceTree = "<group>"; };
+		5C623F1E283DEB01007FB680 /* MainMenuBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuBackView.swift; sourceTree = "<group>"; };
+		5C623F20283DF3DD007FB680 /* MainMenuTabStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuTabStatsView.swift; sourceTree = "<group>"; };
+		5C623F22283DF470007FB680 /* MenuTabSizeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTabSizeModifier.swift; sourceTree = "<group>"; };
 		5C70DC1B280FCC2E005FA650 /* Liy-Kanji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Liy-Kanji.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C70DC1E280FCC2E005FA650 /* Liy_KanjiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Liy_KanjiApp.swift; sourceTree = "<group>"; };
 		5C70DC20280FCC2E005FA650 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -89,7 +106,6 @@
 		5C70DC3B280FDAF5005FA650 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5C70DC3E280FDBFC005FA650 /* CodeableBundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeableBundleExtension.swift; sourceTree = "<group>"; };
 		5C70DC40280FDC93005FA650 /* MainMenuImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuImageView.swift; sourceTree = "<group>"; };
-		5C70DC42280FE0F4005FA650 /* MainMenuButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuButtonView.swift; sourceTree = "<group>"; };
 		5C70DC46280FEAE1005FA650 /* ReviewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsView.swift; sourceTree = "<group>"; };
 		5CF43A7D28126A61003F0459 /* FrontView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontView.swift; sourceTree = "<group>"; };
 		5CF43A7F28126A70003F0459 /* BackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackView.swift; sourceTree = "<group>"; };
@@ -106,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C1D7499283F3456006E2B27 /* SwiftUICalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +167,7 @@
 				5C032756282FDD9C0083DDB2 /* KanjiExtensions.swift */,
 				5C03275A2831F7840083DDB2 /* RadicalExtentions.swift */,
 				5C03275C2832289D0083DDB2 /* CollectionExtensions.swift */,
+				5C1D749A283F5B5C006E2B27 /* DailyStateExtenions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -159,6 +177,7 @@
 			children = (
 				5C2D322C2811851200D19F64 /* ButtonModifier.swift */,
 				5C40DD9E2828C34E00DE73BC /* TitleModifier.swift */,
+				5C623F22283DF470007FB680 /* MenuTabSizeModifier.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -182,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				5C2D3219280FF34B00D19F64 /* PersistenceController.swift */,
+				5C623EE8283CE3E0007FB680 /* DBWorker.swift */,
 				5C3BB159282DE743008F32F8 /* Managed */,
 			);
 			path = Persistence;
@@ -199,6 +219,7 @@
 		5C3BB17B282DF5F7008F32F8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				5C623EEF283DBE93007FB680 /* Fonts */,
 				5C5260DF283647AC00F583CD /* AppManager */,
 				5C2D322628111BB900D19F64 /* Extensions */,
 				5C70DC3D280FDAFE005FA650 /* Utilities */,
@@ -235,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				5C40DDA7282A391D00DE73BC /* KanjiView.swift */,
+				5C623EE6283CAEF4007FB680 /* KanjiText.swift */,
 			);
 			path = Kanji;
 			sourceTree = "<group>";
@@ -253,6 +275,14 @@
 				5C5260E0283647C800F583CD /* AppManager.swift */,
 			);
 			path = AppManager;
+			sourceTree = "<group>";
+		};
+		5C623EEF283DBE93007FB680 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				5C623EFC283DC780007FB680 /* KanjiStroke.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		5C70DC12280FCC2E005FA650 = {
@@ -274,6 +304,7 @@
 		5C70DC1D280FCC2E005FA650 /* Liy-Kanji */ = {
 			isa = PBXGroup;
 			children = (
+				5C623EEE283DBDD2007FB680 /* Info.plist */,
 				5C3BB17B282DF5F7008F32F8 /* Shared */,
 				5C3BB178282DF595008F32F8 /* System */,
 				5C70DC2D280FCE43005FA650 /* Models */,
@@ -344,8 +375,10 @@
 			children = (
 				5C70DC34280FD747005FA650 /* MainMenuTabView.swift */,
 				5C70DC40280FDC93005FA650 /* MainMenuImageView.swift */,
-				5C70DC42280FE0F4005FA650 /* MainMenuButtonView.swift */,
 				5C2D322428101E0F00D19F64 /* MainMenuView.swift */,
+				5C623F1E283DEB01007FB680 /* MainMenuBackView.swift */,
+				5C623F20283DF3DD007FB680 /* MainMenuTabStatsView.swift */,
+				5C1D7495283F32E4006E2B27 /* MainMenuTabCalendarView.swift */,
 				5C40DDA12828C3DB00DE73BC /* Settings View */,
 				5C40DDA02828C3D300DE73BC /* Info View */,
 			);
@@ -403,6 +436,9 @@
 			dependencies = (
 			);
 			name = "Liy-Kanji";
+			packageProductDependencies = (
+				5C1D7498283F3456006E2B27 /* SwiftUICalendar */,
+			);
 			productName = "Liy-Kanji";
 			productReference = 5C70DC1B280FCC2E005FA650 /* Liy-Kanji.app */;
 			productType = "com.apple.product-type.application";
@@ -431,6 +467,9 @@
 				Base,
 			);
 			mainGroup = 5C70DC12280FCC2E005FA650;
+			packageReferences = (
+				5C1D7497283F3456006E2B27 /* XCRemoteSwiftPackageReference "SwiftUICalendar" */,
+			);
 			productRefGroup = 5C70DC1C280FCC2E005FA650 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -449,6 +488,7 @@
 				5C70DC3A280FDA59005FA650 /* testImages.json in Resources */,
 				5C70DC23280FCC30005FA650 /* Assets.xcassets in Resources */,
 				5C2D321F2810105C00D19F64 /* cardDataModels.json in Resources */,
+				5C623EFE283DC780007FB680 /* KanjiStroke.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,10 +501,10 @@
 			files = (
 				5C70DC47280FEAE1005FA650 /* ReviewsView.swift in Sources */,
 				5CF43A8028126A70003F0459 /* BackView.swift in Sources */,
+				5C1D7496283F32E4006E2B27 /* MainMenuTabCalendarView.swift in Sources */,
 				5C2D3212280FF1D700D19F64 /* CardStackView.swift in Sources */,
 				5C40DD9F2828C34E00DE73BC /* TitleModifier.swift in Sources */,
 				5CF43A83281280D7003F0459 /* FooterView.swift in Sources */,
-				5C70DC43280FE0F4005FA650 /* MainMenuButtonView.swift in Sources */,
 				5C70DC35280FD747005FA650 /* MainMenuTabView.swift in Sources */,
 				5C70DC21280FCC2E005FA650 /* ContentView.swift in Sources */,
 				5C2D322328101DD100D19F64 /* NewCardsView.swift in Sources */,
@@ -478,6 +518,7 @@
 				5C40DD9D2828BD3200DE73BC /* MenuViewComponent.swift in Sources */,
 				5C2D322A28112DAB00D19F64 /* DisplayCard.swift in Sources */,
 				5C2D322528101E0F00D19F64 /* MainMenuView.swift in Sources */,
+				5C623EE9283CE3E0007FB680 /* DBWorker.swift in Sources */,
 				5C2D3210280FF05C00D19F64 /* CardTransition.swift in Sources */,
 				5CFAB607282CD7500034E64D /* KanjiCardExtention.swift in Sources */,
 				5C40DDA8282A391D00DE73BC /* KanjiView.swift in Sources */,
@@ -486,17 +527,22 @@
 				5C03275D2832289D0083DDB2 /* CollectionExtensions.swift in Sources */,
 				5C2D321D28100FA600D19F64 /* CardView.swift in Sources */,
 				5C2D321A280FF34B00D19F64 /* PersistenceController.swift in Sources */,
+				5C623F1F283DEB01007FB680 /* MainMenuBackView.swift in Sources */,
 				5CFAB602282BB00C0034E64D /* CardBrowserView.swift in Sources */,
 				5C5260E1283647C800F583CD /* AppManager.swift in Sources */,
+				5C623F23283DF470007FB680 /* MenuTabSizeModifier.swift in Sources */,
 				5C70DC41280FDC93005FA650 /* MainMenuImageView.swift in Sources */,
 				5C03275B2831F7840083DDB2 /* RadicalExtentions.swift in Sources */,
 				5C70DC1F280FCC2E005FA650 /* Liy_KanjiApp.swift in Sources */,
 				5C032757282FDD9C0083DDB2 /* KanjiExtensions.swift in Sources */,
 				5C70DC3C280FDAF6005FA650 /* Constants.swift in Sources */,
+				5C623F21283DF3DD007FB680 /* MainMenuTabStatsView.swift in Sources */,
 				5C2D3217280FF2CE00D19F64 /* Stash.xcdatamodeld in Sources */,
+				5C623EE7283CAEF4007FB680 /* KanjiText.swift in Sources */,
 				5C2D3214280FF25000D19F64 /* CardDataModel.swift in Sources */,
 				5C70DC3F280FDBFC005FA650 /* CodeableBundleExtension.swift in Sources */,
 				5CF43A852812A0C2003F0459 /* SM2Algo.swift in Sources */,
+				5C1D749B283F5B5C006E2B27 /* DailyStateExtenions.swift in Sources */,
 				5C2D322828111BD200D19F64 /* EnvironmentVariables.swift in Sources */,
 				5CF43A7E28126A61003F0459 /* FrontView.swift in Sources */,
 			);
@@ -630,6 +676,7 @@
 				DEVELOPMENT_TEAM = 24495W6MQC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Liy-Kanji/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -659,6 +706,7 @@
 				DEVELOPMENT_TEAM = 24495W6MQC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Liy-Kanji/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -699,6 +747,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5C1D7497283F3456006E2B27 /* XCRemoteSwiftPackageReference "SwiftUICalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/GGJJack/SwiftUICalendar";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5C1D7498283F3456006E2B27 /* SwiftUICalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5C1D7497283F3456006E2B27 /* XCRemoteSwiftPackageReference "SwiftUICalendar" */;
+			productName = SwiftUICalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		5C2D3215280FF2CE00D19F64 /* Stash.xcdatamodeld */ = {

@@ -204,6 +204,13 @@ extension DBWorker {
         return createDailyState()
     }
     
+    func fetchAllDailyStates() -> [DailyState] {
+        if let states = fetch(request: DailyState.fetchRequest()) as? [DailyState] {
+            return states
+        }
+        return []
+    }
+    
     func createDailyState() -> DailyState {
         let dailyState = DailyState(context: self.context)
         dailyState.appState = AppManager.shared.appState
