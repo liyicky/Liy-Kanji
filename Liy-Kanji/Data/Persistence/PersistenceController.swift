@@ -39,6 +39,7 @@ struct PersistenceController {
                 try context.save()
                 print("Core Data saved!")
             } catch {
+                print(error.localizedDescription)
                 completion(error)
             }
         }

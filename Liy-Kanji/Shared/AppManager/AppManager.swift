@@ -11,17 +11,19 @@ import SwiftUI
 class AppManager: ObservableObject {
     
     static let shared = AppManager()
+    
+    // MARK: - Kanji Properties
+    @Published var kanji: [Kanji] = []
     var reviewCards: [KanjiCard] = []
-    
-    @Published var appState: AppState!
-    @Published var dailyState: DailyState!
-    
     @Published var topCard: KanjiCard? = nil
     @Published var nextCard: KanjiCard? = nil
     
+    // MARK: - App State / Daily State for settings and daily progress respectively
+    @Published var appState: AppState!
+    @Published var dailyState: DailyState!
     @Published var dailyStates: [DailyState] = []
     
-    // Settings
+    // MARK: - Settings Properties
     @Published var difficulty = 1
     let difficulties = [1, 2, 3, 4, 5]
     @Published var reminderDate = Date.now
@@ -33,6 +35,44 @@ class AppManager: ObservableObject {
         case noAppState
         case noDailyState
         case custom(error: Error)
+    }
+    
+    func setupApp() async {
+        /* Create the AppState in Core Data (Used for settings) */
+        await self.setAppState()
+    
+        /*
+         Create the DailyState in Core Data
+         (Used for tracking how many reps the user did per day)
+        */
+        await self.setDailyState()
+    
+        /*
+         Sync the Kanji Data Json into Core Data
+        */
+        await self.sync()
+    
+        /*
+         Pull today's cards from Core Data.
+         This is used in the ReviewsViewManager
+        */
+        await self.loadReviewCards()
+        
+        /*
+         Pull the settings from Core Data and set them as the published state.
+        */
+        self.setSettingsState()
+        
+        /*
+         Pull 2 cards out of the array and set them as Published variables.
+         These are the two cards the user can see on the screen.
+         */
+        self.cycleCards()
+        
+        /*
+         Pull all Kanji from Core Data into an appwide available list.
+        */
+        await self.setKanjiState()
     }
     
     func sync() async {
@@ -112,17 +152,29 @@ extension AppManager {
     }
     
     func cycleCards() {
-        
-        switch reviewCards.count {
-        case 0:
-            topCard = nil
-            nextCard = nil
-        case 1:
-            topCard = reviewCards.removeFirst()
-            nextCard = nil
-        default:
-            topCard = reviewCards.removeFirst()
-            nextCard = reviewCards.removeFirst()
+        DispatchQueue.main.async {
+            switch self.reviewCards.count {
+            case 0:
+                self.topCard = nil
+                self.nextCard = nil
+            case 1:
+                self.topCard = self.reviewCards.removeFirst()
+                self.nextCard = nil
+            default:
+                self.topCard = self.reviewCards.removeFirst()
+                self.nextCard = self.reviewCards.removeFirst()
+            }
+        }
+    }
+    
+    func setKanjiState() async {
+        let fetchedKanji = await dbWorker.fetchAllKanji()
+        for kanji in fetchedKanji {
+
+            try? await Task.sleep(nanoseconds: 5_000_000)
+            DispatchQueue.main.async {
+                self.kanji.append(kanji)
+            }
         }
     }
 }
@@ -162,11 +214,13 @@ extension AppManager {
 extension AppManager {
     
     func setSettingsState() {
-        self.difficulty = appState.difficulty.toInt()
-        self.reminderDate = appState.reminderDate ?? Date.now
-        self.darkModeIsOn = appState.darkMode
-        self.colorScheme = appState.darkMode ? ColorScheme.dark : ColorScheme.light
-        self.newCardsPerDaySelection = String(appState.newCardsPerDay)
+        DispatchQueue.main.async {
+            self.difficulty = self.appState.difficulty.toInt()
+            self.reminderDate = self.appState.reminderDate ?? Date.now
+            self.darkModeIsOn = self.appState.darkMode
+            self.colorScheme = self.appState.darkMode ? ColorScheme.dark : ColorScheme.light
+            self.newCardsPerDaySelection = String(self.appState.newCardsPerDay)
+        }
     }
     
     func updateDifficultySettingTo(_ newDifficulty: Int) {
