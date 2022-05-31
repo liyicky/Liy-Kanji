@@ -10,6 +10,11 @@
 		5C032757282FDD9C0083DDB2 /* KanjiExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C032756282FDD9C0083DDB2 /* KanjiExtensions.swift */; };
 		5C03275B2831F7840083DDB2 /* RadicalExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C03275A2831F7840083DDB2 /* RadicalExtentions.swift */; };
 		5C03275D2832289D0083DDB2 /* CollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C03275C2832289D0083DDB2 /* CollectionExtensions.swift */; };
+		5C16E97B2845E00D001DEE3D /* NotificationSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16E9772845E00D001DEE3D /* NotificationSettingView.swift */; };
+		5C16E97C2845E00D001DEE3D /* DarkModeSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16E9782845E00D001DEE3D /* DarkModeSettingView.swift */; };
+		5C16E97D2845E00D001DEE3D /* NewCardsPerDaySettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16E9792845E00D001DEE3D /* NewCardsPerDaySettingView.swift */; };
+		5C16E97E2845E00D001DEE3D /* DifficultiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16E97A2845E00D001DEE3D /* DifficultiesView.swift */; };
+		5C16E9802845E031001DEE3D /* IntExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16E97F2845E031001DEE3D /* IntExtentions.swift */; };
 		5C1D7496283F32E4006E2B27 /* MainMenuTabCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1D7495283F32E4006E2B27 /* MainMenuTabCalendarView.swift */; };
 		5C1D7499283F3456006E2B27 /* SwiftUICalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 5C1D7498283F3456006E2B27 /* SwiftUICalendar */; };
 		5C1D749B283F5B5C006E2B27 /* DailyStateExtenions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1D749A283F5B5C006E2B27 /* DailyStateExtenions.swift */; };
@@ -65,6 +70,11 @@
 		5C032756282FDD9C0083DDB2 /* KanjiExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiExtensions.swift; sourceTree = "<group>"; };
 		5C03275A2831F7840083DDB2 /* RadicalExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadicalExtentions.swift; sourceTree = "<group>"; };
 		5C03275C2832289D0083DDB2 /* CollectionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtensions.swift; sourceTree = "<group>"; };
+		5C16E9772845E00D001DEE3D /* NotificationSettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationSettingView.swift; sourceTree = "<group>"; };
+		5C16E9782845E00D001DEE3D /* DarkModeSettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkModeSettingView.swift; sourceTree = "<group>"; };
+		5C16E9792845E00D001DEE3D /* NewCardsPerDaySettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCardsPerDaySettingView.swift; sourceTree = "<group>"; };
+		5C16E97A2845E00D001DEE3D /* DifficultiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DifficultiesView.swift; sourceTree = "<group>"; };
+		5C16E97F2845E031001DEE3D /* IntExtentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtentions.swift; sourceTree = "<group>"; };
 		5C1D7495283F32E4006E2B27 /* MainMenuTabCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuTabCalendarView.swift; sourceTree = "<group>"; };
 		5C1D749A283F5B5C006E2B27 /* DailyStateExtenions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStateExtenions.swift; sourceTree = "<group>"; };
 		5C2D320F280FF05C00D19F64 /* CardTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTransition.swift; sourceTree = "<group>"; };
@@ -129,6 +139,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5C16E9762845E00D001DEE3D /* Settings Sub Views */ = {
+			isa = PBXGroup;
+			children = (
+				5C16E9772845E00D001DEE3D /* NotificationSettingView.swift */,
+				5C16E9782845E00D001DEE3D /* DarkModeSettingView.swift */,
+				5C16E9792845E00D001DEE3D /* NewCardsPerDaySettingView.swift */,
+				5C16E97A2845E00D001DEE3D /* DifficultiesView.swift */,
+			);
+			path = "Settings Sub Views";
+			sourceTree = "<group>";
+		};
 		5C2D321B28100F8800D19F64 /* Cards */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +189,7 @@
 				5C03275A2831F7840083DDB2 /* RadicalExtentions.swift */,
 				5C03275C2832289D0083DDB2 /* CollectionExtensions.swift */,
 				5C1D749A283F5B5C006E2B27 /* DailyStateExtenions.swift */,
+				5C16E97F2845E031001DEE3D /* IntExtentions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -247,6 +269,7 @@
 		5C40DDA12828C3DB00DE73BC /* Settings View */ = {
 			isa = PBXGroup;
 			children = (
+				5C16E9762845E00D001DEE3D /* Settings Sub Views */,
 				5C70DC30280FCFF5005FA650 /* SettingsView.swift */,
 			);
 			path = "Settings View";
@@ -510,15 +533,18 @@
 				5C2D322328101DD100D19F64 /* NewCardsView.swift in Sources */,
 				5C70DC31280FCFF5005FA650 /* SettingsView.swift in Sources */,
 				5C40DDA32828C8A700DE73BC /* InfoRowView.swift in Sources */,
+				5C16E97E2845E00D001DEE3D /* DifficultiesView.swift in Sources */,
 				5C70DC37280FD77D005FA650 /* MainMenuImage.swift in Sources */,
 				5C70DC2F280FCE64005FA650 /* HeaderView.swift in Sources */,
 				5CFAB609282CDC820034E64D /* DateExtension.swift in Sources */,
+				5C16E97D2845E00D001DEE3D /* NewCardsPerDaySettingView.swift in Sources */,
 				5CFAB605282CA45C0034E64D /* CardBrowserCellView.swift in Sources */,
 				5C70DC33280FD033005FA650 /* InfoView.swift in Sources */,
 				5C40DD9D2828BD3200DE73BC /* MenuViewComponent.swift in Sources */,
 				5C2D322A28112DAB00D19F64 /* DisplayCard.swift in Sources */,
 				5C2D322528101E0F00D19F64 /* MainMenuView.swift in Sources */,
 				5C623EE9283CE3E0007FB680 /* DBWorker.swift in Sources */,
+				5C16E97C2845E00D001DEE3D /* DarkModeSettingView.swift in Sources */,
 				5C2D3210280FF05C00D19F64 /* CardTransition.swift in Sources */,
 				5CFAB607282CD7500034E64D /* KanjiCardExtention.swift in Sources */,
 				5C40DDA8282A391D00DE73BC /* KanjiView.swift in Sources */,
@@ -534,9 +560,11 @@
 				5C70DC41280FDC93005FA650 /* MainMenuImageView.swift in Sources */,
 				5C03275B2831F7840083DDB2 /* RadicalExtentions.swift in Sources */,
 				5C70DC1F280FCC2E005FA650 /* Liy_KanjiApp.swift in Sources */,
+				5C16E9802845E031001DEE3D /* IntExtentions.swift in Sources */,
 				5C032757282FDD9C0083DDB2 /* KanjiExtensions.swift in Sources */,
 				5C70DC3C280FDAF6005FA650 /* Constants.swift in Sources */,
 				5C623F21283DF3DD007FB680 /* MainMenuTabStatsView.swift in Sources */,
+				5C16E97B2845E00D001DEE3D /* NotificationSettingView.swift in Sources */,
 				5C2D3217280FF2CE00D19F64 /* Stash.xcdatamodeld in Sources */,
 				5C623EE7283CAEF4007FB680 /* KanjiText.swift in Sources */,
 				5C2D3214280FF25000D19F64 /* CardDataModel.swift in Sources */,
