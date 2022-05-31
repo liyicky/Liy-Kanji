@@ -268,5 +268,6 @@ struct MainMenuView_Previews: PreviewProvider {
     @State static var showInfo: Bool = false
     static var previews: some View {
         MainMenuView()
+            .preferredColorScheme(.dark)
     }
 }

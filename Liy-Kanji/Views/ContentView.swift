@@ -10,21 +10,10 @@ import SwiftUI
 struct ContentView: View {
     
     // MARK: - PROPERTIES
-    @State var goBack: Bool = false
-    
-    @State var showSettings: Bool = false
-    @State var showInfo: Bool = false
-    @State var showNewCards: Bool = false
-    @State var showReviews: Bool = false
-    @State var showCards: Bool = false
     
     var body: some View {
         VStack {
-//            HeaderView(showSettingsView: $showSettings, showInfoView: $showInfo, goBack: $goBack)
-            
             MainMenuView()
-
-            Spacer()
         }
     }
 }

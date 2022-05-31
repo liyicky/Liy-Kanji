@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class AppManager: ObservableObject {
     
@@ -20,6 +21,13 @@ class AppManager: ObservableObject {
     
     @Published var dailyStates: [DailyState] = []
     
+    // Settings
+    @Published var difficulty = 1
+    let difficulties = [1, 2, 3, 4, 5]
+    @Published var reminderDate = Date.now
+    @Published var darkModeIsOn = false
+    @Published var colorScheme = ColorScheme.light
+    @Published var newCardsPerDaySelection = ""
     
     enum AppManagerError: Error {
         case noAppState
@@ -147,5 +155,45 @@ extension AppManager {
     func recordRepCount() {
         self.dailyState.repCount += 1
         persistenceController.save()
+    }
+}
+
+// MARK: - Manage Settings
+extension AppManager {
+    
+    func setSettingsState() {
+        self.difficulty = appState.difficulty.toInt()
+        self.reminderDate = appState.reminderDate ?? Date.now
+        self.darkModeIsOn = appState.darkMode
+        self.colorScheme = appState.darkMode ? ColorScheme.dark : ColorScheme.light
+        self.newCardsPerDaySelection = String(appState.newCardsPerDay)
+    }
+    
+    func updateDifficultySettingTo(_ newDifficulty: Int) {
+        self.appState.difficulty = newDifficulty.toInt16()
+        persistenceController.save()
+        print("Difficulty changed to \(newDifficulty)")
+        setSettingsState()
+    }
+    
+    func updateReminderSettingTo(_ newTime: Date) {
+        self.appState.reminderDate = newTime
+        persistenceController.save()
+        print("Reminder Date changed to \(newTime)")
+        setSettingsState()
+    }
+    
+    func updateDarkModeSetting() {
+        self.appState.darkMode = self.darkModeIsOn
+        persistenceController.save()
+        print("Dark Mode is on? \(self.darkModeIsOn)")
+        setSettingsState()
+    }
+    
+    func updateNewCardPerDaySettingTo(_ newAmount: String) {
+        self.appState.newCardsPerDay = newAmount == "∞" ? 2200.toInt16() : Int16(newAmount)!
+        persistenceController.save()
+        print("Amount of New Cards per Day changed to \(self.newCardsPerDaySelection)")
+        setSettingsState()
     }
 }
