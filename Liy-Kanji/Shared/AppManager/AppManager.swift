@@ -14,6 +14,7 @@ class AppManager: ObservableObject {
     
     // MARK: - Kanji Properties
     @Published var kanji: [Kanji] = []
+    @Published var currentKanji: Kanji?
     var reviewCards: [KanjiCard] = []
     @Published var topCard: KanjiCard? = nil
     @Published var nextCard: KanjiCard? = nil
@@ -69,10 +70,13 @@ class AppManager: ObservableObject {
          */
         self.cycleCards()
         
+        await self.updateCurrentKanji()
+        
         /*
          Pull all Kanji from Core Data into an appwide available list.
         */
         await self.setKanjiState()
+        
     }
     
     func sync() async {
@@ -166,6 +170,10 @@ extension AppManager {
             }
         }
     }
+}
+
+// MARK: - Manage Kanji for creating new cards
+extension AppManager {
     
     func setKanjiState() async {
         let fetchedKanji = await dbWorker.fetchAllKanji()
@@ -177,7 +185,24 @@ extension AppManager {
             }
         }
     }
+    
+    func updateCurrentKanji() async {
+        do {
+            self.currentKanji = try await DBWorker.shared.fetchCurrentKanji()
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func createCard(mnemonic: String) async {
+        if let currentKanji = self.currentKanji {
+            await DBWorker.shared.createCard(kanji: currentKanji, mnemonic: mnemonic)
+            recordIndex()
+            await updateCurrentKanji()
+        }
+    }
 }
+
 
 // MARK: - Manage App State
 extension AppManager {
@@ -192,6 +217,11 @@ extension AppManager {
     
     func disableSyncing() {
         self.appState.synced = true
+        persistenceController.save()
+    }
+    
+    func recordIndex() {
+        self.appState.currentKanjiIndex += 1
         persistenceController.save()
     }
 }

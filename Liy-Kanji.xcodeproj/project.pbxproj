@@ -204,13 +204,6 @@
 			path = Modifiers;
 			sourceTree = "<group>";
 		};
-		5C3BB159282DE743008F32F8 /* Managed */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Managed;
-			sourceTree = "<group>";
-		};
 		5C3BB178282DF595008F32F8 /* System */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,7 +217,6 @@
 			children = (
 				5C2D3219280FF34B00D19F64 /* PersistenceController.swift */,
 				5C623EE8283CE3E0007FB680 /* DBWorker.swift */,
-				5C3BB159282DE743008F32F8 /* Managed */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";

@@ -84,7 +84,7 @@ extension DBWorker {
     }
     
     func fetchCurrentIndex() -> String {
-        return String(fetchAllKanjiCards().count)
+        return String(AppManager.shared.appState.currentKanjiIndex)
     }
     
     func fetchCurrentKanji() throws -> Kanji? {
@@ -104,13 +104,7 @@ extension DBWorker {
         let newCard = KanjiCard(context: self.context)
         newCard.kanji = kanji
         newCard.dateCreated = Date.now
-        newCard.dateDue = 0
         newCard.mnemonic = mnemonic
-        newCard.repCount = 0
-        newCard.repsSuccessful = 0
-        newCard.repStreak = 0
-        //newCard.dateLastReviewed = Date.now
-        
         persistenceController.save()
     }
     

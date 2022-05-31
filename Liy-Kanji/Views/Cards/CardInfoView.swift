@@ -23,24 +23,29 @@ struct CardInfoView: View {
             .padding(.leading, 10)
             .padding(.top, 5)
             
-            Spacer()
+            HStack {
+                VStack {
+                    Text(kanji.character!)
+                        .font(.system(size: 100))
+                        .fontWeight(.bold)
+                    
+                    Text(kanji.keyword!)
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                }
             
-            Text(kanji.character!)
-                .font(.system(size: 100))
-                .fontWeight(.bold)
+                Text(kanji.character!)
+                    .font(Font.custom("KanjiStrokeOrders", size: 180))
+                    .fontWeight(.bold)
+            }
             
-            Text(kanji.keyword!)
-                .font(.largeTitle)
-                .fontWeight(.bold)
             
             Divider()
             
             // MARK: - KANJI RADICAL BUTTONS
-            HStack(alignment: .center, spacing: 10){
-                Spacer()
-                Group {
-                    
-                    //TODO: GET THE RADICAL HERE
+//            HStack(alignment: .center, spacing: 10){
+//                Spacer()
+//                Group {
 //                    ForEach(cardDataModel.allRadicals()) {
 //                        radical in
 //
@@ -59,10 +64,10 @@ struct CardInfoView: View {
 //                            }
 //                        }
 //                    }
-                }
-                Spacer()
-            }
-            .padding()
+//                }
+//                Spacer()
+//            }
+//            .padding()
 //            .sheet(item: $selectedRadical, content: {
 //                CardInfoView(kanji: $0)
 //            })
