@@ -7,20 +7,11 @@
 
 import SwiftUI
 
-class CardInfoViewModel: ObservableObject {
-    @Published var radicalViews: [RadicalView] = []
-    @State private var selectedRadical: CardDataModel? = nil
-    
-    
-    func fetchRadicalViewsFor(_ kanji: Kanji) async {
-        self.radicalViews = await kanji.radicalViews()
-    }
-}
-
 struct CardInfoView: View {
     
     // MARK: - PROPERTIES
-    @StateObject private var vm = CardInfoViewModel()
+    @Binding var radicalViews: [RadicalView]
+    
     let kanji: Kanji
     
     var body: some View {
@@ -55,7 +46,7 @@ struct CardInfoView: View {
             HStack(alignment: .center, spacing: 10) {
                 Spacer()
                 Group {
-                    ForEach(vm.radicalViews) { radicalView in
+                    ForEach(radicalViews) { radicalView in
                         
                         radicalView
 
@@ -77,10 +68,8 @@ struct CardInfoView: View {
                 }
                 Spacer()
             }
-            .task {
-                await vm.fetchRadicalViewsFor(kanji)
-            }
             .padding()
+
 //            .sheet(item: $selectedRadical, content: {_ in
 //                CardInfoView(kanji: kanji)
 //            })

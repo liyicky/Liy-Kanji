@@ -9,10 +9,12 @@ import SwiftUI
 
 struct BackView: View {
     
+    // TODO: This state does nothing
+    @State var kanjiRadicalViews: [RadicalView] = []
     var kanjiCard: KanjiCard
     
     var body: some View {
-        CardInfoView(kanji: kanjiCard.kanji!)
+        CardInfoView(radicalViews: $kanjiRadicalViews, kanji: kanjiCard.kanji!)
     }
 }
 

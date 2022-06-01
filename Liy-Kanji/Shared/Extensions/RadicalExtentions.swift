@@ -10,7 +10,8 @@ import Foundation
 extension Radical {
     
     public static let Pure = [
-        "lid": "⼇"
+        "lid": "⼇",
+        "drop": "丶"
     ]
     
 //    func allKanji() -> [Kanji] {

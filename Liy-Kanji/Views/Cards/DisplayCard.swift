@@ -13,12 +13,13 @@ struct DisplayCard: View {
     
     let kanji: Kanji
     @Binding var mnemonic: String
+    @Binding var radicalViews: [RadicalView]
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .center, spacing: 20) {
                 
-                CardInfoView(kanji: kanji)
+                CardInfoView(radicalViews: $radicalViews, kanji: kanji)
                 
                 Spacer()
                 
