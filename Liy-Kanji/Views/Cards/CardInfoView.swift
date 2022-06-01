@@ -7,11 +7,20 @@
 
 import SwiftUI
 
-struct CardInfoView: View {
-    
-    // MARK: - PROPERTIES 
+class CardInfoViewModel: ObservableObject {
+    @Published var radicalViews: [RadicalView] = []
     @State private var selectedRadical: CardDataModel? = nil
     
+    
+    func fetchRadicalViewsFor(_ kanji: Kanji) async {
+        self.radicalViews = await kanji.radicalViews()
+    }
+}
+
+struct CardInfoView: View {
+    
+    // MARK: - PROPERTIES
+    @StateObject private var vm = CardInfoViewModel()
     let kanji: Kanji
     
     var body: some View {
@@ -43,12 +52,13 @@ struct CardInfoView: View {
             Divider()
             
             // MARK: - KANJI RADICAL BUTTONS
-//            HStack(alignment: .center, spacing: 10){
-//                Spacer()
-//                Group {
-//                    ForEach(cardDataModel.allRadicals()) {
-//                        radical in
-//
+            HStack(alignment: .center, spacing: 10) {
+                Spacer()
+                Group {
+                    ForEach(vm.radicalViews) { radicalView in
+                        
+                        radicalView
+
 //                        Button(action: {
 //                            selectedRadical = radical
 //                        }) {
@@ -63,13 +73,16 @@ struct CardInfoView: View {
 //                                    .foregroundColor(Color.primary)
 //                            }
 //                        }
-//                    }
-//                }
-//                Spacer()
-//            }
-//            .padding()
-//            .sheet(item: $selectedRadical, content: {
-//                CardInfoView(kanji: $0)
+                    }
+                }
+                Spacer()
+            }
+            .task {
+                await vm.fetchRadicalViewsFor(kanji)
+            }
+            .padding()
+//            .sheet(item: $selectedRadical, content: {_ in
+//                CardInfoView(kanji: kanji)
 //            })
             
             Spacer()

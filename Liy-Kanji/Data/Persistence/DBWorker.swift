@@ -95,6 +95,15 @@ extension DBWorker {
         
         throw DBWorkerError.failedToFetch
     }
+    
+    func fetchKanjiWithKeyword(_ keyword: String) -> Kanji? {
+        let results = fetch(request: Kanji.fetchRequest(), predicate: NSPredicate(format: "keyword == %@", keyword)) as? [Kanji]
+        if let result = results?.first {
+            return result
+        }
+        
+        return nil
+    }
 }
 
 // MARK: - KANJICARD ENTITIES

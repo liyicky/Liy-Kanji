@@ -9,6 +9,10 @@ import Foundation
 
 extension Radical {
     
+    public static let Pure = [
+        "lid": "⼇"
+    ]
+    
 //    func allKanji() -> [Kanji] {
 //        var allKanji: [Kanji] = []
 //        if let kanjiRadicals = kanjiRadicals?.allObjects as? [KanjiRadical] {

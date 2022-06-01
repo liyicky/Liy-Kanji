@@ -26,7 +26,7 @@
         <attribute name="onyomi1" optional="YES" attributeType="String"/>
         <attribute name="onyomi2" optional="YES" attributeType="String"/>
         <relationship name="card" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="KanjiCard" inverseName="kanji" inverseEntity="KanjiCard"/>
-        <relationship name="radicals" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Radical" inverseName="kanji" inverseEntity="Radical"/>
+        <relationship name="radicals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Radical" inverseName="kanji" inverseEntity="Radical"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
                 <constraint value="kanjiId"/>
