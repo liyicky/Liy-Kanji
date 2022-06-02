@@ -33,13 +33,17 @@ struct DisplayCard: View {
                 Divider().padding(.horizontal, 20)
                 
                 ZStack {
-                    
                     TextEditor(text: $mnemonic)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .colorMultiply(Color.secondary)
+                        .foregroundColor(Color.primary.opacity(1))
                         .cornerRadius(5)
-                        .foregroundColor(Color.primary)
                         .padding()
+                        .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
+                        .onTapGesture {
+                            if mnemonic == mnemonicDefaultText {
+                                mnemonic = ""
+                            }
+                        }
                     Text(mnemonic).opacity(0).padding(.all, 0)
                 }
                 

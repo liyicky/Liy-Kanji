@@ -15,6 +15,7 @@
 		5C16E97D2845E00D001DEE3D /* NewCardsPerDaySettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16E9792845E00D001DEE3D /* NewCardsPerDaySettingView.swift */; };
 		5C16E97E2845E00D001DEE3D /* DifficultiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16E97A2845E00D001DEE3D /* DifficultiesView.swift */; };
 		5C16E9802845E031001DEE3D /* IntExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16E97F2845E031001DEE3D /* IntExtentions.swift */; };
+		5C16E98428489551001DEE3D /* SaveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16E98328489551001DEE3D /* SaveButtonView.swift */; };
 		5C1D7496283F32E4006E2B27 /* MainMenuTabCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1D7495283F32E4006E2B27 /* MainMenuTabCalendarView.swift */; };
 		5C1D7499283F3456006E2B27 /* SwiftUICalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 5C1D7498283F3456006E2B27 /* SwiftUICalendar */; };
 		5C1D749B283F5B5C006E2B27 /* DailyStateExtenions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1D749A283F5B5C006E2B27 /* DailyStateExtenions.swift */; };
@@ -75,6 +76,7 @@
 		5C16E9792845E00D001DEE3D /* NewCardsPerDaySettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewCardsPerDaySettingView.swift; sourceTree = "<group>"; };
 		5C16E97A2845E00D001DEE3D /* DifficultiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DifficultiesView.swift; sourceTree = "<group>"; };
 		5C16E97F2845E031001DEE3D /* IntExtentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtentions.swift; sourceTree = "<group>"; };
+		5C16E98328489551001DEE3D /* SaveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButtonView.swift; sourceTree = "<group>"; };
 		5C1D7495283F32E4006E2B27 /* MainMenuTabCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuTabCalendarView.swift; sourceTree = "<group>"; };
 		5C1D749A283F5B5C006E2B27 /* DailyStateExtenions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStateExtenions.swift; sourceTree = "<group>"; };
 		5C2D320F280FF05C00D19F64 /* CardTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTransition.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				5C2D322228101DD100D19F64 /* NewCardsView.swift */,
+				5C16E98328489551001DEE3D /* SaveButtonView.swift */,
 			);
 			path = NewCards;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 				5CFAB609282CDC820034E64D /* DateExtension.swift in Sources */,
 				5C16E97D2845E00D001DEE3D /* NewCardsPerDaySettingView.swift in Sources */,
 				5CFAB605282CA45C0034E64D /* CardBrowserCellView.swift in Sources */,
+				5C16E98428489551001DEE3D /* SaveButtonView.swift in Sources */,
 				5C70DC33280FD033005FA650 /* InfoView.swift in Sources */,
 				5C40DD9D2828BD3200DE73BC /* MenuViewComponent.swift in Sources */,
 				5C2D322A28112DAB00D19F64 /* DisplayCard.swift in Sources */,
