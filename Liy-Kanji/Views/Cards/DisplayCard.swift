@@ -21,7 +21,6 @@ struct DisplayCard: View {
                 
                 CardInfoView(radicalViews: $radicalViews, kanji: kanji)
                 
-                Spacer()
                 
                 HStack {
                     

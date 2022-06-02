@@ -89,9 +89,6 @@ struct RadicalView: View, Identifiable {
             Text(kanjiChar)
             Divider()
                 .frame(width: 20)
-            ForEach(keywords, id: \.self) { keyword in
-                Text(keyword)
-            }
         }
         .padding()
     }

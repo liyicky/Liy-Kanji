@@ -28,59 +28,36 @@ struct CardInfoView: View {
                     Text(kanji.character!)
                         .font(.system(size: 100))
                         .fontWeight(.bold)
-                    
+                        .padding(.horizontal, 15)
+
                     Text(kanji.keyword!)
                         .font(.largeTitle)
                         .fontWeight(.bold)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.01)
+                        .padding(.horizontal, 15)
                 }
+                .frame(width: UIScreen.main.bounds.width/2, height: UIScreen.main.bounds.width/2)
             
                 Text(kanji.character!)
                     .font(Font.custom("KanjiStrokeOrders", size: 180))
                     .fontWeight(.bold)
+                    .frame(width: UIScreen.main.bounds.width/2, height: UIScreen.main.bounds.width/2)
             }
             
             
             Divider()
             
             // MARK: - KANJI RADICAL BUTTONS
-            HStack(alignment: .center, spacing: 10) {
-                Spacer()
-                Group {
+            ScrollView(.horizontal) {
+                HStack(alignment: .center, spacing: 10) {
                     ForEach(radicalViews) { radicalView in
-                        
                         radicalView
-
-//                        Button(action: {
-//                            selectedRadical = radical
-//                        }) {
-//                            VStack {
-//                                Text(radical.kanji)
-//                                    .font(.footnote)
-//                                    .fontWeight(.light)
-//                                    .foregroundColor(Color.primary)
-//                                Text(radical.keyword)
-//                                    .font(.callout)
-//                                    .fontWeight(.light)
-//                                    .foregroundColor(Color.primary)
-//                            }
-//                        }
                     }
                 }
-                Spacer()
+                .padding()
             }
-            .padding()
-
-//            .sheet(item: $selectedRadical, content: {_ in
-//                CardInfoView(kanji: kanji)
-//            })
-            
-            Spacer()
+            .frame(height: 30)
         }
     }
 }
-
-//struct CardInfoView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CardInfoView(cardDataModel: cardDataModels[15])
-//    }
-//}
