@@ -11,7 +11,8 @@ extension Radical {
     
     public static let Pure = [
         "lid": "⼇",
-        "drop": "丶"
+        "drop": "丶",
+        "cliff": "⼚"
     ]
     
 //    func allKanji() -> [Kanji] {

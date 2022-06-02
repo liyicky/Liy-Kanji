@@ -104,6 +104,15 @@ extension DBWorker {
         
         return nil
     }
+    
+    func fetchKanjiWithCharacter(_ character: String) -> Kanji? {
+        let results = fetch(request: Kanji.fetchRequest(), predicate: NSPredicate(format: "character == %@", character)) as? [Kanji]
+        if let result = results?.first {
+            return result
+        }
+        
+        return nil
+    }
 }
 
 // MARK: - KANJICARD ENTITIES

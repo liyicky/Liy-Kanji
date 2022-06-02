@@ -82,15 +82,46 @@ struct RadicalView: View, Identifiable {
     
     var kanjiChar: String
     var keywords: [String]
+    @State private var kanji: Kanji?
+    @State private var showingSheet = false
+    @State private var kanjiRadicalsForTheSheet: [RadicalView] = []
     
     var body: some View {
         VStack(spacing: 1) {
-            
-            Text(kanjiChar)
-            Divider()
-                .frame(width: 20)
+            if let kanji = kanji {
+                Button {
+                    showingSheet.toggle()
+                } label: {
+                    VStack {
+                        Text(kanjiChar)
+                        Divider()
+                            .frame(width: 20)
+                    }
+                }
+            } else {
+                Text(kanjiChar)
+            }
         }
         .padding()
+        .task {
+            self.kanji = await DBWorker.shared.fetchKanjiWithCharacter(kanjiChar)
+            if let kanji = self.kanji {
+                self.kanjiRadicalsForTheSheet = await kanji.radicalViews()
+            }
+        }
+        .sheet(isPresented: $showingSheet) {
+            if let kanji = self.kanji {
+                CardInfoView(radicalViews: $kanjiRadicalsForTheSheet, kanji: kanji)
+                
+                Text("Keywords")
+                    .font(.largeTitle)
+                HStack {
+                    ForEach(keywords, id: \.self) { keyword in
+                        Text(keyword)
+                    }
+                }
+            }
+        }
     }
 }
 
