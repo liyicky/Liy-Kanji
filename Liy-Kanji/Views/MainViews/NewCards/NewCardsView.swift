@@ -11,29 +11,22 @@ struct NewCardsView: View {
     
     // MARK: - PROPERTIES
     @EnvironmentObject var am: AppManager
-    @State var radicalViews: [RadicalView] = []
     @State var mnemonic: String = "Start writing..."
         
     var body: some View {
         
         VStack {
             if let kanji = am.currentKanji {
-                DisplayCard(kanji: kanji, mnemonic: $mnemonic, radicalViews: $radicalViews)
+                DisplayCard(kanji: kanji, mnemonic: $mnemonic, radicalViews: $am.currentKanjiRadicalViews)
                 Button(action: {
-                    withAnimation {
-                        Task {
-                            await am.createCard(mnemonic: mnemonic)
-                            self.radicalViews = await kanji.radicalViews()
-                        }
+                    Task {
+                        await am.createCard(mnemonic: mnemonic)
                         mnemonic = "Start writing..."
                     }
                 }, label: {
                     Text("Save".uppercased())
                         .modifier(ButtonModifier())
                 })
-                .task {
-                    self.radicalViews = await kanji.radicalViews()
-                }
             }
         }
         .navigationTitle("Add Cards")

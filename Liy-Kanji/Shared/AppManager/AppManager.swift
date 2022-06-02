@@ -15,6 +15,7 @@ class AppManager: ObservableObject {
     // MARK: - Kanji Properties
     @Published var kanji: [Kanji] = []
     @Published var currentKanji: Kanji?
+    @Published var currentKanjiRadicalViews: [RadicalView] = []
     var reviewCards: [KanjiCard] = []
     @Published var topCard: KanjiCard? = nil
     @Published var nextCard: KanjiCard? = nil
@@ -189,6 +190,9 @@ extension AppManager {
     func updateCurrentKanji() async {
         do {
             self.currentKanji = try await DBWorker.shared.fetchCurrentKanji()
+            if let kanji = self.currentKanji {
+                self.currentKanjiRadicalViews = await kanji.radicalViews()
+            }
         } catch {
             print(error.localizedDescription)
         }
