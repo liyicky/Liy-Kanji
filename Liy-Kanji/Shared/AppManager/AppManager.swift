@@ -189,10 +189,13 @@ extension AppManager {
     
     func updateCurrentKanji() async {
         do {
-            self.currentKanji = try await DBWorker.shared.fetchCurrentKanji()
-            if let kanji = self.currentKanji {
-                self.currentKanjiRadicalViews = await kanji.radicalViews()
-                self.currentKanjiHints = []
+            let nextKanji = try await DBWorker.shared.fetchCurrentKanji()
+            if let nextKanji = nextKanji {
+                withAnimation {
+                    self.currentKanji = nextKanji
+                    self.currentKanjiHints = []
+                }
+                self.currentKanjiRadicalViews = await nextKanji.radicalViews()
             }
         } catch {
             print(error.localizedDescription)
@@ -203,7 +206,9 @@ extension AppManager {
         
         if let hints = await currentKanji?.allHints() {
             if currentKanjiHints.count < 5 {
-                currentKanjiHints.append(hints[currentKanjiHints.count])
+                withAnimation {
+                    currentKanjiHints.append(hints[currentKanjiHints.count])
+                }
             }
         }
     }

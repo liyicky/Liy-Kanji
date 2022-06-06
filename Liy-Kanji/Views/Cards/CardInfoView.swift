@@ -10,6 +10,7 @@ import SwiftUI
 struct CardInfoView: View {
     
     // MARK: - PROPERTIES
+    @EnvironmentObject var am: AppManager
     @Binding var radicalViews: [RadicalView]
     
     let kanji: Kanji
