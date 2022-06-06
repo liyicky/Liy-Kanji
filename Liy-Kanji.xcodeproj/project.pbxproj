@@ -16,6 +16,7 @@
 		5C16E97E2845E00D001DEE3D /* DifficultiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16E97A2845E00D001DEE3D /* DifficultiesView.swift */; };
 		5C16E9802845E031001DEE3D /* IntExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16E97F2845E031001DEE3D /* IntExtentions.swift */; };
 		5C16E98428489551001DEE3D /* SaveButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16E98328489551001DEE3D /* SaveButtonView.swift */; };
+		5C16E9872848ACF3001DEE3D /* KanjiAliveAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C16E9862848ACF3001DEE3D /* KanjiAliveAPI.swift */; };
 		5C1D7496283F32E4006E2B27 /* MainMenuTabCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1D7495283F32E4006E2B27 /* MainMenuTabCalendarView.swift */; };
 		5C1D7499283F3456006E2B27 /* SwiftUICalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 5C1D7498283F3456006E2B27 /* SwiftUICalendar */; };
 		5C1D749B283F5B5C006E2B27 /* DailyStateExtenions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1D749A283F5B5C006E2B27 /* DailyStateExtenions.swift */; };
@@ -43,6 +44,7 @@
 		5C623F1F283DEB01007FB680 /* MainMenuBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C623F1E283DEB01007FB680 /* MainMenuBackView.swift */; };
 		5C623F21283DF3DD007FB680 /* MainMenuTabStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C623F20283DF3DD007FB680 /* MainMenuTabStatsView.swift */; };
 		5C623F23283DF470007FB680 /* MenuTabSizeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C623F22283DF470007FB680 /* MenuTabSizeModifier.swift */; };
+		5C688705284DD491000D9B8D /* HintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C688704284DD491000D9B8D /* HintView.swift */; };
 		5C70DC1F280FCC2E005FA650 /* Liy_KanjiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC1E280FCC2E005FA650 /* Liy_KanjiApp.swift */; };
 		5C70DC21280FCC2E005FA650 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC20280FCC2E005FA650 /* ContentView.swift */; };
 		5C70DC23280FCC30005FA650 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C70DC22280FCC30005FA650 /* Assets.xcassets */; };
@@ -77,6 +79,7 @@
 		5C16E97A2845E00D001DEE3D /* DifficultiesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DifficultiesView.swift; sourceTree = "<group>"; };
 		5C16E97F2845E031001DEE3D /* IntExtentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntExtentions.swift; sourceTree = "<group>"; };
 		5C16E98328489551001DEE3D /* SaveButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveButtonView.swift; sourceTree = "<group>"; };
+		5C16E9862848ACF3001DEE3D /* KanjiAliveAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiAliveAPI.swift; sourceTree = "<group>"; };
 		5C1D7495283F32E4006E2B27 /* MainMenuTabCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuTabCalendarView.swift; sourceTree = "<group>"; };
 		5C1D749A283F5B5C006E2B27 /* DailyStateExtenions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyStateExtenions.swift; sourceTree = "<group>"; };
 		5C2D320F280FF05C00D19F64 /* CardTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTransition.swift; sourceTree = "<group>"; };
@@ -104,6 +107,7 @@
 		5C623F1E283DEB01007FB680 /* MainMenuBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuBackView.swift; sourceTree = "<group>"; };
 		5C623F20283DF3DD007FB680 /* MainMenuTabStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuTabStatsView.swift; sourceTree = "<group>"; };
 		5C623F22283DF470007FB680 /* MenuTabSizeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTabSizeModifier.swift; sourceTree = "<group>"; };
+		5C688704284DD491000D9B8D /* HintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintView.swift; sourceTree = "<group>"; };
 		5C70DC1B280FCC2E005FA650 /* Liy-Kanji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Liy-Kanji.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C70DC1E280FCC2E005FA650 /* Liy_KanjiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Liy_KanjiApp.swift; sourceTree = "<group>"; };
 		5C70DC20280FCC2E005FA650 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -152,6 +156,14 @@
 			path = "Settings Sub Views";
 			sourceTree = "<group>";
 		};
+		5C16E9852848ACC1001DEE3D /* Kanji Alive API */ = {
+			isa = PBXGroup;
+			children = (
+				5C16E9862848ACF3001DEE3D /* KanjiAliveAPI.swift */,
+			);
+			path = "Kanji Alive API";
+			sourceTree = "<group>";
+		};
 		5C2D321B28100F8800D19F64 /* Cards */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +190,7 @@
 			children = (
 				5C2D322228101DD100D19F64 /* NewCardsView.swift */,
 				5C16E98328489551001DEE3D /* SaveButtonView.swift */,
+				5C688704284DD491000D9B8D /* HintView.swift */,
 			);
 			path = NewCards;
 			sourceTree = "<group>";
@@ -236,6 +249,7 @@
 		5C3BB17B282DF5F7008F32F8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				5C16E9852848ACC1001DEE3D /* Kanji Alive API */,
 				5C623EEF283DBE93007FB680 /* Fonts */,
 				5C5260DF283647AC00F583CD /* AppManager */,
 				5C2D322628111BB900D19F64 /* Extensions */,
@@ -518,6 +532,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C70DC47280FEAE1005FA650 /* ReviewsView.swift in Sources */,
+				5C688705284DD491000D9B8D /* HintView.swift in Sources */,
 				5CF43A8028126A70003F0459 /* BackView.swift in Sources */,
 				5C1D7496283F32E4006E2B27 /* MainMenuTabCalendarView.swift in Sources */,
 				5C2D3212280FF1D700D19F64 /* CardStackView.swift in Sources */,
@@ -546,6 +561,7 @@
 				5C40DDA8282A391D00DE73BC /* KanjiView.swift in Sources */,
 				5C2D322D2811851200D19F64 /* ButtonModifier.swift in Sources */,
 				5C2D322F28124E0600D19F64 /* CardInfoView.swift in Sources */,
+				5C16E9872848ACF3001DEE3D /* KanjiAliveAPI.swift in Sources */,
 				5C03275D2832289D0083DDB2 /* CollectionExtensions.swift in Sources */,
 				5C2D321D28100FA600D19F64 /* CardView.swift in Sources */,
 				5C2D321A280FF34B00D19F64 /* PersistenceController.swift in Sources */,

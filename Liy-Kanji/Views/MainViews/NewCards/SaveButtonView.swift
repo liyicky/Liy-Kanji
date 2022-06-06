@@ -12,6 +12,8 @@ struct SaveButtonView: View {
     @State var isComplete = false
     var onCompletion: () -> Void
     
+    var saveButtonSpeed = 0.5
+    
     var body: some View {
         ZStack(alignment: .center) {
             
@@ -19,7 +21,7 @@ struct SaveButtonView: View {
                 .foregroundColor(Color.white)
                 .frame(width: 200, height: 50)
                 .shadow(color: Color.black.opacity(0.2), radius: 5, x: 0, y: 5)
-                .onLongPressGesture(minimumDuration: 1.0, maximumDistance: 50, perform: {
+                .onLongPressGesture(minimumDuration: saveButtonSpeed, maximumDistance: 50, perform: {
                     withAnimation(.easeInOut) {
                         onCompletion()
                         
@@ -27,7 +29,7 @@ struct SaveButtonView: View {
                     }
                 }, onPressingChanged: { isPressing in
                     if isPressing {
-                        withAnimation(.easeInOut(duration: 1.0)) {
+                        withAnimation(.easeInOut(duration: saveButtonSpeed)) {
                             isComplete = true
                         }
                     } else {

@@ -73,6 +73,10 @@ extension Kanji {
         return kanjiRadicals
     }
     
+    func allHints() async -> [Hint] {
+        return await DBWorker.shared.fetchHintsForKanji(kanji: self)
+    }
+    
     
 }
 

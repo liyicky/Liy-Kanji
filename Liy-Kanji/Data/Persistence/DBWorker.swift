@@ -38,15 +38,24 @@ actor DBWorker {
             kanjiEntity.onyomi2 = model.onyomi[safe: 1]
             kanjiEntity.kunyomi1 = model.kunyomi[safe: 0]
             kanjiEntity.kunyomi1 = model.kunyomi[safe: 1]
-            kanjiEntity.exampleInKanji = model.exampleWords[0]
-            kanjiEntity.exampleInKana = model.exampleWords[1]
-            kanjiEntity.exampleInEnglish = model.exampleWords[2]
+
 
             // Save Radicals & KanjiRadical relationship table
             for radical in model.radicals {
                 let radicalEntity = Radical(context: self.context)
                 radicalEntity.keyword = radical
                 radicalEntity.addToKanji(kanjiEntity)
+            }
+            
+            // Save Mnemonic Hints
+            for hint in model.hints {
+                let hintEntity = Hint(context: self.context)
+                hintEntity.author = hint["author"]
+                if let date = hint["date"]?.hintDateToDate() {
+                    hintEntity.date = date
+                }
+                hintEntity.mnemonic = hint["mnemonic"]
+                hintEntity.kanji = kanjiEntity
             }
         }
         print("Kanji Sync Successful")
@@ -182,6 +191,14 @@ extension DBWorker {
             return results.first
         }
         return nil
+    }
+}
+
+// MARK: - MNEMONIC HINTS
+extension DBWorker {
+    
+    func fetchHintsForKanji(kanji: Kanji) -> [Hint] {
+        return kanji.hints?.sortedArray(using: [NSSortDescriptor(key: "author", ascending: true)]) as? [Hint] ?? []
     }
 }
 

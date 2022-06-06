@@ -5,7 +5,6 @@
 //  Created by Jason Cheladyn on 2022/05/19.
 //
 
-import Foundation
 import SwiftUI
 
 class AppManager: ObservableObject {
@@ -16,6 +15,7 @@ class AppManager: ObservableObject {
     @Published var kanji: [Kanji] = []
     @Published var currentKanji: Kanji?
     @Published var currentKanjiRadicalViews: [RadicalView] = []
+    @Published var currentKanjiHints: [Hint] = []
     var reviewCards: [KanjiCard] = []
     @Published var topCard: KanjiCard? = nil
     @Published var nextCard: KanjiCard? = nil
@@ -177,7 +177,7 @@ extension AppManager {
 extension AppManager {
     
     func setKanjiState() async {
-        let fetchedKanji = await dbWorker.fetchAllKanji()
+        let fetchedKanji = await DBWorker.shared.fetchAllKanji()
         for kanji in fetchedKanji {
 
             try? await Task.sleep(nanoseconds: 5_000_000)
@@ -192,9 +192,19 @@ extension AppManager {
             self.currentKanji = try await DBWorker.shared.fetchCurrentKanji()
             if let kanji = self.currentKanji {
                 self.currentKanjiRadicalViews = await kanji.radicalViews()
+                self.currentKanjiHints = []
             }
         } catch {
             print(error.localizedDescription)
+        }
+    }
+    
+    func addHint() async {
+        
+        if let hints = await currentKanji?.allHints() {
+            if currentKanjiHints.count < 5 {
+                currentKanjiHints.append(hints[currentKanjiHints.count])
+            }
         }
     }
     
@@ -206,7 +216,6 @@ extension AppManager {
         }
     }
 }
-
 
 // MARK: - Manage App State
 extension AppManager {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AppState" representedClassName="AppState" syncable="YES" codeGenerationType="class">
-        <attribute name="currentKanjiIndex" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="currentKanjiIndex" attributeType="Integer 16" defaultValueString="1" usesScalarValueType="YES"/>
         <attribute name="darkMode" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="difficulty" attributeType="Integer 16" minValueString="1" maxValueString="5" defaultValueString="5" usesScalarValueType="YES"/>
         <attribute name="newCardsPerDay" attributeType="Integer 16" defaultValueString="10" usesScalarValueType="YES"/>
@@ -13,6 +13,12 @@
         <attribute name="repCount" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="timestamp" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="appState" maxCount="1" deletionRule="Nullify" destinationEntity="AppState" inverseName="dailyStates" inverseEntity="AppState"/>
+    </entity>
+    <entity name="Hint" representedClassName="Hint" syncable="YES" codeGenerationType="class">
+        <attribute name="author" attributeType="String"/>
+        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="mnemonic" attributeType="String"/>
+        <relationship name="kanji" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Kanji" inverseName="hints" inverseEntity="Kanji"/>
     </entity>
     <entity name="Kanji" representedClassName="Kanji" syncable="YES" codeGenerationType="class">
         <attribute name="character" attributeType="String"/>
@@ -26,6 +32,7 @@
         <attribute name="onyomi1" optional="YES" attributeType="String"/>
         <attribute name="onyomi2" optional="YES" attributeType="String"/>
         <relationship name="card" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="KanjiCard" inverseName="kanji" inverseEntity="KanjiCard"/>
+        <relationship name="hints" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Hint" inverseName="kanji" inverseEntity="Hint"/>
         <relationship name="radicals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Radical" inverseName="kanji" inverseEntity="Radical"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
@@ -62,7 +69,8 @@
     <elements>
         <element name="AppState" positionX="-54" positionY="90" width="128" height="134"/>
         <element name="DailyState" positionX="-45" positionY="99" width="128" height="74"/>
-        <element name="Kanji" positionX="-63" positionY="-18" width="128" height="209"/>
+        <element name="Hint" positionX="-45" positionY="108" width="128" height="89"/>
+        <element name="Kanji" positionX="-63" positionY="-18" width="128" height="224"/>
         <element name="KanjiCard" positionX="-45" positionY="54" width="128" height="164"/>
         <element name="Radical" positionX="-45" positionY="72" width="128" height="59"/>
     </elements>

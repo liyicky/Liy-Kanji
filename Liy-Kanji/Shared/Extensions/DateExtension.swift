@@ -33,28 +33,28 @@ extension Date {
         case failedToExtractDateFromString
     }
     
-    func extractTime(date: Date, format: String) -> String {
+    func toString(format: String) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = format
-        return formatter.string(from: date)
+        return formatter.string(from: self)
     }
     
     func getYear() throws -> Int {
-        if let year = Int(extractTime(date: self, format: "yyyy")) {
+        if let year = Int(self.toString(format: "yyyy")) {
             return year
         }
         throw ExtractDateError.failedToExtractDateFromString
     }
     
     func getDay() throws -> Int {
-        if let day = Int(extractTime(date: self, format: "dd")) {
+        if let day = Int(self.toString(format: "dd")) {
             return day
         }
         throw ExtractDateError.failedToExtractDateFromString
     }
     
     func getMonth() throws -> Int {
-        if let month = Int(extractTime(date: self, format: "MM")) {
+        if let month = Int(self.toString(format: "MM")) {
             return month
         }
         throw ExtractDateError.failedToExtractDateFromString
@@ -145,5 +145,14 @@ extension Date {
             fatalError()
         }
     }
+}
+
+// Hint Date Extention
+extension String {
     
+    func hintDateToDate() -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd'-'MM'-'yyy"
+        return dateFormatter.date(from: self)
+    }
 }

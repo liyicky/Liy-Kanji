@@ -11,9 +11,11 @@ struct DisplayCard: View {
     
     // MARK: - PROPERTIES
     
+    @EnvironmentObject var am: AppManager
     let kanji: Kanji
     @Binding var mnemonic: String
     @Binding var radicalViews: [RadicalView]
+    
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -28,7 +30,24 @@ struct DisplayCard: View {
                         .font(.callout)
                         .foregroundColor(Color.gray)
                     Spacer()
-                }.padding(.leading, 20)
+                    
+                    Button {
+                        Task {
+                            await am.addHint()
+                        }
+                    } label: {
+                        Text("Show hint?")
+                            .font(.callout)
+                            .foregroundColor(Color.gray)
+                    }
+
+                }.padding(.horizontal, 20)
+                
+                VStack {
+                    ForEach(am.currentKanjiHints) { hint in
+                        HintView(hint: hint)
+                    }
+                }.padding(5)
                 
                 Divider().padding(.horizontal, 20)
                 
