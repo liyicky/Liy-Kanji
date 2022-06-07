@@ -7,14 +7,25 @@
 
 import SwiftUI
 
+class BackViewManager: ObservableObject {
+    @State var kanjiRadicalViews: [RadicalView] = []
+    
+    func fetchRadicals(kanji: Kanji) {
+        self.kanjiRadicalViews = kanji.radicalViews()
+    }
+}
+
 struct BackView: View {
     
     // TODO: This state does nothing
-    @State var kanjiRadicalViews: [RadicalView] = []
+    @StateObject var vm = BackViewManager()
     var kanjiCard: KanjiCard
     
     var body: some View {
-        CardInfoView(radicalViews: $kanjiRadicalViews, kanji: kanjiCard.kanji!)
+        CardInfoView(kanji: kanjiCard.kanji!)
+            .onAppear {
+                vm.fetchRadicals(kanji: kanjiCard.kanji!)
+            }
     }
 }
 

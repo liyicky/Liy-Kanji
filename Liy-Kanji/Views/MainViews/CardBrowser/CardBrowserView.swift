@@ -11,8 +11,8 @@ class CardBrowersViewModel: ObservableObject {
     
     @Published var cells: [CardBrowserCellView] = []
     
-    func updateCells() async {
-        let kanjiCards = await dbWorker.fetchAllKanjiCards()
+    func updateCells() {
+        let kanjiCards = dbWorker.fetchAllKanjiCards()
         for card in kanjiCards {
             self.cells.append(CardBrowserCellView(kanjiCard: card))
         }
@@ -48,8 +48,8 @@ struct CardBrowserView: View {
             }
         }
         .padding()
-        .task {
-            await vm.updateCells()
+        .onAppear {
+            vm.updateCells()
         }
     }
 }

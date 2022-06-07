@@ -10,15 +10,12 @@ import SwiftUI
 extension Kanji {
     
     public func rads() -> [Radical] {
-        if let radicals = radicals?.allObjects as? [Radical] {
-            return radicals
-        }
-        return []
+        return DBWorker.shared.fetchRadicalsForKanji(kanji: self)
     }
     
-    func radicalViews() async -> [RadicalView] {
+    func radicalViews() -> [RadicalView] {
         var views: [RadicalView] = []
-        let kanjiRadicals = await kanjiRadicals()
+        let kanjiRadicals = kanjiRadicals()
         for kanji in kanjiRadicals {
             print(kanji)
             views.append(RadicalView(kanjiChar: kanji.key, keywords: kanji.value))
@@ -40,7 +37,7 @@ extension Kanji {
     }
     
     
-    private func kanjiRadicals() async -> [String: [String]] {
+    private func kanjiRadicals() -> [String: [String]] {
         var kanjiRadicals: [String: [String]] = [:]
         for radical in rads() {
             
@@ -48,7 +45,7 @@ extension Kanji {
             if radical.keyword == keyword { continue }
             
             // Try to find a kanji that belongs to the radical.
-            if let kanji = await DBWorker.shared.fetchKanjiWithKeyword(radical.keyword!) {
+            if let kanji = DBWorker.shared.fetchKanjiWithKeyword(radical.keyword!) {
                 kanjiRadicals = addToKanjiRadicals(kanjiRadicals: kanjiRadicals, kanjiChar: kanji.character!, keyword: radical.keyword!)
                 continue
             }
@@ -60,7 +57,7 @@ extension Kanji {
             }
             
             // Find the first kanji with this keyword as one of it's radicals.
-            let allKanji = await DBWorker.shared.fetchAllKanji()
+            let allKanji = DBWorker.shared.fetchAllKanji()
             outerLoop: for kanji in allKanji {
                 for subradical in kanji.rads() { // Look at EVERY radical in the DB and stop at the first one
                     if subradical.keyword! == radical.keyword! { // If a kanji is found, put/append it in the dict and break.
@@ -73,7 +70,7 @@ extension Kanji {
         return kanjiRadicals
     }
     
-    func allHints() async -> [Hint] {
-        return await DBWorker.shared.fetchHintsForKanji(kanji: self)
+    func allHints() -> [Hint] {
+        return DBWorker.shared.fetchHintsForKanji(kanji: self)
     }
 }

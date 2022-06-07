@@ -11,12 +11,10 @@ struct CardInfoView: View {
     
     // MARK: - PROPERTIES
     @EnvironmentObject var am: AppManager
-    @Binding var radicalViews: [RadicalView]
-    
     let kanji: Kanji
     
     var body: some View {
-        VStack {
+        VStack(alignment: .center, spacing: 1) {
             HStack {
                 Text("#"+String(kanji.kanjiId))
                 Spacer()
@@ -44,21 +42,23 @@ struct CardInfoView: View {
                     .font(Font.custom("KanjiStrokeOrders", size: 180))
                     .fontWeight(.bold)
 
-            }
+            } // HStack that holds the Kanji, Keyword, and Stroke Order
             
             
             Divider()
+
             
             // MARK: - KANJI RADICAL BUTTONS
             ScrollView(.horizontal) {
                 HStack(alignment: .center, spacing: 10) {
-                    ForEach(radicalViews) { radicalView in
+                    ForEach(kanji.radicalViews()) { radicalView in
                         radicalView
                     }
+                    
                 }
-                .padding()
+                
             }
             .frame(height: 30)
-        }
+        } // VStack
     }
 }

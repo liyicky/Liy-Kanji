@@ -34,15 +34,15 @@ struct RadicalView: View, Identifiable {
             }
         }
         .padding()
-        .task {
-            self.kanji = await DBWorker.shared.fetchKanjiWithCharacter(kanjiChar)
-            if let kanji = self.kanji {
-                self.kanjiRadicalsForTheSheet = await kanji.radicalViews()
+        .onAppear {
+            kanji = DBWorker.shared.fetchKanjiWithCharacter(kanjiChar)
+            if let kanji = kanji {
+                self.kanjiRadicalsForTheSheet = kanji.radicalViews()
             }
         }
         .sheet(isPresented: $showingSheet) {
             if let kanji = self.kanji {
-                CardInfoView(radicalViews: $kanjiRadicalsForTheSheet, kanji: kanji)
+                CardInfoView(kanji: kanji)
                 
                 Text("Keywords")
                     .font(.largeTitle)

@@ -8,8 +8,8 @@
 import CoreData
 
 // MARK: - DATABASE WORKER
-@globalActor
-actor DBWorker {
+
+class DBWorker {
     static let shared = DBWorker()
     private var context: NSManagedObjectContext!
     
@@ -191,6 +191,10 @@ extension DBWorker {
             return results.first
         }
         return nil
+    }
+    
+    func fetchRadicalsForKanji(kanji: Kanji) -> [Radical] {
+        return kanji.radicals?.sortedArray(using: [NSSortDescriptor(key: "keyword", ascending: true)]) as? [Radical] ?? []
     }
 }
 

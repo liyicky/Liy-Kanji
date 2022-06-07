@@ -12,9 +12,8 @@ class AppManager: ObservableObject {
     static let shared = AppManager()
     
     // MARK: - Kanji Properties
-    @Published var kanji: [Kanji] = []
+
     @Published var currentKanji: Kanji?
-    @Published var currentKanjiRadicalViews: [RadicalView] = []
     @Published var currentKanjiHints: [Hint] = []
     var reviewCards: [KanjiCard] = []
     @Published var topCard: KanjiCard? = nil
@@ -47,7 +46,7 @@ class AppManager: ObservableObject {
          Create the DailyState in Core Data
          (Used for tracking how many reps the user did per day)
         */
-        await self.setDailyState()
+        self.setDailyState()
     
         /*
          Sync the Kanji Data Json into Core Data
@@ -58,7 +57,7 @@ class AppManager: ObservableObject {
          Pull today's cards from Core Data.
          This is used in the ReviewsViewManager
         */
-        await self.loadReviewCards()
+        self.loadReviewCards()
         
         /*
          Pull the settings from Core Data and set them as the published state.
@@ -72,11 +71,6 @@ class AppManager: ObservableObject {
         self.cycleCards()
         
         await self.updateCurrentKanji()
-        
-        /*
-         Pull all Kanji from Core Data into an appwide available list.
-        */
-        await self.setKanjiState()
         
     }
     
@@ -144,8 +138,8 @@ extension AppManager {
 // MARK: - Handle Kanji Card Reviews
 extension AppManager {
     
-    func loadReviewCards() async {
-        self.reviewCards = await KanjiCard.due()
+    func loadReviewCards() {
+        self.reviewCards = KanjiCard.due()
     }
     
     func reviewCards() async -> [KanjiCard] {
@@ -175,36 +169,24 @@ extension AppManager {
 
 // MARK: - Manage Kanji for creating new cards
 extension AppManager {
-    
-    func setKanjiState() async {
-        let fetchedKanji = await DBWorker.shared.fetchAllKanji()
-        for kanji in fetchedKanji {
-
-            try? await Task.sleep(nanoseconds: 5_000_000)
-            DispatchQueue.main.async {
-                self.kanji.append(kanji)
-            }
-        }
-    }
-    
+        
     func updateCurrentKanji() async {
         do {
-            let nextKanji = try await DBWorker.shared.fetchCurrentKanji()
+            let nextKanji = try DBWorker.shared.fetchCurrentKanji()
             if let nextKanji = nextKanji {
                 withAnimation {
                     self.currentKanji = nextKanji
                     self.currentKanjiHints = []
                 }
-                self.currentKanjiRadicalViews = await nextKanji.radicalViews()
             }
         } catch {
             print(error.localizedDescription)
         }
     }
     
-    func addHint() async {
+    func addHint() {
         
-        if let hints = await currentKanji?.allHints() {
+        if let hints = currentKanji?.allHints() {
             if currentKanjiHints.count < 5 {
                 withAnimation {
                     currentKanjiHints.append(hints[currentKanjiHints.count])
@@ -215,7 +197,7 @@ extension AppManager {
     
     func createCard(mnemonic: String) async {
         if let currentKanji = self.currentKanji {
-            await DBWorker.shared.createCard(kanji: currentKanji, mnemonic: mnemonic)
+            DBWorker.shared.createCard(kanji: currentKanji, mnemonic: mnemonic)
             recordIndex()
             await updateCurrentKanji()
         }
@@ -226,7 +208,7 @@ extension AppManager {
 extension AppManager {
     
     func setAppState() async {
-        await self.appState = DBWorker.shared.fetchAppState()
+        self.appState = DBWorker.shared.fetchAppState()
     }
     
     func synced() -> Bool {
@@ -247,9 +229,9 @@ extension AppManager {
 // MARK: - Manage Daily State
 extension AppManager {
     
-    func setDailyState() async {
-        await self.dailyState = DBWorker.shared.fetchDailyState()
-        await self.dailyStates = DBWorker.shared.fetchAllDailyStates()
+    func setDailyState() {
+        self.dailyState = DBWorker.shared.fetchDailyState()
+        self.dailyStates = DBWorker.shared.fetchAllDailyStates()
     }
     
     func recordRepCount() {

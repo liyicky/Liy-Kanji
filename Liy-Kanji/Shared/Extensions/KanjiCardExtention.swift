@@ -9,20 +9,20 @@ import Foundation
 
 extension KanjiCard {
     
-    static func due() async -> [KanjiCard] {
-        return await dbWorker.fetchDueKanjiCards()
+    static func due() -> [KanjiCard] {
+        return dbWorker.fetchDueKanjiCards()
     }
     
-    static func dueTomorrow() async -> [KanjiCard] {
-        return await dbWorker.fetchDueTmrKanjiCards()
+    static func dueTomorrow() -> [KanjiCard] {
+        return dbWorker.fetchDueTmrKanjiCards()
     }
 
-    static func amountDueToday() async -> Int {
-        return await due().count
+    static func amountDueToday() -> Int {
+        return due().count
     }
     
-    static func amountDueTomorrow() async -> Int {
-        return await dueTomorrow().count
+    static func amountDueTomorrow() -> Int {
+        return dueTomorrow().count
     }
     
     func dateCreatedString() -> String {

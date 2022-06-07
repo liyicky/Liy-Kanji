@@ -16,12 +16,9 @@ struct NewCardsView: View {
     var body: some View {
         
         VStack {
-            if let kanji = am.currentKanji {
-                DisplayCard(kanji: kanji, mnemonic: $mnemonic, radicalViews: $am.currentKanjiRadicalViews)
-                
-                SaveButtonView(onCompletion: saveCard)
-                
-            }
+            DisplayCard(kanji: am.currentKanji!, mnemonic: $mnemonic)
+
+            SaveButtonView(onCompletion: saveCard)
         }
         .navigationTitle("Add Cards")
     }

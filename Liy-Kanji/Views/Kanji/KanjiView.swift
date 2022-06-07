@@ -7,10 +7,25 @@
 
 import SwiftUI
 
+class KanjiViewManager: ObservableObject {
+    @Published var kanji: [Kanji] = []
+    
+    func loadKanji() async {
+        let fetchedKanji = DBWorker.shared.fetchAllKanji()
+        for kanji in fetchedKanji {
+
+            try? await Task.sleep(nanoseconds: 5_000_000)
+            DispatchQueue.main.async {
+                self.kanji.append(kanji)
+            }
+        }
+    }
+}
+
 struct KanjiView: View {
         
     // MARK: - PROPERTIES
-    @EnvironmentObject var am: AppManager
+    @StateObject var vm = KanjiViewManager()
     var columns = [GridItem(.adaptive(minimum: 20))]
     
     var body: some View {
@@ -18,7 +33,7 @@ struct KanjiView: View {
         ScrollView(.vertical, showsIndicators: false) {
             ScrollViewReader { proxy in
                 LazyVGrid(columns: columns) {
-                    ForEach(am.kanji, id: \.id) { kanji in
+                    ForEach(vm.kanji, id: \.id) { kanji in
                         KanjiText(kanji.character!) //TODO: THIS SHOULDNT BE OPTIONAL
 //                            .foregroundColor(kanji.id ? Color.green : Color.black)
                     }
@@ -31,6 +46,9 @@ struct KanjiView: View {
 //                }
             } // ScrollViewReader
         } // ScrollView
+        .task {
+            await vm.loadKanji()
+        }
     }
 }
 
