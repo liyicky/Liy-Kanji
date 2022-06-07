@@ -14,11 +14,6 @@ struct FrontView: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 20)
-                .fill(.white)
-                .frame(width: 375, height: 600)
-                .shadow(color: .gray, radius: 2, x: 0, y: 0)
-            
             Text(keyword)
                 .font(.title)
                 .fontWeight(.heavy)

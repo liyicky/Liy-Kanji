@@ -46,6 +46,7 @@
 		5C623F23283DF470007FB680 /* MenuTabSizeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C623F22283DF470007FB680 /* MenuTabSizeModifier.swift */; };
 		5C688705284DD491000D9B8D /* HintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C688704284DD491000D9B8D /* HintView.swift */; };
 		5C6902E9284E1AB90093AC64 /* RadicalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6902E8284E1AB90093AC64 /* RadicalView.swift */; };
+		5C6902EB284E21CC0093AC64 /* CardSizeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C6902EA284E21CC0093AC64 /* CardSizeModifier.swift */; };
 		5C70DC1F280FCC2E005FA650 /* Liy_KanjiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC1E280FCC2E005FA650 /* Liy_KanjiApp.swift */; };
 		5C70DC21280FCC2E005FA650 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C70DC20280FCC2E005FA650 /* ContentView.swift */; };
 		5C70DC23280FCC30005FA650 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C70DC22280FCC30005FA650 /* Assets.xcassets */; };
@@ -110,6 +111,7 @@
 		5C623F22283DF470007FB680 /* MenuTabSizeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTabSizeModifier.swift; sourceTree = "<group>"; };
 		5C688704284DD491000D9B8D /* HintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HintView.swift; sourceTree = "<group>"; };
 		5C6902E8284E1AB90093AC64 /* RadicalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadicalView.swift; sourceTree = "<group>"; };
+		5C6902EA284E21CC0093AC64 /* CardSizeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSizeModifier.swift; sourceTree = "<group>"; };
 		5C70DC1B280FCC2E005FA650 /* Liy-Kanji.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Liy-Kanji.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C70DC1E280FCC2E005FA650 /* Liy_KanjiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Liy_KanjiApp.swift; sourceTree = "<group>"; };
 		5C70DC20280FCC2E005FA650 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				5C2D322C2811851200D19F64 /* ButtonModifier.swift */,
 				5C40DD9E2828C34E00DE73BC /* TitleModifier.swift */,
 				5C623F22283DF470007FB680 /* MenuTabSizeModifier.swift */,
+				5C6902EA284E21CC0093AC64 /* CardSizeModifier.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 				5C70DC31280FCFF5005FA650 /* SettingsView.swift in Sources */,
 				5C40DDA32828C8A700DE73BC /* InfoRowView.swift in Sources */,
 				5C16E97E2845E00D001DEE3D /* DifficultiesView.swift in Sources */,
+				5C6902EB284E21CC0093AC64 /* CardSizeModifier.swift in Sources */,
 				5C70DC37280FD77D005FA650 /* MainMenuImage.swift in Sources */,
 				5C70DC2F280FCE64005FA650 /* HeaderView.swift in Sources */,
 				5CFAB609282CDC820034E64D /* DateExtension.swift in Sources */,

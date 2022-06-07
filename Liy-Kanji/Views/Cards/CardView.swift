@@ -17,19 +17,28 @@ struct CardView: View, Identifiable {
     @State var degree: Double = 0
     @State var isFlipped = true
     private let durationAndDelay: CGFloat = 0.3
+    @State var fopacityAmount = 1.0
+    @State var bopacityAmount = 0.0
     
     var body: some View {
         ZStack {
+            RoundedRectangle(cornerRadius: 20)
+                .fill(.white)
+                .shadow(color: .gray, radius: 2, x: 0, y: 0)
+                .modifier(CardSizeModifier())
             FrontView(keyword: kanjiCard.keyword())
-                .rotation3DEffect(Angle(degrees: degree), axis: (x: 0, y: 1, z: 0))
-                .animation(.linear(duration: 0.3))
-                .zIndex(isFlipped ? 1 : 0)
+                .modifier(CardSizeModifier())
+                .opacity(fopacityAmount)
+                .animation(.easeInOut(duration: durationAndDelay/2), value: fopacityAmount)
             BackView(kanjiCard: kanjiCard)
-                .rotation3DEffect(Angle(degrees: degree+180), axis: (x: 0, y: 1, z: 0))
-                .animation(.linear(duration: 0.3))
-                .zIndex(isFlipped ? 0 : 1)
+                .modifier(CardSizeModifier())
+                .rotation3DEffect(Angle(degrees: -180), axis: (x: 0, y: 1, z: 0))
+                .opacity(bopacityAmount)
+                .animation(.easeInOut(duration: durationAndDelay/2), value: bopacityAmount)
+
         }
-        .padding()
+        .rotation3DEffect(Angle(degrees: degree), axis: (x: 0, y: 1, z: 0))
+        .animation(.easeInOut(duration: durationAndDelay), value: fopacityAmount)
         .onTapGesture {
             self.flipCard()
         }
@@ -37,17 +46,16 @@ struct CardView: View, Identifiable {
     
     private func flipCard() {
         print("Flipping Card")
-        
         isFlipped.toggle()
         if isFlipped {
-            withAnimation(.linear(duration: durationAndDelay)) {
-                degree += 180
-            }
+            fopacityAmount = 1.0
+            bopacityAmount = 0.0
         } else {
-            withAnimation(.linear(duration: durationAndDelay)) {
-                degree += 180
-            }
+            fopacityAmount = 0.0
+            bopacityAmount = 1.0
         }
+        
+        degree += 180
     }
 }
 

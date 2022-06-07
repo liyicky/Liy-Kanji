@@ -38,12 +38,12 @@ struct CardInfoView: View {
                         .minimumScaleFactor(0.01)
                         .padding(.horizontal, 15)
                 }
-                .frame(width: UIScreen.main.bounds.width/2, height: UIScreen.main.bounds.width/2)
+
             
                 Text(kanji.character!)
                     .font(Font.custom("KanjiStrokeOrders", size: 180))
                     .fontWeight(.bold)
-                    .frame(width: UIScreen.main.bounds.width/2, height: UIScreen.main.bounds.width/2)
+
             }
             
             
