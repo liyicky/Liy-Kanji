@@ -19,7 +19,7 @@ struct MainMenuView: View {
         VStack {
             NavigationView {
                 
-                ZStack{
+                ZStack {
                     switch selectedIndex {
                     case 0:
                         VStack {
@@ -41,7 +41,7 @@ struct MainMenuView: View {
                     default:
                         Text("Default")
                     }
-                }
+                } // ZStack of Main Views
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(
                     leading: Button(action: {
@@ -122,7 +122,7 @@ struct MainMenuView: View {
             }
             .padding()
         } // VSTACK
-        .background(Color("Background"))
+        
         
         
         /*

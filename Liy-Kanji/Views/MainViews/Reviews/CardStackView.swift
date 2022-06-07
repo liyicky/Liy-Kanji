@@ -105,12 +105,13 @@ struct CardStackView: View {
                         .transition(self.cardRemovalTransition)
                 } else {
                     card
+                        .offset(x: 0, y: 5)
                 }
             }
         }.onAppear {
             populate()
         }
-    }
+    } // ZStack
     
     func populate() {
         cardViews = []
@@ -119,8 +120,10 @@ struct CardStackView: View {
             cardViews.append(CardView(kanjiCard: topCard))
         }
         
-        if let nextCard = AppManager.shared.nextCard {
-            cardViews.append(CardView(kanjiCard: nextCard))
+        withAnimation {
+            if let nextCard = AppManager.shared.nextCard {
+                cardViews.append(CardView(kanjiCard: nextCard))
+            }
         }
     }
     

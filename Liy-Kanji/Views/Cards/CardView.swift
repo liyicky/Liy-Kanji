@@ -24,7 +24,7 @@ struct CardView: View, Identifiable {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
                 .fill(.white)
-                .shadow(color: .gray, radius: 2, x: 0, y: 0)
+                .shadow(color: .gray, radius: 5, x: 0, y: 5)
                 .modifier(CardSizeModifier())
             FrontView(keyword: kanjiCard.keyword())
                 .modifier(CardSizeModifier())

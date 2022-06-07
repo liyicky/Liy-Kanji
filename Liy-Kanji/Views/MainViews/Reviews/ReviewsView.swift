@@ -17,8 +17,9 @@ struct ReviewsView: View {
             CardStackView()
             
             FooterView()
-                .padding(.bottom, 30)
+                
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
