@@ -14,10 +14,7 @@ struct ReviewsView: View {
     
     var body: some View {
         VStack {
-            CardStackView()
-            
-            FooterView()
-                
+            CardStackView()                
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
     }

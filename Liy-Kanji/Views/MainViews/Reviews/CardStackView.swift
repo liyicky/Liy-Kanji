@@ -18,6 +18,9 @@ struct CardStackView: View {
     @State private var lastCardIndex: Int = 1
     @State private var cardRemovalTransition = AnyTransition.trailingBottom
     
+    enum ReviewCardError: Error {
+        case noTopCardError
+    }
     
     // MARK: - Drag States
     enum DragState {
@@ -111,7 +114,62 @@ struct CardStackView: View {
         }.onAppear {
             populate()
         }
+        
+        HStack {
+            Button {
+                print("Fail Button")
+                self.cardRemovalTransition = .leadingBottom
+                try? SM2Algo.UpdateCard(card: topCard().kanjiCard, success: false)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    AppManager.shared.leftSwipe()
+                    populate()
+                }
+            } label: {
+                Image(systemName: "xmark.circle")
+                    .font(.system(size: 42, weight: .light))
+                    .foregroundStyle(.red, .black)
+                    .symbolRenderingMode(.palette)
+                    .modifier(ButtonModifier())
+            }
+            
+            Spacer()
+            
+            Button {
+                
+                
+            } label: {
+                Image(systemName: "arrow.counterclockwise.circle")
+                    .font(.system(size: 42, weight: .light))
+                    .foregroundStyle(.black)
+                    .symbolRenderingMode(.palette)
+                    .modifier(ButtonModifier())
+            }
+            
+            Spacer()
+                   
+            Button {
+                print("Success Button")
+                self.cardRemovalTransition = .trailingBottom
+                try? SM2Algo.UpdateCard(card: topCard().kanjiCard, success: true)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    AppManager.shared.leftSwipe()
+                    populate()
+                }
+                
+            } label: {
+                Image(systemName: "checkmark.circle")
+                    .font(.system(size: 42, weight: .light))
+                    .foregroundStyle(.green, .black)
+                    .symbolRenderingMode(.palette)
+                    .modifier(ButtonModifier())
+            }
+            
+        }
+        .padding()
+
     } // ZStack
+    
+    
     
     func populate() {
         cardViews = []
@@ -133,6 +191,15 @@ struct CardStackView: View {
             return false
         }
         return index == 0
+    }
+    
+    func topCard() throws -> CardView {
+        for card in cardViews {
+            if isTop(cardView: card) {
+                return card
+            }
+        }
+        throw ReviewCardError.noTopCardError
     }
 }
 

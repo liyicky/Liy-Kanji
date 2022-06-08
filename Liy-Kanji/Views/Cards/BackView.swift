@@ -22,10 +22,17 @@ struct BackView: View {
     var kanjiCard: KanjiCard
     
     var body: some View {
-        CardInfoView(kanji: kanjiCard.kanji!)
-            .onAppear {
-                vm.fetchRadicals(kanji: kanjiCard.kanji!)
-            }
+        VStack {
+            
+            CardInfoView(kanji: kanjiCard.kanji!)
+                .onAppear {
+                    vm.fetchRadicals(kanji: kanjiCard.kanji!)
+                }
+            
+            Text(kanjiCard.mnemonic ?? "No Mnemonic")
+            
+            Spacer()
+        }
     }
 }
 

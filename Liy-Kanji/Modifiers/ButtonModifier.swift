@@ -13,7 +13,7 @@ struct ButtonModifier: ViewModifier {
             .padding()
             .frame(maxWidth: .infinity)
             .background(Color.white)
-            .cornerRadius(12)
-            .shadow(color: Color.black.opacity(0.1), radius: 60, x: 0, y: 0)
+            .cornerRadius(20)
+            .shadow(color: Color.black.opacity(0.5), radius: 5, x: 0, y: 5)
     }
 }
